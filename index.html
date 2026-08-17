@@ -501,6 +501,8 @@
 
             background:
                 rgba(40,169,255,.12);
+
+            transform: translateY(-1px);
         }
 
         .account-icon {
@@ -1783,6 +1785,344 @@
         }
 
         /* ================================
+           PERFIL / MI CUENTA
+        ================================ */
+
+        .profile-overlay {
+            position: fixed;
+
+            inset: 0;
+
+            z-index: 6000;
+
+            display: flex;
+
+            align-items: center;
+            justify-content: center;
+
+            padding: 20px;
+
+            background:
+                rgba(1,4,8,.80);
+
+            backdrop-filter:
+                blur(16px);
+
+            -webkit-backdrop-filter:
+                blur(16px);
+
+            opacity: 0;
+
+            visibility: hidden;
+
+            transition:
+                opacity .25s ease,
+                visibility .25s ease;
+        }
+
+        .profile-overlay.active {
+            opacity: 1;
+
+            visibility: visible;
+        }
+
+        .profile-modal {
+            width:
+                min(470px, 100%);
+
+            position: relative;
+
+            padding: 34px;
+
+            overflow: hidden;
+
+            background:
+                linear-gradient(
+                    145deg,
+                    rgba(13,25,38,.98),
+                    rgba(5,11,18,.99)
+                );
+
+            border:
+                1px solid rgba(40,169,255,.24);
+
+            border-radius: 25px;
+
+            box-shadow:
+                0 35px 100px rgba(0,0,0,.6),
+                0 0 80px rgba(40,169,255,.09);
+
+            transform:
+                translateY(18px)
+                scale(.97);
+
+            transition:
+                transform .3s ease;
+        }
+
+        .profile-overlay.active .profile-modal {
+            transform:
+                translateY(0)
+                scale(1);
+        }
+
+        .profile-modal::before {
+            content: "";
+
+            position: absolute;
+
+            top: 0;
+            left: 10%;
+
+            width: 80%;
+            height: 1px;
+
+            background:
+                linear-gradient(
+                    90deg,
+                    transparent,
+                    var(--blue),
+                    transparent
+                );
+
+            box-shadow:
+                0 0 20px var(--blue);
+        }
+
+        .profile-modal::after {
+            content: "";
+
+            position: absolute;
+
+            width: 230px;
+            height: 230px;
+
+            top: -130px;
+            left: 50%;
+
+            transform:
+                translateX(-50%);
+
+            background:
+                radial-gradient(
+                    circle,
+                    rgba(40,169,255,.14),
+                    transparent 68%
+                );
+
+            pointer-events: none;
+        }
+
+        .profile-close {
+            position: absolute;
+
+            top: 17px;
+            right: 17px;
+
+            z-index: 3;
+
+            width: 36px;
+            height: 36px;
+
+            display: grid;
+
+            place-items: center;
+
+            border:
+                1px solid rgba(255,255,255,.08);
+
+            border-radius: 10px;
+
+            background:
+                rgba(255,255,255,.025);
+
+            color: var(--muted);
+
+            cursor: pointer;
+
+            font-size: 1.2rem;
+
+            transition: .2s ease;
+        }
+
+        .profile-close:hover {
+            color: white;
+
+            border-color:
+                rgba(40,169,255,.3);
+
+            background:
+                rgba(40,169,255,.07);
+        }
+
+        .profile-header {
+            position: relative;
+
+            z-index: 1;
+
+            text-align: center;
+
+            margin-bottom: 27px;
+        }
+
+        .profile-avatar {
+            width: 78px;
+            height: 78px;
+
+            margin: 0 auto 17px;
+
+            display: grid;
+
+            place-items: center;
+
+            border:
+                1px solid rgba(40,169,255,.4);
+
+            border-radius: 23px;
+
+            background:
+                linear-gradient(
+                    145deg,
+                    rgba(40,169,255,.18),
+                    rgba(40,169,255,.045)
+                );
+
+            color: var(--blue-light);
+
+            font-size: 1.8rem;
+
+            font-weight: 800;
+
+            box-shadow:
+                0 0 45px
+                rgba(40,169,255,.12);
+        }
+
+        .profile-header h2 {
+            font-size: 1.9rem;
+
+            letter-spacing: -.8px;
+        }
+
+        .profile-header p {
+            margin-top: 7px;
+
+            color: var(--muted);
+
+            font-size: .88rem;
+        }
+
+        .profile-info {
+            position: relative;
+
+            z-index: 1;
+
+            display: grid;
+
+            gap: 10px;
+        }
+
+        .profile-row {
+            display: flex;
+
+            align-items: center;
+
+            justify-content: space-between;
+
+            gap: 20px;
+
+            min-height: 58px;
+
+            padding: 12px 15px;
+
+            border:
+                1px solid rgba(255,255,255,.06);
+
+            border-radius: 13px;
+
+            background:
+                rgba(255,255,255,.025);
+        }
+
+        .profile-row-label {
+            color: var(--muted);
+
+            font-size: .78rem;
+
+            font-weight: 600;
+        }
+
+        .profile-row-value {
+            max-width: 65%;
+
+            color: #eef7ff;
+
+            font-size: .86rem;
+
+            font-weight: 700;
+
+            text-align: right;
+
+            word-break: break-word;
+        }
+
+        .profile-status {
+            display: inline-flex;
+
+            align-items: center;
+
+            gap: 7px;
+
+            color: #8fe4ff;
+        }
+
+        .profile-status::before {
+            content: "";
+
+            width: 7px;
+            height: 7px;
+
+            flex-shrink: 0;
+
+            border-radius: 50%;
+
+            background: #55d6ff;
+
+            box-shadow:
+                0 0 12px #28a9ff;
+        }
+
+        .profile-actions {
+            position: relative;
+
+            z-index: 1;
+
+            margin-top: 22px;
+        }
+
+        .profile-logout {
+            width: 100%;
+
+            border:
+                1px solid rgba(255,255,255,.09);
+
+            color: #f2f7ff;
+
+            background:
+                rgba(255,255,255,.035);
+        }
+
+        .profile-logout:hover {
+            border-color:
+                rgba(40,169,255,.35);
+
+            background:
+                rgba(40,169,255,.08);
+
+            transform: translateY(-2px);
+        }
+
+        /* ================================
            RESPONSIVE
         ================================ */
 
@@ -1946,6 +2286,24 @@
                 align-items: flex-start;
             }
 
+            .profile-modal {
+                padding: 29px 21px;
+            }
+
+            .profile-row {
+                align-items: flex-start;
+
+                flex-direction: column;
+
+                gap: 5px;
+            }
+
+            .profile-row-value {
+                max-width: 100%;
+
+                text-align: left;
+            }
+
         }
 
         @media (max-width: 480px) {
@@ -1965,6 +2323,17 @@
 
             .auth-modal {
                 padding: 28px 21px;
+            }
+
+            .profile-avatar {
+                width: 68px;
+                height: 68px;
+
+                border-radius: 20px;
+            }
+
+            .profile-header h2 {
+                font-size: 1.65rem;
             }
 
         }
@@ -2086,7 +2455,7 @@
                 </li>
 
 
-                <!-- CUENTA -->
+                <!-- CUENTA SIN INICIAR -->
 
                 <li id="loginNavItem">
 
@@ -2104,6 +2473,8 @@
 
                 </li>
 
+
+                <!-- CUENTA INICIADA -->
 
                 <li
                     id="loggedNavItem"
@@ -3181,6 +3552,138 @@
 
 
     <!-- ================================
+         MODAL MI CUENTA
+    ================================ -->
+
+    <div
+        class="profile-overlay"
+        id="profileOverlay"
+        aria-hidden="true"
+    >
+
+        <div
+            class="profile-modal"
+            role="dialog"
+            aria-modal="true"
+            aria-labelledby="profileTitle"
+        >
+
+            <button
+                class="profile-close"
+                id="profileClose"
+                type="button"
+                aria-label="Cerrar"
+            >
+                ×
+            </button>
+
+
+            <div class="profile-header">
+
+                <div
+                    class="profile-avatar"
+                    id="profileAvatar"
+                >
+                    S
+                </div>
+
+                <h2 id="profileTitle">
+                    Mi cuenta
+                </h2>
+
+                <p>
+                    Información de tu cuenta SUNSTER'S.
+                </p>
+
+            </div>
+
+
+            <div class="profile-info">
+
+                <div class="profile-row">
+
+                    <span class="profile-row-label">
+                        Usuario
+                    </span>
+
+                    <span
+                        class="profile-row-value"
+                        id="profileUsername"
+                    >
+                        —
+                    </span>
+
+                </div>
+
+
+                <div class="profile-row">
+
+                    <span class="profile-row-label">
+                        Correo
+                    </span>
+
+                    <span
+                        class="profile-row-value"
+                        id="profileEmail"
+                    >
+                        —
+                    </span>
+
+                </div>
+
+
+                <div class="profile-row">
+
+                    <span class="profile-row-label">
+                        ID de usuario
+                    </span>
+
+                    <span
+                        class="profile-row-value"
+                        id="profileId"
+                    >
+                        —
+                    </span>
+
+                </div>
+
+
+                <div class="profile-row">
+
+                    <span class="profile-row-label">
+                        Estado
+                    </span>
+
+                    <span
+                        class="profile-row-value profile-status"
+                        id="profileStatus"
+                    >
+                        Cuenta activa
+                    </span>
+
+                </div>
+
+            </div>
+
+
+            <div class="profile-actions">
+
+                <button
+                    class="btn profile-logout"
+                    id="profileLogoutBtn"
+                    type="button"
+                >
+                    Cerrar sesión
+                </button>
+
+            </div>
+
+        </div>
+
+    </div>
+
+
+    <!-- ================================
          JAVASCRIPT
     ================================ -->
 
@@ -3444,23 +3947,6 @@
         );
 
 
-        document.addEventListener(
-            "keydown",
-            event => {
-
-                if (
-                    event.key === "Escape" &&
-                    authOverlay.classList.contains("active")
-                ) {
-
-                    closeAuth();
-
-                }
-
-            }
-        );
-
-
         switchAuthBtn.addEventListener(
             "click",
             () => {
@@ -3604,7 +4090,6 @@
                     }
 
 
-                    // Guardar usuario localmente
                     localStorage.setItem(
                         "sunstersUser",
                         JSON.stringify(
@@ -3814,6 +4299,56 @@
                 "logoutBtn"
             );
 
+        const accountButton =
+            document.getElementById(
+                "accountButton"
+            );
+
+
+        // ==========================================
+        // PERFIL
+        // ==========================================
+
+        const profileOverlay =
+            document.getElementById(
+                "profileOverlay"
+            );
+
+        const profileClose =
+            document.getElementById(
+                "profileClose"
+            );
+
+        const profileAvatar =
+            document.getElementById(
+                "profileAvatar"
+            );
+
+        const profileUsername =
+            document.getElementById(
+                "profileUsername"
+            );
+
+        const profileEmail =
+            document.getElementById(
+                "profileEmail"
+            );
+
+        const profileId =
+            document.getElementById(
+                "profileId"
+            );
+
+        const profileStatus =
+            document.getElementById(
+                "profileStatus"
+            );
+
+        const profileLogoutBtn =
+            document.getElementById(
+                "profileLogoutBtn"
+            );
+
 
         function getCurrentUser() {
 
@@ -3876,15 +4411,170 @@
         }
 
 
+        function openProfile() {
+
+            const user =
+                getCurrentUser();
+
+
+            if (!user) {
+
+                openAuth("login");
+
+                return;
+
+            }
+
+
+            const username =
+                user.username || "Usuario";
+
+            const email =
+                user.email || "No disponible";
+
+            const id =
+                user.id !== undefined &&
+                user.id !== null
+                    ? user.id
+                    : "No disponible";
+
+
+            profileAvatar.textContent =
+                username
+                    .charAt(0)
+                    .toUpperCase();
+
+            profileUsername.textContent =
+                username;
+
+            profileEmail.textContent =
+                email;
+
+            profileId.textContent =
+                "#" + id;
+
+            profileStatus.textContent =
+                "Cuenta activa";
+
+
+            profileOverlay.classList.add(
+                "active"
+            );
+
+            profileOverlay.setAttribute(
+                "aria-hidden",
+                "false"
+            );
+
+            document.body.classList.add(
+                "modal-open"
+            );
+
+        }
+
+
+        function closeProfile() {
+
+            profileOverlay.classList.remove(
+                "active"
+            );
+
+            profileOverlay.setAttribute(
+                "aria-hidden",
+                "true"
+            );
+
+            document.body.classList.remove(
+                "modal-open"
+            );
+
+        }
+
+
+        accountButton.addEventListener(
+            "click",
+            openProfile
+        );
+
+
+        profileClose.addEventListener(
+            "click",
+            closeProfile
+        );
+
+
+        profileOverlay.addEventListener(
+            "click",
+            event => {
+
+                if (
+                    event.target === profileOverlay
+                ) {
+
+                    closeProfile();
+
+                }
+
+            }
+        );
+
+
+        function logout() {
+
+            localStorage.removeItem(
+                "sunstersUser"
+            );
+
+            closeProfile();
+
+            updateAccountUI();
+
+        }
+
+
         logoutBtn.addEventListener(
             "click",
-            () => {
+            logout
+        );
 
-                localStorage.removeItem(
-                    "sunstersUser"
-                );
 
-                updateAccountUI();
+        profileLogoutBtn.addEventListener(
+            "click",
+            logout
+        );
+
+
+        document.addEventListener(
+            "keydown",
+            event => {
+
+                if (event.key !== "Escape") {
+                    return;
+                }
+
+
+                if (
+                    profileOverlay.classList.contains(
+                        "active"
+                    )
+                ) {
+
+                    closeProfile();
+
+                    return;
+
+                }
+
+
+                if (
+                    authOverlay.classList.contains(
+                        "active"
+                    )
+                ) {
+
+                    closeAuth();
+
+                }
 
             }
         );
