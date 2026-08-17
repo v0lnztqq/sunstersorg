@@ -3,29 +3,45 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <meta name="description" content="Sunster's — Roleplay, experiencias y comunidad dentro de Brookhaven.">
+
+    <meta
+        name="description"
+        content="Sunster's — Roleplay, experiencias y comunidad dentro de Brookhaven."
+    >
+
     <meta name="theme-color" content="#28a9ff">
+
     <title>Sunster's | Roleplay & Experiences</title>
 
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-    <link href="https://fonts.googleapis.com/css2?family=Outfit:wght@300;400;500;600;700;800&display=swap" rel="stylesheet">
+
+    <link
+        href="https://fonts.googleapis.com/css2?family=Outfit:wght@300;400;500;600;700;800&display=swap"
+        rel="stylesheet"
+    >
 
     <style>
+
         :root {
             --bg: #05080d;
             --bg-soft: #08111a;
             --surface: rgba(11, 20, 30, .72);
-            --surface-strong: rgba(13, 25, 38, .9);
+            --surface-strong: rgba(13, 25, 38, .94);
+
             --blue: #28a9ff;
             --blue-light: #72c8ff;
             --blue-dark: #0878c9;
+
             --text: #f5f9ff;
             --muted: #91a1b2;
             --muted-2: #617284;
+
             --border: rgba(40, 169, 255, .16);
             --border-hover: rgba(40, 169, 255, .5);
+
             --glow: rgba(40, 169, 255, .18);
+
             --radius: 22px;
             --max: 1180px;
         }
@@ -45,15 +61,39 @@
         body {
             min-height: 100vh;
             overflow-x: hidden;
+
             color: var(--text);
+
             background:
-                radial-gradient(circle at 50% -10%, rgba(40,169,255,.14), transparent 35%),
-                radial-gradient(circle at 90% 35%, rgba(40,169,255,.06), transparent 28%),
-                linear-gradient(145deg, #04070b 0%, #071019 52%, #04070b 100%);
+                radial-gradient(
+                    circle at 50% -10%,
+                    rgba(40,169,255,.14),
+                    transparent 35%
+                ),
+                radial-gradient(
+                    circle at 90% 35%,
+                    rgba(40,169,255,.06),
+                    transparent 28%
+                ),
+                linear-gradient(
+                    145deg,
+                    #04070b 0%,
+                    #071019 52%,
+                    #04070b 100%
+                );
+        }
+
+        body.modal-open {
+            overflow: hidden;
         }
 
         a {
             color: inherit;
+        }
+
+        button,
+        input {
+            font: inherit;
         }
 
         ::selection {
@@ -68,19 +108,31 @@
         #particles {
             position: fixed;
             inset: 0;
+
             width: 100%;
             height: 100%;
+
             z-index: -3;
             pointer-events: none;
         }
 
         .ambient {
             position: fixed;
+
             width: 520px;
             height: 520px;
+
             border-radius: 50%;
-            background: radial-gradient(circle, rgba(40,169,255,.10), transparent 68%);
+
+            background:
+                radial-gradient(
+                    circle,
+                    rgba(40,169,255,.10),
+                    transparent 68%
+                );
+
             filter: blur(25px);
+
             pointer-events: none;
             z-index: -2;
         }
@@ -98,10 +150,14 @@
         .noise {
             position: fixed;
             inset: 0;
+
             pointer-events: none;
+
             opacity: .025;
             z-index: 20;
-            background-image: url("data:image/svg+xml,%3Csvg viewBox='0 0 160 160' xmlns='http://www.w3.org/2000/svg'%3E%3Cfilter id='n'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='.9' numOctaves='3' stitchTiles='stitch'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23n)' opacity='.5'/%3E%3C/svg%3E");
+
+            background-image:
+                url("data:image/svg+xml,%3Csvg viewBox='0 0 160 160' xmlns='http://www.w3.org/2000/svg'%3E%3Cfilter id='n'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='.9' numOctaves='3' stitchTiles='stitch'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23n)' opacity='.5'/%3E%3C/svg%3E");
         }
 
         /* ================================
@@ -109,36 +165,53 @@
         ================================ */
 
         .container {
-            width: min(var(--max), calc(100% - 40px));
+            width: min(
+                var(--max),
+                calc(100% - 40px)
+            );
+
             margin: 0 auto;
         }
 
         .glass {
             background: var(--surface);
+
             border: 1px solid var(--border);
+
             border-radius: var(--radius);
+
             backdrop-filter: blur(18px);
             -webkit-backdrop-filter: blur(18px);
-            box-shadow: 0 20px 60px rgba(0,0,0,.18);
+
+            box-shadow:
+                0 20px 60px rgba(0,0,0,.18);
         }
 
         .eyebrow {
             display: inline-flex;
             align-items: center;
             gap: 9px;
+
             color: var(--blue-light);
+
             font-size: .78rem;
             font-weight: 700;
+
             letter-spacing: 2.5px;
+
             text-transform: uppercase;
         }
 
         .eyebrow::before {
             content: "";
+
             width: 26px;
             height: 1px;
+
             background: var(--blue);
-            box-shadow: 0 0 12px var(--blue);
+
+            box-shadow:
+                0 0 12px var(--blue);
         }
 
         .section {
@@ -147,13 +220,22 @@
 
         .section-heading {
             max-width: 700px;
+
             margin-bottom: 48px;
         }
 
         .section-heading h2 {
             margin-top: 12px;
-            font-size: clamp(2.2rem, 5vw, 3.5rem);
+
+            font-size:
+                clamp(
+                    2.2rem,
+                    5vw,
+                    3.5rem
+                );
+
             line-height: 1.05;
+
             letter-spacing: -1.5px;
         }
 
@@ -164,45 +246,75 @@
 
         .section-heading p {
             margin-top: 17px;
+
             color: var(--muted);
+
             line-height: 1.75;
+
             font-size: 1.02rem;
         }
 
         .btn {
             display: inline-flex;
+
             align-items: center;
             justify-content: center;
+
             gap: 9px;
+
             min-height: 50px;
+
             padding: 0 23px;
+
             border-radius: 14px;
+
             text-decoration: none;
+
             font-weight: 700;
+
             transition: .3s ease;
+
             cursor: pointer;
         }
 
         .btn-primary {
             color: #02111d;
-            background: linear-gradient(135deg, #28a9ff, #69c5ff);
-            box-shadow: 0 0 30px rgba(40,169,255,.2);
+
+            background:
+                linear-gradient(
+                    135deg,
+                    #28a9ff,
+                    #69c5ff
+                );
+
+            box-shadow:
+                0 0 30px rgba(40,169,255,.2);
+
+            border: none;
         }
 
         .btn-primary:hover {
             transform: translateY(-3px);
-            box-shadow: 0 12px 38px rgba(40,169,255,.28);
+
+            box-shadow:
+                0 12px 38px rgba(40,169,255,.28);
         }
 
         .btn-secondary {
             border: 1px solid var(--border);
-            background: rgba(255,255,255,.025);
+
+            background:
+                rgba(255,255,255,.025);
+
             color: var(--text);
         }
 
         .btn-secondary:hover {
             border-color: var(--border-hover);
-            background: rgba(40,169,255,.07);
+
+            background:
+                rgba(40,169,255,.07);
+
             transform: translateY(-3px);
         }
 
@@ -212,55 +324,90 @@
 
         nav {
             position: fixed;
+
             top: 0;
             left: 0;
+
             width: 100%;
+
             z-index: 1000;
-            border-bottom: 1px solid transparent;
+
+            border-bottom:
+                1px solid transparent;
+
             transition: .3s ease;
         }
 
         nav.scrolled {
-            background: rgba(4,8,13,.78);
+            background:
+                rgba(4,8,13,.78);
+
             border-color: var(--border);
+
             backdrop-filter: blur(18px);
             -webkit-backdrop-filter: blur(18px);
-            box-shadow: 0 12px 35px rgba(0,0,0,.2);
+
+            box-shadow:
+                0 12px 35px rgba(0,0,0,.2);
         }
 
         .nav-content {
-            width: min(var(--max), calc(100% - 40px));
+            width: min(
+                var(--max),
+                calc(100% - 40px)
+            );
+
             min-height: 78px;
+
             margin: 0 auto;
+
             display: flex;
+
             align-items: center;
+
             justify-content: space-between;
+
             gap: 25px;
         }
 
         .brand {
             display: flex;
+
             align-items: center;
+
             gap: 11px;
+
             text-decoration: none;
         }
 
         .brand-mark {
             width: 37px;
             height: 37px;
+
             display: grid;
             place-items: center;
-            border: 1px solid rgba(40,169,255,.45);
+
+            border:
+                1px solid rgba(40,169,255,.45);
+
             border-radius: 11px;
+
             color: var(--blue);
-            background: rgba(40,169,255,.07);
+
+            background:
+                rgba(40,169,255,.07);
+
             font-weight: 800;
-            box-shadow: 0 0 25px rgba(40,169,255,.1);
+
+            box-shadow:
+                0 0 25px rgba(40,169,255,.1);
         }
 
         .brand-name {
             font-size: 1.15rem;
+
             font-weight: 800;
+
             letter-spacing: .4px;
         }
 
@@ -270,16 +417,23 @@
 
         .nav-links {
             display: flex;
+
             align-items: center;
+
             gap: 27px;
+
             list-style: none;
         }
 
         .nav-links a {
             color: var(--muted);
+
             text-decoration: none;
+
             font-size: .91rem;
+
             font-weight: 500;
+
             transition: .25s ease;
         }
 
@@ -289,21 +443,130 @@
 
         .nav-cta {
             padding: 10px 17px !important;
-            border: 1px solid rgba(40,169,255,.25);
+
+            border:
+                1px solid rgba(40,169,255,.25);
+
             border-radius: 11px;
+
             color: var(--text) !important;
-            background: rgba(40,169,255,.07);
+
+            background:
+                rgba(40,169,255,.07);
+        }
+
+        /* ================================
+           CUENTA EN NAVBAR
+        ================================ */
+
+        .account-area {
+            display: flex;
+
+            align-items: center;
+
+            gap: 9px;
+        }
+
+        .account-button {
+            display: inline-flex;
+
+            align-items: center;
+
+            gap: 8px;
+
+            min-height: 42px;
+
+            padding: 0 14px;
+
+            border:
+                1px solid rgba(40,169,255,.25);
+
+            border-radius: 12px;
+
+            color: var(--text);
+
+            background:
+                rgba(40,169,255,.07);
+
+            cursor: pointer;
+
+            transition: .25s ease;
+
+            font-size: .85rem;
+            font-weight: 700;
+        }
+
+        .account-button:hover {
+            border-color: var(--border-hover);
+
+            background:
+                rgba(40,169,255,.12);
+        }
+
+        .account-icon {
+            width: 26px;
+            height: 26px;
+
+            display: grid;
+            place-items: center;
+
+            border-radius: 50%;
+
+            background:
+                rgba(40,169,255,.16);
+
+            color: var(--blue-light);
+
+            font-size: .75rem;
+        }
+
+        .logout-button {
+            min-height: 42px;
+
+            padding: 0 13px;
+
+            border:
+                1px solid rgba(255,255,255,.08);
+
+            border-radius: 12px;
+
+            background:
+                rgba(255,255,255,.025);
+
+            color: var(--muted);
+
+            cursor: pointer;
+
+            transition: .25s ease;
+
+            font-size: .8rem;
+        }
+
+        .logout-button:hover {
+            color: white;
+
+            border-color:
+                rgba(255,255,255,.18);
         }
 
         .mobile-menu-btn {
             display: none;
+
             width: 42px;
             height: 42px;
-            border: 1px solid var(--border);
+
+            border:
+                1px solid var(--border);
+
             border-radius: 12px;
-            background: rgba(255,255,255,.03);
+
+            background:
+                rgba(255,255,255,.03);
+
             color: white;
+
             font-size: 1.2rem;
+
             cursor: pointer;
         }
 
@@ -313,27 +576,50 @@
 
         .hero {
             min-height: 100vh;
-            padding: 145px 0 90px;
+
+            padding:
+                145px 0 90px;
+
             display: flex;
+
             align-items: center;
+
             position: relative;
         }
 
         .hero::after {
             content: "";
+
             position: absolute;
+
             left: 50%;
             bottom: 0;
-            width: min(850px, 90%);
+
+            width:
+                min(850px, 90%);
+
             height: 1px;
-            transform: translateX(-50%);
-            background: linear-gradient(90deg, transparent, rgba(40,169,255,.3), transparent);
+
+            transform:
+                translateX(-50%);
+
+            background:
+                linear-gradient(
+                    90deg,
+                    transparent,
+                    rgba(40,169,255,.3),
+                    transparent
+                );
         }
 
         .hero-grid {
             display: grid;
-            grid-template-columns: 1.08fr .92fr;
+
+            grid-template-columns:
+                1.08fr .92fr;
+
             align-items: center;
+
             gap: 70px;
         }
 
@@ -343,122 +629,223 @@
 
         .hero-copy h1 {
             margin: 18px 0 24px;
-            font-size: clamp(3.7rem, 8vw, 7.2rem);
+
+            font-size:
+                clamp(
+                    3.7rem,
+                    8vw,
+                    7.2rem
+                );
+
             line-height: .9;
+
             letter-spacing: -5px;
+
             font-weight: 800;
         }
 
         .hero-copy h1 span {
             display: block;
-            background: linear-gradient(110deg, #fff 20%, #28a9ff 72%, #8bd3ff);
+
+            background:
+                linear-gradient(
+                    110deg,
+                    #fff 20%,
+                    #28a9ff 72%,
+                    #8bd3ff
+                );
+
             -webkit-background-clip: text;
             background-clip: text;
-            -webkit-text-fill-color: transparent;
-            filter: drop-shadow(0 0 35px rgba(40,169,255,.16));
+
+            -webkit-text-fill-color:
+                transparent;
+
+            filter:
+                drop-shadow(
+                    0 0 35px
+                    rgba(40,169,255,.16)
+                );
         }
 
         .hero-copy p {
             max-width: 610px;
+
             color: var(--muted);
+
             font-size: 1.12rem;
+
             line-height: 1.75;
         }
 
         .hero-actions {
             display: flex;
+
             flex-wrap: wrap;
+
             gap: 12px;
+
             margin-top: 34px;
         }
 
         .hero-note {
             display: flex;
+
             align-items: center;
+
             gap: 10px;
+
             margin-top: 27px;
+
             color: var(--muted-2);
+
             font-size: .82rem;
         }
 
         .status-dot {
             width: 7px;
             height: 7px;
+
             border-radius: 50%;
+
             background: #55d6ff;
-            box-shadow: 0 0 14px #28a9ff;
+
+            box-shadow:
+                0 0 14px #28a9ff;
         }
 
         .hero-visual {
             position: relative;
+
             min-height: 480px;
+
             display: grid;
+
             place-items: center;
         }
 
         .orb {
             position: absolute;
+
             width: 360px;
             height: 360px;
+
             border-radius: 50%;
-            background: radial-gradient(circle, rgba(40,169,255,.16), rgba(40,169,255,.025) 52%, transparent 70%);
-            box-shadow: 0 0 120px rgba(40,169,255,.1);
+
+            background:
+                radial-gradient(
+                    circle,
+                    rgba(40,169,255,.16),
+                    rgba(40,169,255,.025) 52%,
+                    transparent 70%
+                );
+
+            box-shadow:
+                0 0 120px rgba(40,169,255,.1);
         }
 
         .visual-card {
-            width: min(420px, 100%);
+            width:
+                min(420px, 100%);
+
             padding: 27px;
+
             position: relative;
+
             transform: rotate(2deg);
-            animation: float 6s ease-in-out infinite;
+
+            animation:
+                float 6s ease-in-out infinite;
         }
 
         .visual-card::before {
             content: "";
+
             position: absolute;
+
             inset: -1px;
+
             border-radius: inherit;
+
             padding: 1px;
-            background: linear-gradient(135deg, rgba(40,169,255,.55), transparent 45%, rgba(40,169,255,.15));
-            -webkit-mask: linear-gradient(#fff 0 0) content-box, linear-gradient(#fff 0 0);
+
+            background:
+                linear-gradient(
+                    135deg,
+                    rgba(40,169,255,.55),
+                    transparent 45%,
+                    rgba(40,169,255,.15)
+                );
+
+            -webkit-mask:
+                linear-gradient(#fff 0 0)
+                content-box,
+                linear-gradient(#fff 0 0);
+
             -webkit-mask-composite: xor;
+
             mask-composite: exclude;
+
             pointer-events: none;
         }
 
         .visual-top {
             display: flex;
+
             align-items: center;
+
             justify-content: space-between;
+
             color: var(--muted);
+
             font-size: .78rem;
+
             text-transform: uppercase;
+
             letter-spacing: 1.5px;
         }
 
         .live {
             color: #79d2ff;
+
             display: flex;
+
             align-items: center;
+
             gap: 7px;
         }
 
         .visual-logo {
             height: 205px;
+
             margin: 23px 0;
+
             display: grid;
+
             place-items: center;
-            border: 1px solid var(--border);
+
+            border:
+                1px solid var(--border);
+
             border-radius: 18px;
+
             background:
-                radial-gradient(circle at center, rgba(40,169,255,.14), transparent 57%),
+                radial-gradient(
+                    circle at center,
+                    rgba(40,169,255,.14),
+                    transparent 57%
+                ),
                 rgba(255,255,255,.018);
         }
 
         .visual-logo strong {
             font-size: 4rem;
+
             letter-spacing: -4px;
-            text-shadow: 0 0 35px rgba(40,169,255,.35);
+
+            text-shadow:
+                0 0 35px
+                rgba(40,169,255,.35);
         }
 
         .visual-logo strong span {
@@ -467,13 +854,17 @@
 
         .visual-bottom {
             display: flex;
+
             justify-content: space-between;
+
             gap: 15px;
         }
 
         .visual-bottom small {
             color: var(--muted-2);
+
             display: block;
+
             margin-bottom: 4px;
         }
 
@@ -482,12 +873,17 @@
         }
 
         @keyframes float {
+
             0%, 100% {
-                transform: rotate(2deg) translateY(0);
+                transform:
+                    rotate(2deg)
+                    translateY(0);
             }
 
             50% {
-                transform: rotate(0deg) translateY(-12px);
+                transform:
+                    rotate(0deg)
+                    translateY(-12px);
             }
         }
 
@@ -497,7 +893,10 @@
 
         .about-grid {
             display: grid;
-            grid-template-columns: .85fr 1.15fr;
+
+            grid-template-columns:
+                .85fr 1.15fr;
+
             gap: 25px;
         }
 
@@ -508,13 +907,16 @@
 
         .about-main h3 {
             font-size: 2rem;
+
             line-height: 1.2;
+
             margin: 15px 0;
         }
 
         .about-main p,
         .about-side p {
             color: var(--muted);
+
             line-height: 1.8;
         }
 
@@ -524,25 +926,35 @@
 
         .principles {
             display: grid;
+
             gap: 14px;
         }
 
         .principle {
             padding: 18px;
-            border: 1px solid var(--border);
+
+            border:
+                1px solid var(--border);
+
             border-radius: 15px;
-            background: rgba(255,255,255,.018);
+
+            background:
+                rgba(255,255,255,.018);
         }
 
         .principle strong {
             display: block;
+
             margin-bottom: 5px;
+
             font-size: .98rem;
         }
 
         .principle span {
             color: var(--muted);
+
             font-size: .87rem;
+
             line-height: 1.5;
         }
 
@@ -552,99 +964,154 @@
 
         .project-card {
             overflow: hidden;
+
             padding: 0;
         }
 
         .project-inner {
             display: grid;
-            grid-template-columns: 1fr 1fr;
+
+            grid-template-columns:
+                1fr 1fr;
         }
 
         .project-visual {
             min-height: 420px;
+
             padding: 35px;
+
             display: flex;
+
             align-items: flex-end;
+
             position: relative;
+
             overflow: hidden;
+
             background:
-                radial-gradient(circle at 50% 35%, rgba(40,169,255,.22), transparent 30%),
-                linear-gradient(145deg, rgba(40,169,255,.08), rgba(0,0,0,.1));
+                radial-gradient(
+                    circle at 50% 35%,
+                    rgba(40,169,255,.22),
+                    transparent 30%
+                ),
+                linear-gradient(
+                    145deg,
+                    rgba(40,169,255,.08),
+                    rgba(0,0,0,.1)
+                );
         }
 
         .project-visual::before,
         .project-visual::after {
             content: "";
+
             position: absolute;
-            border: 1px solid rgba(40,169,255,.13);
+
+            border:
+                1px solid rgba(40,169,255,.13);
+
             border-radius: 50%;
         }
 
         .project-visual::before {
             width: 370px;
             height: 370px;
+
             left: 50%;
             top: 50%;
-            transform: translate(-50%,-50%);
+
+            transform:
+                translate(-50%,-50%);
         }
 
         .project-visual::after {
             width: 220px;
             height: 220px;
+
             left: 50%;
             top: 50%;
-            transform: translate(-50%,-50%);
+
+            transform:
+                translate(-50%,-50%);
         }
 
         .city-mark {
             position: relative;
+
             z-index: 1;
         }
 
         .city-mark small {
             color: var(--blue-light);
+
             letter-spacing: 2px;
+
             text-transform: uppercase;
         }
 
         .city-mark h3 {
-            font-size: clamp(2.5rem, 6vw, 4.2rem);
+            font-size:
+                clamp(
+                    2.5rem,
+                    6vw,
+                    4.2rem
+                );
+
             line-height: .95;
+
             margin-top: 8px;
+
             letter-spacing: -3px;
         }
 
         .project-info {
             padding: 48px;
+
             display: flex;
+
             flex-direction: column;
+
             justify-content: center;
         }
 
         .project-info h3 {
             font-size: 2.3rem;
+
             margin: 12px 0;
         }
 
         .project-info p {
             color: var(--muted);
+
             line-height: 1.75;
         }
 
         .tags {
             display: flex;
+
             flex-wrap: wrap;
+
             gap: 8px;
-            margin: 25px 0 30px;
+
+            margin:
+                25px 0 30px;
         }
 
         .tag {
             padding: 8px 11px;
-            border: 1px solid var(--border);
+
+            border:
+                1px solid var(--border);
+
             border-radius: 9px;
-            background: rgba(40,169,255,.04);
+
+            background:
+                rgba(40,169,255,.04);
+
             color: var(--blue-light);
+
             font-size: .78rem;
+
             font-weight: 600;
         }
 
@@ -654,42 +1121,65 @@
 
         .experience-grid {
             display: grid;
-            grid-template-columns: repeat(3, 1fr);
+
+            grid-template-columns:
+                repeat(3, 1fr);
+
             gap: 18px;
         }
 
         .experience {
             padding: 27px;
+
             min-height: 230px;
+
             transition: .35s ease;
         }
 
         .experience:hover {
-            transform: translateY(-7px);
-            border-color: var(--border-hover);
-            box-shadow: 0 20px 50px rgba(40,169,255,.08);
+            transform:
+                translateY(-7px);
+
+            border-color:
+                var(--border-hover);
+
+            box-shadow:
+                0 20px 50px
+                rgba(40,169,255,.08);
         }
 
         .experience-icon {
             width: 45px;
             height: 45px;
+
             display: grid;
+
             place-items: center;
-            border: 1px solid var(--border);
+
+            border:
+                1px solid var(--border);
+
             border-radius: 13px;
-            background: rgba(40,169,255,.07);
+
+            background:
+                rgba(40,169,255,.07);
+
             color: var(--blue);
+
             font-size: 1.2rem;
         }
 
         .experience h3 {
             margin: 24px 0 9px;
+
             font-size: 1.25rem;
         }
 
         .experience p {
             color: var(--muted);
+
             line-height: 1.65;
+
             font-size: .9rem;
         }
 
@@ -699,28 +1189,42 @@
 
         .events-list {
             display: grid;
+
             gap: 13px;
         }
 
         .event {
             display: grid;
-            grid-template-columns: 110px 1fr auto;
+
+            grid-template-columns:
+                110px 1fr auto;
+
             align-items: center;
+
             gap: 25px;
+
             padding: 22px 25px;
+
             transition: .3s ease;
         }
 
         .event:hover {
-            border-color: var(--border-hover);
-            transform: translateX(5px);
+            border-color:
+                var(--border-hover);
+
+            transform:
+                translateX(5px);
         }
 
         .event-date {
             color: var(--blue);
+
             font-size: .78rem;
+
             font-weight: 700;
+
             letter-spacing: 1.5px;
+
             text-transform: uppercase;
         }
 
@@ -730,17 +1234,27 @@
 
         .event p {
             color: var(--muted);
+
             font-size: .86rem;
         }
 
         .event-status {
             padding: 7px 10px;
+
+            border:
+                1px solid var(--border);
+
             border-radius: 9px;
-            border: 1px solid var(--border);
+
             color: var(--blue-light);
-            background: rgba(40,169,255,.05);
+
+            background:
+                rgba(40,169,255,.05);
+
             font-size: .73rem;
+
             font-weight: 700;
+
             white-space: nowrap;
         }
 
@@ -750,36 +1264,61 @@
 
         .community {
             position: relative;
+
             overflow: hidden;
+
             padding: 70px 40px;
+
             text-align: center;
         }
 
         .community::before {
             content: "";
+
             position: absolute;
+
             width: 600px;
             height: 300px;
+
             left: 50%;
             top: -180px;
-            transform: translateX(-50%);
-            background: radial-gradient(circle, rgba(40,169,255,.2), transparent 68%);
+
+            transform:
+                translateX(-50%);
+
+            background:
+                radial-gradient(
+                    circle,
+                    rgba(40,169,255,.2),
+                    transparent 68%
+                );
         }
 
         .community > * {
             position: relative;
+
             z-index: 1;
         }
 
         .community h2 {
-            font-size: clamp(2.2rem, 5vw, 3.7rem);
+            font-size:
+                clamp(
+                    2.2rem,
+                    5vw,
+                    3.7rem
+                );
+
             letter-spacing: -1.5px;
         }
 
         .community p {
             max-width: 650px;
-            margin: 16px auto 30px;
+
+            margin:
+                16px auto 30px;
+
             color: var(--muted);
+
             line-height: 1.75;
         }
 
@@ -789,7 +1328,10 @@
 
         .support-grid {
             display: grid;
-            grid-template-columns: repeat(3, 1fr);
+
+            grid-template-columns:
+                repeat(3, 1fr);
+
             gap: 18px;
         }
 
@@ -803,16 +1345,23 @@
 
         .support-card p {
             color: var(--muted);
+
             line-height: 1.65;
+
             font-size: .9rem;
         }
 
         .support-card a {
             display: inline-block;
+
             margin-top: 20px;
+
             color: var(--blue-light);
+
             text-decoration: none;
+
             font-size: .87rem;
+
             font-weight: 700;
         }
 
@@ -822,32 +1371,45 @@
 
         footer {
             padding: 42px 0 28px;
-            border-top: 1px solid var(--border);
-            background: rgba(2,5,8,.5);
+
+            border-top:
+                1px solid var(--border);
+
+            background:
+                rgba(2,5,8,.5);
         }
 
         .footer-top {
             display: flex;
+
             align-items: center;
+
             justify-content: space-between;
+
             gap: 25px;
         }
 
         .footer-brand p {
             color: var(--muted-2);
+
             font-size: .82rem;
+
             margin-top: 7px;
         }
 
         .footer-links {
             display: flex;
+
             gap: 20px;
+
             flex-wrap: wrap;
         }
 
         .footer-links a {
             color: var(--muted);
+
             text-decoration: none;
+
             font-size: .82rem;
         }
 
@@ -857,10 +1419,16 @@
 
         .copyright {
             margin-top: 35px;
+
             padding-top: 20px;
-            border-top: 1px solid rgba(255,255,255,.05);
+
+            border-top:
+                1px solid rgba(255,255,255,.05);
+
             color: var(--muted-2);
+
             font-size: .75rem;
+
             text-align: center;
         }
 
@@ -870,13 +1438,348 @@
 
         .reveal {
             opacity: 0;
-            transform: translateY(25px);
-            transition: opacity .7s ease, transform .7s ease;
+
+            transform:
+                translateY(25px);
+
+            transition:
+                opacity .7s ease,
+                transform .7s ease;
         }
 
         .reveal.visible {
             opacity: 1;
-            transform: translateY(0);
+
+            transform:
+                translateY(0);
+        }
+
+        /* ================================
+           MODAL DE CUENTAS
+        ================================ */
+
+        .auth-overlay {
+            position: fixed;
+
+            inset: 0;
+
+            z-index: 5000;
+
+            display: flex;
+
+            align-items: center;
+            justify-content: center;
+
+            padding: 20px;
+
+            background:
+                rgba(1,4,8,.76);
+
+            backdrop-filter:
+                blur(14px);
+
+            -webkit-backdrop-filter:
+                blur(14px);
+
+            opacity: 0;
+
+            visibility: hidden;
+
+            transition:
+                opacity .25s ease,
+                visibility .25s ease;
+        }
+
+        .auth-overlay.active {
+            opacity: 1;
+
+            visibility: visible;
+        }
+
+        .auth-modal {
+            width:
+                min(430px, 100%);
+
+            position: relative;
+
+            padding: 34px;
+
+            background:
+                linear-gradient(
+                    145deg,
+                    rgba(13,25,38,.98),
+                    rgba(6,12,19,.98)
+                );
+
+            border:
+                1px solid rgba(40,169,255,.22);
+
+            border-radius: 24px;
+
+            box-shadow:
+                0 35px 100px rgba(0,0,0,.55),
+                0 0 60px rgba(40,169,255,.08);
+
+            transform:
+                translateY(15px)
+                scale(.97);
+
+            transition:
+                transform .3s ease;
+        }
+
+        .auth-overlay.active .auth-modal {
+            transform:
+                translateY(0)
+                scale(1);
+        }
+
+        .auth-modal::before {
+            content: "";
+
+            position: absolute;
+
+            top: 0;
+            left: 12%;
+
+            width: 76%;
+            height: 1px;
+
+            background:
+                linear-gradient(
+                    90deg,
+                    transparent,
+                    var(--blue),
+                    transparent
+                );
+
+            box-shadow:
+                0 0 18px var(--blue);
+        }
+
+        .auth-close {
+            position: absolute;
+
+            top: 17px;
+            right: 17px;
+
+            width: 36px;
+            height: 36px;
+
+            display: grid;
+
+            place-items: center;
+
+            border:
+                1px solid rgba(255,255,255,.08);
+
+            border-radius: 10px;
+
+            background:
+                rgba(255,255,255,.025);
+
+            color: var(--muted);
+
+            cursor: pointer;
+
+            font-size: 1.2rem;
+
+            transition: .2s ease;
+        }
+
+        .auth-close:hover {
+            color: white;
+
+            border-color:
+                rgba(40,169,255,.3);
+
+            background:
+                rgba(40,169,255,.07);
+        }
+
+        .auth-header {
+            text-align: center;
+
+            margin-bottom: 27px;
+        }
+
+        .auth-logo {
+            width: 52px;
+            height: 52px;
+
+            margin: 0 auto 16px;
+
+            display: grid;
+
+            place-items: center;
+
+            border:
+                1px solid rgba(40,169,255,.35);
+
+            border-radius: 15px;
+
+            background:
+                rgba(40,169,255,.08);
+
+            color: var(--blue);
+
+            font-size: 1.3rem;
+
+            font-weight: 800;
+
+            box-shadow:
+                0 0 30px
+                rgba(40,169,255,.08);
+        }
+
+        .auth-header h2 {
+            font-size: 1.8rem;
+
+            letter-spacing: -.7px;
+        }
+
+        .auth-header p {
+            margin-top: 7px;
+
+            color: var(--muted);
+
+            font-size: .9rem;
+        }
+
+        .auth-form {
+            display: grid;
+
+            gap: 15px;
+        }
+
+        .auth-field {
+            display: grid;
+
+            gap: 7px;
+        }
+
+        .auth-field label {
+            color: #dbeaff;
+
+            font-size: .8rem;
+
+            font-weight: 600;
+        }
+
+        .auth-field input {
+            width: 100%;
+
+            height: 50px;
+
+            padding: 0 15px;
+
+            border:
+                1px solid rgba(255,255,255,.08);
+
+            border-radius: 12px;
+
+            outline: none;
+
+            color: white;
+
+            background:
+                rgba(255,255,255,.035);
+
+            transition:
+                border-color .2s ease,
+                background .2s ease,
+                box-shadow .2s ease;
+        }
+
+        .auth-field input::placeholder {
+            color: #526274;
+        }
+
+        .auth-field input:focus {
+            border-color:
+                rgba(40,169,255,.55);
+
+            background:
+                rgba(40,169,255,.045);
+
+            box-shadow:
+                0 0 0 3px
+                rgba(40,169,255,.08);
+        }
+
+        .auth-submit {
+            width: 100%;
+
+            margin-top: 5px;
+        }
+
+        .auth-message {
+            display: none;
+
+            padding: 11px 13px;
+
+            border-radius: 11px;
+
+            font-size: .82rem;
+
+            line-height: 1.45;
+        }
+
+        .auth-message.show {
+            display: block;
+        }
+
+        .auth-message.success {
+            color: #a9e9ff;
+
+            border:
+                1px solid rgba(40,169,255,.22);
+
+            background:
+                rgba(40,169,255,.07);
+        }
+
+        .auth-message.error {
+            color: #ffb8b8;
+
+            border:
+                1px solid rgba(255,90,90,.2);
+
+            background:
+                rgba(255,70,70,.06);
+        }
+
+        .auth-switch {
+            margin-top: 21px;
+
+            padding-top: 18px;
+
+            border-top:
+                1px solid rgba(255,255,255,.06);
+
+            text-align: center;
+
+            color: var(--muted);
+
+            font-size: .83rem;
+        }
+
+        .auth-switch button {
+            border: none;
+
+            background: transparent;
+
+            color: var(--blue-light);
+
+            cursor: pointer;
+
+            font-weight: 700;
+
+            margin-left: 4px;
+        }
+
+        .auth-switch button:hover {
+            color: white;
         }
 
         /* ================================
@@ -884,6 +1787,7 @@
         ================================ */
 
         @media (max-width: 950px) {
+
             .hero-grid,
             .about-grid,
             .project-inner {
@@ -902,27 +1806,43 @@
             .project-visual {
                 min-height: 330px;
             }
+
         }
 
         @media (max-width: 760px) {
+
             .section {
                 padding: 85px 0;
             }
 
             .nav-links {
                 position: absolute;
+
                 top: 78px;
+
                 left: 20px;
                 right: 20px;
+
                 display: none;
+
                 flex-direction: column;
+
                 align-items: stretch;
+
                 gap: 5px;
+
                 padding: 12px;
-                border: 1px solid var(--border);
+
+                border:
+                    1px solid var(--border);
+
                 border-radius: 16px;
-                background: rgba(5,9,14,.96);
-                backdrop-filter: blur(18px);
+
+                background:
+                    rgba(5,9,14,.96);
+
+                backdrop-filter:
+                    blur(18px);
             }
 
             .nav-links.active {
@@ -931,25 +1851,57 @@
 
             .nav-links a {
                 display: block;
+
                 padding: 12px;
+
                 border-radius: 10px;
             }
 
             .nav-links a:hover {
-                background: rgba(40,169,255,.06);
+                background:
+                    rgba(40,169,255,.06);
             }
 
             .mobile-menu-btn {
                 display: block;
             }
 
+            .account-area {
+                width: 100%;
+
+                flex-direction: column;
+
+                align-items: stretch;
+
+                margin-top: 5px;
+
+                padding-top: 10px;
+
+                border-top:
+                    1px solid rgba(255,255,255,.05);
+            }
+
+            .account-button,
+            .logout-button {
+                justify-content: center;
+
+                width: 100%;
+            }
+
             .hero {
                 min-height: auto;
+
                 padding-top: 135px;
             }
 
             .hero-copy h1 {
-                font-size: clamp(3.3rem, 17vw, 5rem);
+                font-size:
+                    clamp(
+                        3.3rem,
+                        17vw,
+                        5rem
+                    );
+
                 letter-spacing: -3px;
             }
 
@@ -976,6 +1928,7 @@
 
             .event {
                 grid-template-columns: 1fr;
+
                 gap: 10px;
             }
 
@@ -989,22 +1942,35 @@
 
             .footer-top {
                 flex-direction: column;
+
                 align-items: flex-start;
             }
+
         }
 
         @media (max-width: 480px) {
+
             .container,
             .nav-content {
-                width: min(var(--max), calc(100% - 28px));
+                width:
+                    min(
+                        var(--max),
+                        calc(100% - 28px)
+                    );
             }
 
             .hero-actions .btn {
                 width: 100%;
             }
+
+            .auth-modal {
+                padding: 28px 21px;
+            }
+
         }
 
         @media (prefers-reduced-motion: reduce) {
+
             html {
                 scroll-behavior: auto;
             }
@@ -1012,49 +1978,187 @@
             *,
             *::before,
             *::after {
-                animation-duration: .01ms !important;
-                animation-iteration-count: 1 !important;
-                transition-duration: .01ms !important;
+                animation-duration:
+                    .01ms !important;
+
+                animation-iteration-count:
+                    1 !important;
+
+                transition-duration:
+                    .01ms !important;
             }
+
         }
+
     </style>
 </head>
 
 <body>
 
-    <!-- Fondo -->
+    <!-- ================================
+         FONDO
+    ================================ -->
+
     <canvas id="particles"></canvas>
+
     <div class="ambient one"></div>
     <div class="ambient two"></div>
+
     <div class="noise"></div>
 
-    <!-- Navegación -->
+
+    <!-- ================================
+         NAVEGACIÓN
+    ================================ -->
+
     <nav id="navbar">
+
         <div class="nav-content">
 
-            <a href="#inicio" class="brand" aria-label="Sunster's inicio">
-                <div class="brand-mark">S</div>
-                <div class="brand-name">SUNSTER<span>'S</span></div>
+            <a
+                href="#inicio"
+                class="brand"
+                aria-label="Sunster's inicio"
+            >
+
+                <div class="brand-mark">
+                    S
+                </div>
+
+                <div class="brand-name">
+                    SUNSTER<span>'S</span>
+                </div>
+
             </a>
 
-            <button class="mobile-menu-btn" id="mobileBtn" aria-label="Abrir menú">
+
+            <button
+                class="mobile-menu-btn"
+                id="mobileBtn"
+                aria-label="Abrir menú"
+            >
                 ☰
             </button>
 
-            <ul class="nav-links" id="navLinks">
-                <li><a href="#inicio">Inicio</a></li>
-                <li><a href="#sunsters">Sunster's</a></li>
-                <li><a href="#proyecto">Proyecto</a></li>
-                <li><a href="#experiencias">Experiencias</a></li>
-                <li><a href="#comunidad">Comunidad</a></li>
-                <li><a href="#soporte" class="nav-cta">Soporte</a></li>
+
+            <ul
+                class="nav-links"
+                id="navLinks"
+            >
+
+                <li>
+                    <a href="#inicio">
+                        Inicio
+                    </a>
+                </li>
+
+                <li>
+                    <a href="#sunsters">
+                        Sunster's
+                    </a>
+                </li>
+
+                <li>
+                    <a href="#proyecto">
+                        Proyecto
+                    </a>
+                </li>
+
+                <li>
+                    <a href="#experiencias">
+                        Experiencias
+                    </a>
+                </li>
+
+                <li>
+                    <a href="#comunidad">
+                        Comunidad
+                    </a>
+                </li>
+
+                <li>
+                    <a
+                        href="#soporte"
+                        class="nav-cta"
+                    >
+                        Soporte
+                    </a>
+                </li>
+
+
+                <!-- CUENTA -->
+
+                <li id="loginNavItem">
+
+                    <button
+                        class="account-button"
+                        id="openLoginBtn"
+                        type="button"
+                    >
+                        <span class="account-icon">
+                            ◉
+                        </span>
+
+                        Iniciar sesión
+                    </button>
+
+                </li>
+
+
+                <li
+                    id="loggedNavItem"
+                    style="display:none;"
+                >
+
+                    <div class="account-area">
+
+                        <button
+                            class="account-button"
+                            id="accountButton"
+                            type="button"
+                        >
+
+                            <span
+                                class="account-icon"
+                                id="accountIcon"
+                            >
+                                S
+                            </span>
+
+                            <span id="accountName">
+                                Usuario
+                            </span>
+
+                        </button>
+
+                        <button
+                            class="logout-button"
+                            id="logoutBtn"
+                            type="button"
+                        >
+                            Salir
+                        </button>
+
+                    </div>
+
+                </li>
+
             </ul>
 
         </div>
+
     </nav>
 
-    <!-- Hero -->
-    <header id="inicio" class="hero">
+
+    <!-- ================================
+         HERO
+    ================================ -->
+
+    <header
+        id="inicio"
+        class="hero"
+    >
+
         <div class="container hero-grid">
 
             <div class="hero-copy reveal">
@@ -1064,8 +2168,13 @@
                 </div>
 
                 <h1>
+
                     Esto es
-                    <span>Sunster's.</span>
+
+                    <span>
+                        Sunster's.
+                    </span>
+
                 </h1>
 
                 <p>
@@ -1075,21 +2184,33 @@
                 </p>
 
                 <div class="hero-actions">
-                    <a href="#proyecto" class="btn btn-primary">
+
+                    <a
+                        href="#proyecto"
+                        class="btn btn-primary"
+                    >
                         Conocer el proyecto →
                     </a>
 
-                    <a href="#comunidad" class="btn btn-secondary">
+                    <a
+                        href="#comunidad"
+                        class="btn btn-secondary"
+                    >
                         Nuestra comunidad
                     </a>
+
                 </div>
 
                 <div class="hero-note">
+
                     <span class="status-dot"></span>
+
                     Construyendo nuevas experiencias.
+
                 </div>
 
             </div>
+
 
             <div class="hero-visual reveal">
 
@@ -1098,33 +2219,65 @@
                 <div class="glass visual-card">
 
                     <div class="visual-top">
-                        <span>Sunster's / Identity</span>
+
+                        <span>
+                            Sunster's / Identity
+                        </span>
 
                         <span class="live">
+
                             <i class="status-dot"></i>
+
                             Active
+
                         </span>
+
                     </div>
 
                     <div class="visual-logo">
-                        <strong>S<span>'S</span></strong>
+
+                        <strong>
+                            S<span>'S</span>
+                        </strong>
+
                     </div>
 
                     <div class="visual-bottom">
 
                         <div>
-                            <small>Marca</small>
-                            <b>Sunster's</b>
+
+                            <small>
+                                Marca
+                            </small>
+
+                            <b>
+                                Sunster's
+                            </b>
+
                         </div>
 
                         <div>
-                            <small>Enfoque</small>
-                            <b>Roleplay</b>
+
+                            <small>
+                                Enfoque
+                            </small>
+
+                            <b>
+                                Roleplay
+                            </b>
+
                         </div>
 
                         <div>
-                            <small>Universo</small>
-                            <b>Brookhaven</b>
+
+                            <small>
+                                Universo
+                            </small>
+
+                            <b>
+                                Brookhaven
+                            </b>
+
                         </div>
 
                     </div>
@@ -1134,12 +2287,21 @@
             </div>
 
         </div>
+
     </header>
+
 
     <main>
 
-        <!-- Sobre Sunster's -->
-        <section id="sunsters" class="section">
+        <!-- ================================
+             SOBRE SUNSTER'S
+        ================================ -->
+
+        <section
+            id="sunsters"
+            class="section"
+        >
+
             <div class="container">
 
                 <div class="section-heading reveal">
@@ -1150,7 +2312,9 @@
 
                     <h2>
                         No somos solo un servidor.<br>
-                        <span>Somos una marca.</span>
+                        <span>
+                            Somos una marca.
+                        </span>
                     </h2>
 
                     <p>
@@ -1160,9 +2324,12 @@
 
                 </div>
 
+
                 <div class="about-grid">
 
-                    <article class="glass about-main reveal">
+                    <article
+                        class="glass about-main reveal"
+                    >
 
                         <div class="eyebrow">
                             Nuestra idea
@@ -1180,41 +2347,66 @@
 
                         <p>
                             Brookhaven es el lugar donde ocurre la experiencia.
-                            <strong>Sunster's es la identidad detrás de ella.</strong>
+                            <strong>
+                                Sunster's es la identidad detrás de ella.
+                            </strong>
                         </p>
 
                     </article>
 
-                    <article class="glass about-side reveal">
+
+                    <article
+                        class="glass about-side reveal"
+                    >
 
                         <div class="principles">
 
                             <div class="principle">
-                                <strong>01 · Identidad</strong>
+
+                                <strong>
+                                    01 · Identidad
+                                </strong>
+
                                 <span>
                                     Una imagen y un nombre reconocibles en cada proyecto.
                                 </span>
+
                             </div>
 
                             <div class="principle">
-                                <strong>02 · Experiencia</strong>
+
+                                <strong>
+                                    02 · Experiencia
+                                </strong>
+
                                 <span>
                                     Roleplay, eventos y actividades pensadas para disfrutar.
                                 </span>
+
                             </div>
 
                             <div class="principle">
-                                <strong>03 · Comunidad</strong>
+
+                                <strong>
+                                    03 · Comunidad
+                                </strong>
+
                                 <span>
                                     Un espacio donde las personas puedan participar y formar parte.
                                 </span>
+
                             </div>
 
                             <div class="principle">
-                                <strong>04 · Evolución</strong>
+
+                                <strong>
+                                    04 · Evolución
+                                </strong>
+
                                 <span>
                                     La marca y sus proyectos siguen creciendo con nuevas ideas.
                                 </span>
+
                             </div>
 
                         </div>
@@ -1224,10 +2416,19 @@
                 </div>
 
             </div>
+
         </section>
 
-        <!-- Proyecto -->
-        <section id="proyecto" class="section">
+
+        <!-- ================================
+             PROYECTO
+        ================================ -->
+
+        <section
+            id="proyecto"
+            class="section"
+        >
+
             <div class="container">
 
                 <div class="section-heading reveal">
@@ -1237,7 +2438,10 @@
                     </div>
 
                     <h2>
-                        Donde todo <span>comienza.</span>
+                        Donde todo
+                        <span>
+                            comienza.
+                        </span>
                     </h2>
 
                     <p>
@@ -1247,7 +2451,10 @@
 
                 </div>
 
-                <div class="glass project-card reveal">
+
+                <div
+                    class="glass project-card reveal"
+                >
 
                     <div class="project-inner">
 
@@ -1268,6 +2475,7 @@
 
                         </div>
 
+
                         <div class="project-info">
 
                             <div class="eyebrow">
@@ -1285,13 +2493,29 @@
                             </p>
 
                             <div class="tags">
-                                <span class="tag">Roleplay</span>
-                                <span class="tag">Eventos</span>
-                                <span class="tag">Historias</span>
-                                <span class="tag">Comunidad</span>
+
+                                <span class="tag">
+                                    Roleplay
+                                </span>
+
+                                <span class="tag">
+                                    Eventos
+                                </span>
+
+                                <span class="tag">
+                                    Historias
+                                </span>
+
+                                <span class="tag">
+                                    Comunidad
+                                </span>
+
                             </div>
 
-                            <a href="#comunidad" class="btn btn-primary">
+                            <a
+                                href="#comunidad"
+                                class="btn btn-primary"
+                            >
                                 Formar parte →
                             </a>
 
@@ -1302,10 +2526,19 @@
                 </div>
 
             </div>
+
         </section>
 
-        <!-- Experiencias -->
-        <section id="experiencias" class="section">
+
+        <!-- ================================
+             EXPERIENCIAS
+        ================================ -->
+
+        <section
+            id="experiencias"
+            class="section"
+        >
+
             <div class="container">
 
                 <div class="section-heading reveal">
@@ -1315,7 +2548,10 @@
                     </div>
 
                     <h2>
-                        Experiencias hechas para <span>vivirse.</span>
+                        Experiencias hechas para
+                        <span>
+                            vivirse.
+                        </span>
                     </h2>
 
                     <p>
@@ -1325,9 +2561,12 @@
 
                 </div>
 
+
                 <div class="experience-grid">
 
-                    <article class="glass experience reveal">
+                    <article
+                        class="glass experience reveal"
+                    >
 
                         <div class="experience-icon">
                             ✦
@@ -1344,7 +2583,10 @@
 
                     </article>
 
-                    <article class="glass experience reveal">
+
+                    <article
+                        class="glass experience reveal"
+                    >
 
                         <div class="experience-icon">
                             ◈
@@ -1361,7 +2603,10 @@
 
                     </article>
 
-                    <article class="glass experience reveal">
+
+                    <article
+                        class="glass experience reveal"
+                    >
 
                         <div class="experience-icon">
                             ◎
@@ -1381,10 +2626,19 @@
                 </div>
 
             </div>
+
         </section>
 
-        <!-- Próximas experiencias -->
-        <section id="eventos" class="section">
+
+        <!-- ================================
+             EVENTOS
+        ================================ -->
+
+        <section
+            id="eventos"
+            class="section"
+        >
+
             <div class="container">
 
                 <div class="section-heading reveal">
@@ -1394,7 +2648,10 @@
                     </div>
 
                     <h2>
-                        Próximas <span>experiencias.</span>
+                        Próximas
+                        <span>
+                            experiencias.
+                        </span>
                     </h2>
 
                     <p>
@@ -1404,15 +2661,19 @@
 
                 </div>
 
+
                 <div class="events-list">
 
-                    <article class="glass event reveal">
+                    <article
+                        class="glass event reveal"
+                    >
 
                         <div class="event-date">
                             Próximo
                         </div>
 
                         <div>
+
                             <h3>
                                 Carrera Nocturna
                             </h3>
@@ -1420,6 +2681,7 @@
                             <p>
                                 Una competencia especial recorriendo la ciudad.
                             </p>
+
                         </div>
 
                         <span class="event-status">
@@ -1428,13 +2690,17 @@
 
                     </article>
 
-                    <article class="glass event reveal">
+
+                    <article
+                        class="glass event reveal"
+                    >
 
                         <div class="event-date">
                             Especial
                         </div>
 
                         <div>
+
                             <h3>
                                 Ciudad en Crisis
                             </h3>
@@ -1442,6 +2708,7 @@
                             <p>
                                 Una experiencia de roleplay con una situación inesperada.
                             </p>
+
                         </div>
 
                         <span class="event-status">
@@ -1450,13 +2717,17 @@
 
                     </article>
 
-                    <article class="glass event reveal">
+
+                    <article
+                        class="glass event reveal"
+                    >
 
                         <div class="event-date">
                             Comunidad
                         </div>
 
                         <div>
+
                             <h3>
                                 Concurso de Historias
                             </h3>
@@ -1464,6 +2735,7 @@
                             <p>
                                 Una experiencia centrada en creatividad y narrativa.
                             </p>
+
                         </div>
 
                         <span class="event-status">
@@ -1475,13 +2747,24 @@
                 </div>
 
             </div>
+
         </section>
 
-        <!-- Comunidad -->
-        <section id="comunidad" class="section">
+
+        <!-- ================================
+             COMUNIDAD
+        ================================ -->
+
+        <section
+            id="comunidad"
+            class="section"
+        >
+
             <div class="container">
 
-                <div class="glass community reveal">
+                <div
+                    class="glass community reveal"
+                >
 
                     <div class="eyebrow">
                         Nuestra comunidad
@@ -1489,7 +2772,10 @@
 
                     <h2>
                         El proyecto no existe<br>
-                        sin <span class="gradient">ustedes.</span>
+                        sin
+                        <span class="gradient">
+                            ustedes.
+                        </span>
                     </h2>
 
                     <p>
@@ -1510,10 +2796,19 @@
                 </div>
 
             </div>
+
         </section>
 
-        <!-- Soporte -->
-        <section id="soporte" class="section">
+
+        <!-- ================================
+             SOPORTE
+        ================================ -->
+
+        <section
+            id="soporte"
+            class="section"
+        >
+
             <div class="container">
 
                 <div class="section-heading reveal">
@@ -1523,7 +2818,10 @@
                     </div>
 
                     <h2>
-                        Estamos para <span>ayudarte.</span>
+                        Estamos para
+                        <span>
+                            ayudarte.
+                        </span>
                     </h2>
 
                     <p>
@@ -1533,9 +2831,12 @@
 
                 </div>
 
+
                 <div class="support-grid">
 
-                    <article class="glass support-card reveal">
+                    <article
+                        class="glass support-card reveal"
+                    >
 
                         <h3>
                             Soporte
@@ -1556,7 +2857,10 @@
 
                     </article>
 
-                    <article class="glass support-card reveal">
+
+                    <article
+                        class="glass support-card reveal"
+                    >
 
                         <h3>
                             Apelaciones
@@ -1577,7 +2881,10 @@
 
                     </article>
 
-                    <article class="glass support-card reveal">
+
+                    <article
+                        class="glass support-card reveal"
+                    >
 
                         <h3>
                             Comunidad
@@ -1597,11 +2904,16 @@
                 </div>
 
             </div>
+
         </section>
 
     </main>
 
-    <!-- Footer -->
+
+    <!-- ================================
+         FOOTER
+    ================================ -->
+
     <footer>
 
         <div class="container">
@@ -1610,7 +2922,10 @@
 
                 <div class="footer-brand">
 
-                    <a href="#inicio" class="brand">
+                    <a
+                        href="#inicio"
+                        class="brand"
+                    >
 
                         <div class="brand-mark">
                             S
@@ -1627,6 +2942,7 @@
                     </p>
 
                 </div>
+
 
                 <div class="footer-links">
 
@@ -1654,6 +2970,7 @@
 
             </div>
 
+
             <div class="copyright">
                 © 2026 Sunster's. Todos los derechos reservados.
             </div>
@@ -1662,86 +2979,967 @@
 
     </footer>
 
+
+    <!-- ================================
+         MODAL DE AUTENTICACIÓN
+    ================================ -->
+
+    <div
+        class="auth-overlay"
+        id="authOverlay"
+        aria-hidden="true"
+    >
+
+        <div
+            class="auth-modal"
+            role="dialog"
+            aria-modal="true"
+            aria-labelledby="authTitle"
+        >
+
+            <button
+                class="auth-close"
+                id="authClose"
+                type="button"
+                aria-label="Cerrar"
+            >
+                ×
+            </button>
+
+
+            <div class="auth-header">
+
+                <div class="auth-logo">
+                    S
+                </div>
+
+                <h2 id="authTitle">
+                    Iniciar sesión
+                </h2>
+
+                <p id="authSubtitle">
+                    Bienvenido nuevamente a Sunster's.
+                </p>
+
+            </div>
+
+
+            <!-- LOGIN -->
+
+            <form
+                class="auth-form"
+                id="loginForm"
+            >
+
+                <div class="auth-field">
+
+                    <label for="loginEmail">
+                        Correo electrónico
+                    </label>
+
+                    <input
+                        type="email"
+                        id="loginEmail"
+                        placeholder="tu@email.com"
+                        autocomplete="email"
+                        required
+                    >
+
+                </div>
+
+
+                <div class="auth-field">
+
+                    <label for="loginPassword">
+                        Contraseña
+                    </label>
+
+                    <input
+                        type="password"
+                        id="loginPassword"
+                        placeholder="Tu contraseña"
+                        autocomplete="current-password"
+                        required
+                    >
+
+                </div>
+
+
+                <div
+                    class="auth-message"
+                    id="loginMessage"
+                ></div>
+
+
+                <button
+                    class="btn btn-primary auth-submit"
+                    type="submit"
+                    id="loginSubmit"
+                >
+                    Iniciar sesión
+                </button>
+
+            </form>
+
+
+            <!-- REGISTRO -->
+
+            <form
+                class="auth-form"
+                id="registerForm"
+                style="display:none;"
+            >
+
+                <div class="auth-field">
+
+                    <label for="registerUsername">
+                        Nombre de usuario
+                    </label>
+
+                    <input
+                        type="text"
+                        id="registerUsername"
+                        placeholder="Tu nombre de usuario"
+                        autocomplete="username"
+                        minlength="3"
+                        required
+                    >
+
+                </div>
+
+
+                <div class="auth-field">
+
+                    <label for="registerEmail">
+                        Correo electrónico
+                    </label>
+
+                    <input
+                        type="email"
+                        id="registerEmail"
+                        placeholder="tu@email.com"
+                        autocomplete="email"
+                        required
+                    >
+
+                </div>
+
+
+                <div class="auth-field">
+
+                    <label for="registerPassword">
+                        Contraseña
+                    </label>
+
+                    <input
+                        type="password"
+                        id="registerPassword"
+                        placeholder="Mínimo 8 caracteres"
+                        autocomplete="new-password"
+                        minlength="8"
+                        required
+                    >
+
+                </div>
+
+
+                <div
+                    class="auth-message"
+                    id="registerMessage"
+                ></div>
+
+
+                <button
+                    class="btn btn-primary auth-submit"
+                    type="submit"
+                    id="registerSubmit"
+                >
+                    Crear cuenta
+                </button>
+
+            </form>
+
+
+            <div class="auth-switch">
+
+                <span id="switchText">
+                    ¿No tienes una cuenta?
+                </span>
+
+                <button
+                    type="button"
+                    id="switchAuthBtn"
+                >
+                    Crear una cuenta
+                </button>
+
+            </div>
+
+        </div>
+
+    </div>
+
+
+    <!-- ================================
+         JAVASCRIPT
+    ================================ -->
+
     <script>
 
-        // ================================
+        // ==========================================
+        // CONFIGURACIÓN DEL BACKEND
+        // ==========================================
+
+        const API_URL =
+            "https://sunsters-api.escalonamaria499.workers.dev";
+
+
+        // ==========================================
         // MENÚ MÓVIL
-        // ================================
+        // ==========================================
 
-        const mobileBtn = document.getElementById('mobileBtn');
-        const navLinks = document.getElementById('navLinks');
+        const mobileBtn =
+            document.getElementById("mobileBtn");
 
-        mobileBtn.addEventListener('click', () => {
-            navLinks.classList.toggle('active');
+        const navLinks =
+            document.getElementById("navLinks");
 
-            mobileBtn.textContent =
-                navLinks.classList.contains('active')
-                    ? '×'
-                    : '☰';
-        });
 
-        navLinks.querySelectorAll('a').forEach(link => {
+        mobileBtn.addEventListener(
+            "click",
+            () => {
 
-            link.addEventListener('click', () => {
+                navLinks.classList.toggle(
+                    "active"
+                );
 
-                navLinks.classList.remove('active');
+                mobileBtn.textContent =
+                    navLinks.classList.contains("active")
+                        ? "×"
+                        : "☰";
 
-                mobileBtn.textContent = '☰';
+            }
+        );
+
+
+        navLinks
+            .querySelectorAll("a")
+            .forEach(link => {
+
+                link.addEventListener(
+                    "click",
+                    () => {
+
+                        navLinks.classList.remove(
+                            "active"
+                        );
+
+                        mobileBtn.textContent =
+                            "☰";
+
+                    }
+                );
 
             });
 
-        });
 
-
-        // ================================
+        // ==========================================
         // NAVBAR AL HACER SCROLL
-        // ================================
+        // ==========================================
 
-        const navbar = document.getElementById('navbar');
+        const navbar =
+            document.getElementById("navbar");
+
 
         function updateNavbar() {
 
             navbar.classList.toggle(
-                'scrolled',
+                "scrolled",
                 window.scrollY > 25
             );
 
         }
 
+
         window.addEventListener(
-            'scroll',
+            "scroll",
             updateNavbar
         );
+
 
         updateNavbar();
 
 
-        // ================================
-        // PARTÍCULAS
-        // ================================
+        // ==========================================
+        // MODAL DE AUTENTICACIÓN
+        // ==========================================
 
-        const canvas = document.getElementById('particles');
-        const ctx = canvas.getContext('2d');
+        const authOverlay =
+            document.getElementById(
+                "authOverlay"
+            );
+
+        const authClose =
+            document.getElementById(
+                "authClose"
+            );
+
+        const openLoginBtn =
+            document.getElementById(
+                "openLoginBtn"
+            );
+
+        const loginForm =
+            document.getElementById(
+                "loginForm"
+            );
+
+        const registerForm =
+            document.getElementById(
+                "registerForm"
+            );
+
+        const authTitle =
+            document.getElementById(
+                "authTitle"
+            );
+
+        const authSubtitle =
+            document.getElementById(
+                "authSubtitle"
+            );
+
+        const switchAuthBtn =
+            document.getElementById(
+                "switchAuthBtn"
+            );
+
+        const switchText =
+            document.getElementById(
+                "switchText"
+            );
+
+
+        function openAuth(mode = "login") {
+
+            authOverlay.classList.add(
+                "active"
+            );
+
+            authOverlay.setAttribute(
+                "aria-hidden",
+                "false"
+            );
+
+            document.body.classList.add(
+                "modal-open"
+            );
+
+            if (mode === "register") {
+
+                showRegister();
+
+            } else {
+
+                showLogin();
+
+            }
+
+        }
+
+
+        function closeAuth() {
+
+            authOverlay.classList.remove(
+                "active"
+            );
+
+            authOverlay.setAttribute(
+                "aria-hidden",
+                "true"
+            );
+
+            document.body.classList.remove(
+                "modal-open"
+            );
+
+        }
+
+
+        function showLogin() {
+
+            loginForm.style.display =
+                "grid";
+
+            registerForm.style.display =
+                "none";
+
+            authTitle.textContent =
+                "Iniciar sesión";
+
+            authSubtitle.textContent =
+                "Bienvenido nuevamente a Sunster's.";
+
+            switchText.textContent =
+                "¿No tienes una cuenta?";
+
+            switchAuthBtn.textContent =
+                "Crear una cuenta";
+
+            clearAuthMessages();
+
+        }
+
+
+        function showRegister() {
+
+            loginForm.style.display =
+                "none";
+
+            registerForm.style.display =
+                "grid";
+
+            authTitle.textContent =
+                "Crear una cuenta";
+
+            authSubtitle.textContent =
+                "Forma parte de la comunidad Sunster's.";
+
+            switchText.textContent =
+                "¿Ya tienes una cuenta?";
+
+            switchAuthBtn.textContent =
+                "Iniciar sesión";
+
+            clearAuthMessages();
+
+        }
+
+
+        openLoginBtn.addEventListener(
+            "click",
+            () => openAuth("login")
+        );
+
+
+        authClose.addEventListener(
+            "click",
+            closeAuth
+        );
+
+
+        authOverlay.addEventListener(
+            "click",
+            event => {
+
+                if (
+                    event.target === authOverlay
+                ) {
+
+                    closeAuth();
+
+                }
+
+            }
+        );
+
+
+        document.addEventListener(
+            "keydown",
+            event => {
+
+                if (
+                    event.key === "Escape" &&
+                    authOverlay.classList.contains("active")
+                ) {
+
+                    closeAuth();
+
+                }
+
+            }
+        );
+
+
+        switchAuthBtn.addEventListener(
+            "click",
+            () => {
+
+                if (
+                    registerForm.style.display === "none"
+                ) {
+
+                    showRegister();
+
+                } else {
+
+                    showLogin();
+
+                }
+
+            }
+        );
+
+
+        // ==========================================
+        // MENSAJES
+        // ==========================================
+
+        const loginMessage =
+            document.getElementById(
+                "loginMessage"
+            );
+
+        const registerMessage =
+            document.getElementById(
+                "registerMessage"
+            );
+
+
+        function showMessage(
+            element,
+            message,
+            type
+        ) {
+
+            element.textContent =
+                message;
+
+            element.className =
+                "auth-message show " +
+                type;
+
+        }
+
+
+        function clearAuthMessages() {
+
+            loginMessage.className =
+                "auth-message";
+
+            loginMessage.textContent =
+                "";
+
+            registerMessage.className =
+                "auth-message";
+
+            registerMessage.textContent =
+                "";
+
+        }
+
+
+        // ==========================================
+        // LOGIN
+        // ==========================================
+
+        loginForm.addEventListener(
+            "submit",
+            async event => {
+
+                event.preventDefault();
+
+                const email =
+                    document.getElementById(
+                        "loginEmail"
+                    ).value.trim();
+
+                const password =
+                    document.getElementById(
+                        "loginPassword"
+                    ).value;
+
+
+                const submit =
+                    document.getElementById(
+                        "loginSubmit"
+                    );
+
+
+                submit.disabled = true;
+
+                submit.textContent =
+                    "Iniciando sesión...";
+
+
+                clearAuthMessages();
+
+
+                try {
+
+                    const response =
+                        await fetch(
+                            API_URL + "/login",
+                            {
+                                method: "POST",
+
+                                headers: {
+                                    "Content-Type":
+                                        "application/json"
+                                },
+
+                                body: JSON.stringify({
+                                    email,
+                                    password
+                                })
+                            }
+                        );
+
+
+                    const data =
+                        await response.json();
+
+
+                    if (!response.ok) {
+
+                        showMessage(
+                            loginMessage,
+                            data.error ||
+                            "No se pudo iniciar sesión.",
+                            "error"
+                        );
+
+                        return;
+
+                    }
+
+
+                    // Guardar usuario localmente
+                    localStorage.setItem(
+                        "sunstersUser",
+                        JSON.stringify(
+                            data.user
+                        )
+                    );
+
+
+                    showMessage(
+                        loginMessage,
+                        "¡Inicio de sesión correcto! Bienvenido, " +
+                        data.user.username +
+                        ".",
+                        "success"
+                    );
+
+
+                    updateAccountUI();
+
+
+                    setTimeout(
+                        () => {
+
+                            closeAuth();
+
+                        },
+                        900
+                    );
+
+
+                } catch (error) {
+
+                    showMessage(
+                        loginMessage,
+                        "No se pudo conectar con SUNSTER'S. Revisa tu conexión.",
+                        "error"
+                    );
+
+                } finally {
+
+                    submit.disabled =
+                        false;
+
+                    submit.textContent =
+                        "Iniciar sesión";
+
+                }
+
+            }
+        );
+
+
+        // ==========================================
+        // REGISTRO
+        // ==========================================
+
+        registerForm.addEventListener(
+            "submit",
+            async event => {
+
+                event.preventDefault();
+
+
+                const username =
+                    document.getElementById(
+                        "registerUsername"
+                    ).value.trim();
+
+                const email =
+                    document.getElementById(
+                        "registerEmail"
+                    ).value.trim();
+
+                const password =
+                    document.getElementById(
+                        "registerPassword"
+                    ).value;
+
+
+                const submit =
+                    document.getElementById(
+                        "registerSubmit"
+                    );
+
+
+                submit.disabled = true;
+
+                submit.textContent =
+                    "Creando cuenta...";
+
+
+                clearAuthMessages();
+
+
+                try {
+
+                    const response =
+                        await fetch(
+                            API_URL + "/register",
+                            {
+                                method: "POST",
+
+                                headers: {
+                                    "Content-Type":
+                                        "application/json"
+                                },
+
+                                body: JSON.stringify({
+                                    username,
+                                    email,
+                                    password
+                                })
+                            }
+                        );
+
+
+                    const data =
+                        await response.json();
+
+
+                    if (!response.ok) {
+
+                        showMessage(
+                            registerMessage,
+                            data.error ||
+                            "No se pudo crear la cuenta.",
+                            "error"
+                        );
+
+                        return;
+
+                    }
+
+
+                    showMessage(
+                        registerMessage,
+                        "¡Cuenta creada correctamente! Ahora puedes iniciar sesión.",
+                        "success"
+                    );
+
+
+                    registerForm.reset();
+
+
+                    setTimeout(
+                        () => {
+
+                            showLogin();
+
+                            document.getElementById(
+                                "loginEmail"
+                            ).value = email;
+
+                        },
+                        1200
+                    );
+
+
+                } catch (error) {
+
+                    showMessage(
+                        registerMessage,
+                        "No se pudo conectar con SUNSTER'S. Revisa tu conexión.",
+                        "error"
+                    );
+
+                } finally {
+
+                    submit.disabled =
+                        false;
+
+                    submit.textContent =
+                        "Crear cuenta";
+
+                }
+
+            }
+        );
+
+
+        // ==========================================
+        // CUENTA / SESIÓN
+        // ==========================================
+
+        const loginNavItem =
+            document.getElementById(
+                "loginNavItem"
+            );
+
+        const loggedNavItem =
+            document.getElementById(
+                "loggedNavItem"
+            );
+
+        const accountName =
+            document.getElementById(
+                "accountName"
+            );
+
+        const accountIcon =
+            document.getElementById(
+                "accountIcon"
+            );
+
+        const logoutBtn =
+            document.getElementById(
+                "logoutBtn"
+            );
+
+
+        function getCurrentUser() {
+
+            try {
+
+                const user =
+                    localStorage.getItem(
+                        "sunstersUser"
+                    );
+
+                if (!user) {
+
+                    return null;
+
+                }
+
+                return JSON.parse(user);
+
+            } catch {
+
+                return null;
+
+            }
+
+        }
+
+
+        function updateAccountUI() {
+
+            const user =
+                getCurrentUser();
+
+
+            if (user) {
+
+                loginNavItem.style.display =
+                    "none";
+
+                loggedNavItem.style.display =
+                    "block";
+
+                accountName.textContent =
+                    user.username;
+
+                accountIcon.textContent =
+                    user.username
+                        .charAt(0)
+                        .toUpperCase();
+
+            } else {
+
+                loginNavItem.style.display =
+                    "block";
+
+                loggedNavItem.style.display =
+                    "none";
+
+            }
+
+        }
+
+
+        logoutBtn.addEventListener(
+            "click",
+            () => {
+
+                localStorage.removeItem(
+                    "sunstersUser"
+                );
+
+                updateAccountUI();
+
+            }
+        );
+
+
+        updateAccountUI();
+
+
+        // ==========================================
+        // PARTÍCULAS
+        // ==========================================
+
+        const canvas =
+            document.getElementById(
+                "particles"
+            );
+
+        const ctx =
+            canvas.getContext("2d");
+
 
         let width = 0;
         let height = 0;
         let particles = [];
 
+
         function resizeCanvas() {
 
-            const dpr = Math.min(
-                window.devicePixelRatio || 1,
-                2
-            );
+            const dpr =
+                Math.min(
+                    window.devicePixelRatio || 1,
+                    2
+                );
 
-            width = window.innerWidth;
-            height = window.innerHeight;
 
-            canvas.width = width * dpr;
-            canvas.height = height * dpr;
+            width =
+                window.innerWidth;
 
-            canvas.style.width = width + 'px';
-            canvas.style.height = height + 'px';
+            height =
+                window.innerHeight;
+
+
+            canvas.width =
+                width * dpr;
+
+            canvas.height =
+                height * dpr;
+
+
+            canvas.style.width =
+                width + "px";
+
+            canvas.style.height =
+                height + "px";
+
 
             ctx.setTransform(
                 dpr,
@@ -1752,28 +3950,36 @@
                 0
             );
 
-            const amount = Math.min(
-                Math.floor(width / 9),
-                130
-            );
 
-            particles = Array.from(
-                { length: amount },
-                () => new Particle(true)
-            );
+            const amount =
+                Math.min(
+                    Math.floor(width / 9),
+                    130
+                );
+
+
+            particles =
+                Array.from(
+                    { length: amount },
+                    () => new Particle(true)
+                );
 
         }
 
 
         class Particle {
 
-            constructor(randomY = false) {
+            constructor(
+                randomY = false
+            ) {
 
-                this.x = Math.random() * width;
+                this.x =
+                    Math.random() * width;
 
-                this.y = randomY
-                    ? Math.random() * height
-                    : -5;
+                this.y =
+                    randomY
+                        ? Math.random() * height
+                        : -5;
 
                 this.size =
                     Math.random() * 1.5 + .3;
@@ -1789,9 +3995,14 @@
 
             update() {
 
-                this.y += this.speed;
+                this.y +=
+                    this.speed;
 
-                if (this.y > height + 5) {
+
+                if (
+                    this.y >
+                    height + 5
+                ) {
 
                     this.y = -5;
 
@@ -1806,9 +4017,16 @@
             draw() {
 
                 ctx.fillStyle =
-                    `rgba(150, 215, 255, ${this.opacity})`;
+                    `rgba(
+                        150,
+                        215,
+                        255,
+                        ${this.opacity}
+                    )`;
+
 
                 ctx.beginPath();
+
 
                 ctx.arc(
                     this.x,
@@ -1817,6 +4035,7 @@
                     0,
                     Math.PI * 2
                 );
+
 
                 ctx.fill();
 
@@ -1834,12 +4053,17 @@
                 height
             );
 
-            particles.forEach(particle => {
 
-                particle.update();
-                particle.draw();
+            particles.forEach(
+                particle => {
 
-            });
+                    particle.update();
+
+                    particle.draw();
+
+                }
+            );
+
 
             requestAnimationFrame(
                 animateParticles
@@ -1849,40 +4073,49 @@
 
 
         window.addEventListener(
-            'resize',
+            "resize",
             resizeCanvas
         );
 
+
         resizeCanvas();
+
         animateParticles();
 
 
-        // ================================
+        // ==========================================
         // SCROLL REVEAL
-        // ================================
+        // ==========================================
 
         const revealElements =
-            document.querySelectorAll('.reveal');
+            document.querySelectorAll(
+                ".reveal"
+            );
+
 
         const revealObserver =
             new IntersectionObserver(
                 (entries, observer) => {
 
-                    entries.forEach(entry => {
+                    entries.forEach(
+                        entry => {
 
-                        if (entry.isIntersecting) {
+                            if (
+                                entry.isIntersecting
+                            ) {
 
-                            entry.target.classList.add(
-                                'visible'
-                            );
+                                entry.target.classList.add(
+                                    "visible"
+                                );
 
-                            observer.unobserve(
-                                entry.target
-                            );
+                                observer.unobserve(
+                                    entry.target
+                                );
+
+                            }
 
                         }
-
-                    });
+                    );
 
                 },
                 {
@@ -1891,11 +4124,15 @@
             );
 
 
-        revealElements.forEach(element => {
+        revealElements.forEach(
+            element => {
 
-            revealObserver.observe(element);
+                revealObserver.observe(
+                    element
+                );
 
-        });
+            }
+        );
 
     </script>
 
