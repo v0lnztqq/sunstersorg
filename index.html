@@ -4145,10 +4145,6 @@
                     }
 
 
-                    // ==================================
-                    // COMPROBAR TOKEN
-                    // ==================================
-
                     if (!data.token) {
 
                         showMessage(
@@ -4162,19 +4158,11 @@
                     }
 
 
-                    // ==================================
-                    // GUARDAR SESIÓN
-                    // ==================================
-
                     saveSession(
                         data.token,
                         data.user
                     );
 
-
-                    // ==================================
-                    // ACTUALIZAR INTERFAZ
-                    // ==================================
 
                     updateAccountUI();
 
@@ -4536,10 +4524,6 @@
                 }
 
 
-                // ==================================
-                // ACTUALIZAR DATOS REALES
-                // ==================================
-
                 localStorage.setItem(
                     USER_KEY,
                     JSON.stringify(
@@ -4559,11 +4543,6 @@
                     "Error validando sesión:",
                     error
                 );
-
-                /*
-                 * Si falla la red no eliminamos
-                 * la sesión inmediatamente.
-                 */
 
                 return false;
 
@@ -4616,7 +4595,7 @@
 
 
         // ==========================================
-        // ABRIR PERFIL
+        // ANTIGUO PERFIL
         // ==========================================
 
         async function openProfile() {
@@ -4633,11 +4612,6 @@
 
             }
 
-
-            /*
-             * Comprobar con el servidor
-             * antes de mostrar los datos.
-             */
 
             const valid =
                 await validateSession();
@@ -4748,9 +4722,18 @@
         }
 
 
+        // ==========================================
+        // IR AL DASHBOARD
+        // ==========================================
+
         accountButton.addEventListener(
             "click",
-            openProfile
+            () => {
+
+                window.location.href =
+                    "dashboard/";
+
+            }
         );
 
 
@@ -4814,10 +4797,6 @@
             }
 
 
-            // ==================================
-            // LIMPIAR SESIÓN LOCAL
-            // ==================================
-
             clearSession();
 
             closeProfile();
@@ -4840,7 +4819,7 @@
 
 
         // ==========================================
-        // ESC PARA CERRAR MODALES
+        // ESC
         // ==========================================
 
         document.addEventListener(
@@ -4880,7 +4859,7 @@
 
 
         // ==========================================
-        // INICIAR CUENTA
+        // INICIAR
         // ==========================================
 
         updateAccountUI();
