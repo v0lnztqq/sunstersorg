@@ -1,3 +1,4 @@
+```html
 <!DOCTYPE html>
 <html lang="es">
 <head>
@@ -77,10 +78,14 @@
 
         * {
 
-            margin: 0;
-            padding: 0;
+            margin:
+                0;
 
-            box-sizing: border-box;
+            padding:
+                0;
+
+            box-sizing:
+                border-box;
 
             font-family:
                 'Outfit',
@@ -128,7 +133,16 @@
 
         button {
 
-            font: inherit;
+            font:
+                inherit;
+
+        }
+
+
+        a {
+
+            color:
+                inherit;
 
         }
 
@@ -219,6 +233,9 @@
             border-bottom:
                 1px solid rgba(255,255,255,.05);
 
+            cursor:
+                pointer;
+
         }
 
 
@@ -253,6 +270,9 @@
 
             box-shadow:
                 0 0 25px rgba(40,169,255,.08);
+
+            flex-shrink:
+                0;
 
         }
 
@@ -411,6 +431,9 @@
             font-size:
                 .9rem;
 
+            flex-shrink:
+                0;
+
         }
 
 
@@ -524,6 +547,20 @@
         }
 
 
+        .topbar-left {
+
+            display:
+                flex;
+
+            align-items:
+                flex-start;
+
+            gap:
+                14px;
+
+        }
+
+
         .page-title {
 
             font-size:
@@ -583,6 +620,9 @@
 
             background:
                 rgba(255,255,255,.025);
+
+            flex-shrink:
+                0;
 
         }
 
@@ -810,6 +850,9 @@
             letter-spacing:
                 -1px;
 
+            word-break:
+                break-word;
+
         }
 
 
@@ -969,6 +1012,9 @@
 
             font-size:
                 1.4rem;
+
+            word-break:
+                break-word;
 
         }
 
@@ -1246,6 +1292,9 @@
             align-items:
                 center;
 
+            justify-content:
+                center;
+
             padding:
                 0 18px;
 
@@ -1266,6 +1315,23 @@
 
             font-weight:
                 700;
+
+            transition:
+                .25s ease;
+
+        }
+
+
+        .back-button:hover {
+
+            border-color:
+                var(--border-hover);
+
+            background:
+                rgba(40,169,255,.10);
+
+            transform:
+                translateY(-1px);
 
         }
 
@@ -1306,6 +1372,9 @@
             font-size:
                 1.1rem;
 
+            flex-shrink:
+                0;
+
         }
 
 
@@ -1318,6 +1387,9 @@
 
                 transition:
                     .3s ease;
+
+                box-shadow:
+                    15px 0 50px rgba(0,0,0,.3);
 
             }
 
@@ -1360,6 +1432,14 @@
             }
 
 
+            .topbar-left {
+
+                min-width:
+                    0;
+
+            }
+
+
             .stats {
 
                 grid-template-columns:
@@ -1372,10 +1452,29 @@
 
         @media (max-width: 600px) {
 
+            .main {
+
+                padding:
+                    16px;
+
+            }
+
+
             .topbar {
 
                 flex-direction:
                     column;
+
+                gap:
+                    14px;
+
+            }
+
+
+            .topbar-left {
+
+                width:
+                    100%;
 
             }
 
@@ -1414,6 +1513,30 @@
 
             }
 
+
+            .welcome {
+
+                padding:
+                    24px;
+
+            }
+
+
+            .welcome h2 {
+
+                font-size:
+                    1.65rem;
+
+            }
+
+
+            .empty-panel {
+
+                padding:
+                    28px 20px;
+
+            }
+
         }
 
     </style>
@@ -1444,8 +1567,9 @@
         >
 
             <a
-                href="../"
+                href="https://v0lnztqq.github.io/sunstersorg/"
                 class="brand"
+                aria-label="Volver a SUNSTER'S"
             >
 
                 <div class="brand-mark">
@@ -1464,10 +1588,14 @@
             </div>
 
 
-            <nav class="sidebar-nav">
+            <nav
+                class="sidebar-nav"
+                aria-label="Navegación del Dashboard"
+            >
 
 
                 <button
+                    type="button"
                     class="nav-item active"
                     data-panel="home"
                 >
@@ -1482,6 +1610,7 @@
 
 
                 <button
+                    type="button"
                     class="nav-item"
                     data-panel="account"
                 >
@@ -1496,6 +1625,7 @@
 
 
                 <button
+                    type="button"
                     class="nav-item"
                     data-panel="discord"
                 >
@@ -1510,6 +1640,7 @@
 
 
                 <button
+                    type="button"
                     class="nav-item"
                     data-panel="servers"
                 >
@@ -1524,6 +1655,7 @@
 
 
                 <button
+                    type="button"
                     class="nav-item"
                     data-panel="bot"
                 >
@@ -1538,6 +1670,7 @@
 
 
                 <button
+                    type="button"
                     class="nav-item"
                     data-panel="settings"
                 >
@@ -1557,6 +1690,7 @@
             <div class="sidebar-bottom">
 
                 <button
+                    type="button"
                     class="logout-button"
                     id="logoutButton"
                 >
@@ -1583,23 +1717,31 @@
 
             <div class="topbar">
 
-                <div>
+                <div class="topbar-left">
 
                     <button
+                        type="button"
                         class="mobile-toggle"
                         id="mobileToggle"
+                        aria-label="Abrir menú"
+                        aria-expanded="false"
                     >
                         ☰
                     </button>
 
-                    <h1 class="page-title">
-                        Dashboard
-                        <span>SUNSTER'S</span>
-                    </h1>
 
-                    <p class="page-subtitle">
-                        Tu centro de control de la plataforma.
-                    </p>
+                    <div>
+
+                        <h1 class="page-title">
+                            Dashboard
+                            <span>SUNSTER'S</span>
+                        </h1>
+
+                        <p class="page-subtitle">
+                            Tu centro de control de la plataforma.
+                        </p>
+
+                    </div>
 
                 </div>
 
@@ -1704,7 +1846,10 @@
                             Servidores
                         </div>
 
-                        <div class="stat-value">
+                        <div
+                            class="stat-value"
+                            id="serversStat"
+                        >
                             0
                         </div>
 
@@ -1985,7 +2130,7 @@
             </p>
 
             <a
-                href="../"
+                href="https://v0lnztqq.github.io/sunstersorg/"
                 class="back-button"
             >
                 Volver a SUNSTER'S
@@ -1999,6 +2144,17 @@
     <script>
 
         // ==========================================
+        // RUTAS DE LA PLATAFORMA
+        // ==========================================
+
+        const SUNSTERS_URL =
+            "https://v0lnztqq.github.io/sunstersorg/";
+
+        const DASHBOARD_URL =
+            "https://v0lnztqq.github.io/sunstersorg/dashboard/";
+
+
+        // ==========================================
         // API
         // ==========================================
 
@@ -2006,9 +2162,12 @@
             "https://sunsters-api.escalonamaria499.workers.dev";
 
 
+        // ==========================================
+        // SESIÓN
+        // ==========================================
+
         const SESSION_KEY =
             "sunstersSession";
-
 
         const USER_KEY =
             "sunstersUser";
@@ -2021,64 +2180,42 @@
         const app =
             document.getElementById("app");
 
-
         const errorScreen =
             document.getElementById("errorScreen");
-
 
         const sidebar =
             document.getElementById("sidebar");
 
-
         const mobileToggle =
             document.getElementById("mobileToggle");
-
 
         const logoutButton =
             document.getElementById("logoutButton");
 
-
         const topUserAvatar =
-            document.getElementById(
-                "topUserAvatar"
-            );
-
+            document.getElementById("topUserAvatar");
 
         const topUserName =
-            document.getElementById(
-                "topUserName"
-            );
-
+            document.getElementById("topUserName");
 
         const welcomeName =
-            document.getElementById(
-                "welcomeName"
-            );
-
+            document.getElementById("welcomeName");
 
         const accountAvatar =
-            document.getElementById(
-                "accountAvatar"
-            );
-
+            document.getElementById("accountAvatar");
 
         const accountUsername =
-            document.getElementById(
-                "accountUsername"
-            );
-
+            document.getElementById("accountUsername");
 
         const accountUsernameInfo =
             document.getElementById(
                 "accountUsernameInfo"
             );
 
-
         const accountEmailInfo =
             document.getElementById(
                 "accountEmailInfo"
             );
-
 
         const accountIdInfo =
             document.getElementById(
@@ -2087,7 +2224,7 @@
 
 
         // ==========================================
-        // SESIÓN
+        // SESIÓN LOCAL
         // ==========================================
 
         function getToken() {
@@ -2109,10 +2246,24 @@
                     );
 
                 if (!raw) {
+
                     return null;
+
                 }
 
-                return JSON.parse(raw);
+                const user =
+                    JSON.parse(raw);
+
+                if (
+                    !user ||
+                    typeof user !== "object"
+                ) {
+
+                    return null;
+
+                }
+
+                return user;
 
             } catch {
 
@@ -2140,18 +2291,30 @@
         // MOSTRAR USUARIO
         // ==========================================
 
-        function renderUser(
-            user
-        ) {
+        function renderUser(user) {
+
+            if (
+                !user ||
+                typeof user !== "object"
+            ) {
+
+                return;
+
+            }
+
 
             const username =
-                user.username ||
-                "Usuario";
+                String(
+                    user.username ||
+                    "Usuario"
+                );
 
 
             const email =
-                user.email ||
-                "No disponible";
+                String(
+                    user.email ||
+                    "No disponible"
+                );
 
 
             const id =
@@ -2162,7 +2325,8 @@
             const initial =
                 username
                     .charAt(0)
-                    .toUpperCase();
+                    .toUpperCase() ||
+                "S";
 
 
             topUserAvatar.textContent =
@@ -2200,7 +2364,35 @@
 
 
         // ==========================================
-        // VALIDAR /ME
+        // MOSTRAR APP / ERROR
+        // ==========================================
+
+        function showApp() {
+
+            errorScreen.classList.remove(
+                "active"
+            );
+
+            app.style.display =
+                "flex";
+
+        }
+
+
+        function showError() {
+
+            app.style.display =
+                "none";
+
+            errorScreen.classList.add(
+                "active"
+            );
+
+        }
+
+
+        // ==========================================
+        // VALIDAR SESIÓN
         // ==========================================
 
         async function validateSession() {
@@ -2224,7 +2416,8 @@
                     await fetch(
                         API_URL + "/me",
                         {
-                            method: "GET",
+                            method:
+                                "GET",
 
                             headers: {
                                 "Authorization":
@@ -2235,11 +2428,15 @@
 
 
                 const data =
-                    await response.json();
+                    await response.json()
+                        .catch(
+                            () => null
+                        );
 
 
                 if (
                     !response.ok ||
+                    !data ||
                     !data.user
                 ) {
 
@@ -2279,10 +2476,10 @@
 
 
                 /*
-                 * Si existe un usuario local,
-                 * dejamos que el dashboard se
-                 * muestre, pero los datos reales
-                 * no se consideran confirmados.
+                 * Si la API está temporalmente
+                 * inaccesible pero todavía existe
+                 * una sesión local, mostramos
+                 * el Dashboard con esos datos.
                  */
 
                 const localUser =
@@ -2312,35 +2509,7 @@
 
 
         // ==========================================
-        // MOSTRAR APP
-        // ==========================================
-
-        function showApp() {
-
-            errorScreen.classList.remove(
-                "active"
-            );
-
-            app.style.display =
-                "flex";
-
-        }
-
-
-        function showError() {
-
-            app.style.display =
-                "none";
-
-            errorScreen.classList.add(
-                "active"
-            );
-
-        }
-
-
-        // ==========================================
-        // NAVEGACIÓN
+        // NAVEGACIÓN DEL DASHBOARD
         // ==========================================
 
         const navItems =
@@ -2355,6 +2524,46 @@
             );
 
 
+        function openPanel(target) {
+
+            navItems.forEach(
+                nav => {
+
+                    nav.classList.toggle(
+                        "active",
+                        nav.dataset.panel === target
+                    );
+
+                }
+            );
+
+
+            panels.forEach(
+                panel => {
+
+                    panel.classList.toggle(
+                        "active",
+                        panel.id ===
+                        "panel-" + target
+                    );
+
+                }
+            );
+
+
+            sidebar.classList.remove(
+                "open"
+            );
+
+
+            mobileToggle.setAttribute(
+                "aria-expanded",
+                "false"
+            );
+
+        }
+
+
         navItems.forEach(
             item => {
 
@@ -2365,51 +2574,14 @@
                         const target =
                             item.dataset.panel;
 
+                        if (!target) {
 
-                        navItems.forEach(
-                            nav => {
-
-                                nav.classList.remove(
-                                    "active"
-                                );
-
-                            }
-                        );
-
-
-                        item.classList.add(
-                            "active"
-                        );
-
-
-                        panels.forEach(
-                            panel => {
-
-                                panel.classList.remove(
-                                    "active"
-                                );
-
-                            }
-                        );
-
-
-                        const targetPanel =
-                            document.getElementById(
-                                "panel-" + target
-                            );
-
-
-                        if (targetPanel) {
-
-                            targetPanel.classList.add(
-                                "active"
-                            );
+                            return;
 
                         }
 
-
-                        sidebar.classList.remove(
-                            "open"
+                        openPanel(
+                            target
                         );
 
                     }
@@ -2427,8 +2599,15 @@
             "click",
             () => {
 
-                sidebar.classList.toggle(
-                    "open"
+                const isOpen =
+                    sidebar.classList.toggle(
+                        "open"
+                    );
+
+
+                mobileToggle.setAttribute(
+                    "aria-expanded",
+                    String(isOpen)
                 );
 
             }
@@ -2447,6 +2626,15 @@
                     getToken();
 
 
+                /*
+                 * Limpiamos primero la sesión local
+                 * para que el usuario no quede atrapado
+                 * en el Dashboard si el endpoint falla.
+                 */
+
+                clearSession();
+
+
                 if (token) {
 
                     try {
@@ -2454,7 +2642,8 @@
                         await fetch(
                             API_URL + "/logout",
                             {
-                                method: "POST",
+                                method:
+                                    "POST",
 
                                 headers: {
                                     "Authorization":
@@ -2475,18 +2664,15 @@
                 }
 
 
-                clearSession();
-
-
                 window.location.href =
-                    "../";
+                    SUNSTERS_URL;
 
             }
         );
 
 
         // ==========================================
-        // INICIO
+        // CARGA INICIAL
         // ==========================================
 
         validateSession();
@@ -2495,3 +2681,4 @@
 
 </body>
 </html>
+```
