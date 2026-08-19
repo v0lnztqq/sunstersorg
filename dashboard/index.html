@@ -437,6 +437,10 @@
         }
 
 
+        /* ================================
+           SIDEBAR BOTTOM
+        ================================ */
+
         .sidebar-bottom {
 
             margin-top:
@@ -451,6 +455,7 @@
         }
 
 
+        .back-home-button,
         .logout-button {
 
             width:
@@ -488,6 +493,34 @@
 
             transition:
                 .25s ease;
+
+            text-decoration:
+                none;
+
+        }
+
+
+        .back-home-button {
+
+            margin-bottom:
+                8px;
+
+        }
+
+
+        .back-home-button:hover {
+
+            color:
+                var(--blue-light);
+
+            border-color:
+                rgba(40,169,255,.24);
+
+            background:
+                rgba(40,169,255,.07);
+
+            transform:
+                translateX(2px);
 
         }
 
@@ -1566,6 +1599,8 @@
             id="sidebar"
         >
 
+            <!-- LOGO -->
+
             <a
                 href="https://v0lnztqq.github.io/sunstersorg/"
                 class="brand"
@@ -1592,7 +1627,6 @@
                 class="sidebar-nav"
                 aria-label="Navegación del Dashboard"
             >
-
 
                 <button
                     type="button"
@@ -1683,11 +1717,32 @@
 
                 </button>
 
-
             </nav>
 
 
+            <!-- ACCIONES -->
+
             <div class="sidebar-bottom">
+
+
+                <!-- VOLVER A LA PÁGINA PRINCIPAL -->
+
+                <a
+                    href="https://v0lnztqq.github.io/sunstersorg/"
+                    class="back-home-button"
+                    aria-label="Volver a la página principal de SUNSTER'S"
+                >
+
+                    <span class="nav-icon">
+                        ←
+                    </span>
+
+                    Volver a SUNSTER'S
+
+                </a>
+
+
+                <!-- CERRAR SESIÓN -->
 
                 <button
                     type="button"
@@ -2144,7 +2199,7 @@
     <script>
 
         // ==========================================
-        // RUTAS DE LA PLATAFORMA
+        // RUTAS
         // ==========================================
 
         const SUNSTERS_URL =
@@ -2475,13 +2530,6 @@
                 );
 
 
-                /*
-                 * Si la API está temporalmente
-                 * inaccesible pero todavía existe
-                 * una sesión local, mostramos
-                 * el Dashboard con esos datos.
-                 */
-
                 const localUser =
                     getLocalUser();
 
@@ -2509,7 +2557,7 @@
 
 
         // ==========================================
-        // NAVEGACIÓN DEL DASHBOARD
+        // NAVEGACIÓN
         // ==========================================
 
         const navItems =
@@ -2626,12 +2674,6 @@
                     getToken();
 
 
-                /*
-                 * Limpiamos primero la sesión local
-                 * para que el usuario no quede atrapado
-                 * en el Dashboard si el endpoint falla.
-                 */
-
                 clearSession();
 
 
@@ -2672,7 +2714,7 @@
 
 
         // ==========================================
-        // CARGA INICIAL
+        // INICIO
         // ==========================================
 
         validateSession();
