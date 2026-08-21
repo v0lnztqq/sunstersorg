@@ -1138,6 +1138,98 @@
 
 
         /* ================================
+           DISCORD
+        ================================ */
+
+        .discord-button {
+
+            min-height:
+                46px;
+
+            padding:
+                0 22px;
+
+            margin-top:
+                22px;
+
+            border:
+                1px solid rgba(40,169,255,.35);
+
+            border-radius:
+                12px;
+
+            color:
+                white;
+
+            background:
+                var(--blue);
+
+            cursor:
+                pointer;
+
+            font-weight:
+                700;
+
+            transition:
+                .2s ease;
+
+        }
+
+
+        .discord-button:hover {
+
+            transform:
+                translateY(-1px);
+
+            box-shadow:
+                0 10px 25px rgba(40,169,255,.18);
+
+        }
+
+
+        .discord-button:disabled {
+
+            opacity:
+                .65;
+
+            cursor:
+                not-allowed;
+
+            transform:
+                none;
+
+            box-shadow:
+                none;
+
+        }
+
+
+        .discord-message {
+
+            display:
+                none;
+
+            margin-top:
+                15px;
+
+            color:
+                var(--muted);
+
+            font-size:
+                .82rem;
+
+        }
+
+
+        .discord-connected {
+
+            color:
+                #55e89a;
+
+        }
+
+
+        /* ================================
            BOT SUNSTER'S
         ================================ */
 
@@ -2357,7 +2449,10 @@
                             Servidores
                         </div>
 
-                        <div class="stat-value">
+                        <div
+                            class="stat-value"
+                            id="serverStat"
+                        >
                             0
                         </div>
 
@@ -2485,20 +2580,36 @@
 
                     <div>
 
-                        <div class="empty-icon">
+                        <div
+                            class="empty-icon"
+                            id="discordIcon"
+                        >
                             💬
                         </div>
 
-                        <h3>
-                            Vinculación con Discord
+                        <h3 id="discordTitle">
+                            Vincular Discord
                         </h3>
 
-                        <p>
-                            Aquí conectaremos tu cuenta SUNSTER'S con
-                            Discord para poder verificar tu identidad,
-                            administrar tus servidores y utilizar
-                            nuestros sistemas del bot.
+                        <p id="discordDescription">
+                            Conecta tu cuenta de Discord con tu cuenta
+                            SUNSTER'S para poder verificar tu identidad,
+                            consultar tus servidores y utilizar nuestros
+                            sistemas.
                         </p>
+
+                        <button
+                            class="discord-button"
+                            type="button"
+                            id="connectDiscordButton"
+                        >
+                            🔗 Conectar Discord
+                        </button>
+
+                        <p
+                            class="discord-message"
+                            id="discordMessage"
+                        ></p>
 
                     </div>
 
@@ -2551,8 +2662,6 @@
             >
 
 
-                <!-- BOT HEADER -->
-
                 <div class="bot-header">
 
                     <div class="bot-info">
@@ -2595,8 +2704,6 @@
                 </div>
 
 
-                <!-- ESTADÍSTICAS -->
-
                 <div class="bot-stats">
 
 
@@ -2606,7 +2713,10 @@
                             Servidores
                         </div>
 
-                        <div class="bot-stat-value">
+                        <div
+                            class="bot-stat-value"
+                            id="botServerCount"
+                        >
                             0
                         </div>
 
@@ -2642,8 +2752,6 @@
                 </div>
 
 
-                <!-- SERVIDORES -->
-
                 <div class="bot-section-heading">
 
                     <h2>
@@ -2658,8 +2766,10 @@
                 </div>
 
 
-                <div class="bot-servers">
-
+                <div
+                    class="bot-servers"
+                    id="botServers"
+                >
 
                     <div class="bot-no-servers">
 
@@ -2677,7 +2787,6 @@
                         </p>
 
                     </div>
-
 
                 </div>
 
@@ -2802,50 +2911,80 @@
 
 
         const topUserAvatar =
-            document.getElementById(
-                "topUserAvatar"
-            );
+            document.getElementById("topUserAvatar");
 
 
         const topUserName =
-            document.getElementById(
-                "topUserName"
-            );
+            document.getElementById("topUserName");
 
 
         const welcomeName =
-            document.getElementById(
-                "welcomeName"
-            );
+            document.getElementById("welcomeName");
 
 
         const accountAvatar =
-            document.getElementById(
-                "accountAvatar"
-            );
+            document.getElementById("accountAvatar");
 
 
         const accountUsername =
-            document.getElementById(
-                "accountUsername"
-            );
+            document.getElementById("accountUsername");
 
 
         const accountUsernameInfo =
-            document.getElementById(
-                "accountUsernameInfo"
-            );
+            document.getElementById("accountUsernameInfo");
 
 
         const accountEmailInfo =
-            document.getElementById(
-                "accountEmailInfo"
-            );
+            document.getElementById("accountEmailInfo");
 
 
         const accountIdInfo =
+            document.getElementById("accountIdInfo");
+
+
+        const discordStat =
+            document.getElementById("discordStat");
+
+
+        const serverStat =
+            document.getElementById("serverStat");
+
+
+        const botServerCount =
+            document.getElementById("botServerCount");
+
+
+        const botServers =
+            document.getElementById("botServers");
+
+
+        const connectDiscordButton =
             document.getElementById(
-                "accountIdInfo"
+                "connectDiscordButton"
+            );
+
+
+        const discordMessage =
+            document.getElementById(
+                "discordMessage"
+            );
+
+
+        const discordTitle =
+            document.getElementById(
+                "discordTitle"
+            );
+
+
+        const discordDescription =
+            document.getElementById(
+                "discordDescription"
+            );
+
+
+        const discordIcon =
+            document.getElementById(
+                "discordIcon"
             );
 
 
@@ -3041,13 +3180,6 @@
                 );
 
 
-                /*
-                 * Si existe un usuario local,
-                 * dejamos que el dashboard se
-                 * muestre, pero los datos reales
-                 * no se consideran confirmados.
-                 */
-
                 const localUser =
                     getLocalUser();
 
@@ -3199,6 +3331,304 @@
 
 
         // ==========================================
+        // DISCORD
+        // ==========================================
+
+        function showDiscordMessage(
+            message,
+            success = false
+        ) {
+
+            discordMessage.textContent =
+                message;
+
+            discordMessage.style.display =
+                "block";
+
+            if (success) {
+
+                discordMessage.classList.add(
+                    "discord-connected"
+                );
+
+            } else {
+
+                discordMessage.classList.remove(
+                    "discord-connected"
+                );
+
+            }
+
+        }
+
+
+        // ==========================================
+        // ESTADO DISCORD
+        // ==========================================
+
+        function setDiscordConnected() {
+
+            discordIcon.textContent =
+                "✅";
+
+
+            discordTitle.textContent =
+                "Discord conectado";
+
+
+            discordDescription.textContent =
+                "Tu cuenta de Discord está vinculada correctamente con tu cuenta SUNSTER'S.";
+
+
+            connectDiscordButton.textContent =
+                "✅ Discord conectado";
+
+
+            connectDiscordButton.disabled =
+                true;
+
+
+            discordStat.textContent =
+                "Vinculado";
+
+
+            discordStat.classList.add(
+                "blue"
+            );
+
+
+            showDiscordMessage(
+                "La vinculación se realizó correctamente.",
+                true
+            );
+
+        }
+
+
+        // ==========================================
+        // COMPROBAR RESULTADO OAUTH
+        // ==========================================
+
+        function checkDiscordResult() {
+
+            const params =
+                new URLSearchParams(
+                    window.location.search
+                );
+
+
+            const discordStatus =
+                params.get("discord");
+
+
+            if (
+                discordStatus ===
+                "connected"
+            ) {
+
+                setDiscordConnected();
+
+
+                window.history.replaceState(
+                    {},
+                    document.title,
+                    window.location.pathname
+                );
+
+            }
+
+
+            if (
+                discordStatus ===
+                "error"
+            ) {
+
+                const message =
+                    params.get("message");
+
+
+                showDiscordMessage(
+                    message ||
+                    "No se pudo conectar tu cuenta de Discord."
+                );
+
+
+                window.history.replaceState(
+                    {},
+                    document.title,
+                    window.location.pathname
+                );
+
+            }
+
+        }
+
+
+        // ==========================================
+        // CONECTAR DISCORD
+        // ==========================================
+
+        connectDiscordButton.addEventListener(
+            "click",
+            async () => {
+
+                const token =
+                    getToken();
+
+
+                if (!token) {
+
+                    showDiscordMessage(
+                        "Tu sesión SUNSTER'S ha expirado. Vuelve a iniciar sesión."
+                    );
+
+                    return;
+
+                }
+
+
+                connectDiscordButton.disabled =
+                    true;
+
+
+                connectDiscordButton.textContent =
+                    "Conectando...";
+
+
+                showDiscordMessage(
+                    "Preparando conexión con Discord..."
+                );
+
+
+                try {
+
+                    /*
+                     * IMPORTANTE:
+                     *
+                     * El token se envía mediante
+                     * Authorization.
+                     *
+                     * Nunca se coloca en la URL.
+                     */
+
+                    const response =
+                        await fetch(
+                            API_URL +
+                            "/discord/login",
+                            {
+                                method: "GET",
+
+                                headers: {
+                                    "Authorization":
+                                        "Bearer " +
+                                        token
+                                }
+                            }
+                        );
+
+
+                    /*
+                     * Si el Worker devuelve una
+                     * respuesta JSON con una URL,
+                     * navegamos hacia Discord.
+                     */
+
+                    let data = null;
+
+
+                    try {
+
+                        data =
+                            await response.json();
+
+                    } catch {
+
+                        data =
+                            null;
+
+                    }
+
+
+                    if (
+                        data &&
+                        data.url
+                    ) {
+
+                        window.location.href =
+                            data.url;
+
+                        return;
+
+                    }
+
+
+                    /*
+                     * Si el Worker actual intenta
+                     * hacer un redirect directamente,
+                     * el navegador puede seguirlo
+                     * automáticamente.
+                     *
+                     * Si llegamos aquí significa que
+                     * todavía debemos actualizar el
+                     * endpoint del Worker.
+                     */
+
+                    if (
+                        response.redirected &&
+                        response.url
+                    ) {
+
+                        window.location.href =
+                            response.url;
+
+                        return;
+
+                    }
+
+
+                    if (!response.ok) {
+
+                        throw new Error(
+                            data?.error ||
+                            "No se pudo iniciar la conexión con Discord."
+                        );
+
+                    }
+
+
+                    throw new Error(
+                        "El Worker todavía no está devolviendo la URL de Discord."
+                    );
+
+
+                } catch (error) {
+
+                    console.error(
+                        "Error conectando Discord:",
+                        error
+                    );
+
+
+                    showDiscordMessage(
+                        error.message ||
+                        "No se pudo conectar con Discord."
+                    );
+
+
+                    connectDiscordButton.disabled =
+                        false;
+
+
+                    connectDiscordButton.textContent =
+                        "🔗 Conectar Discord";
+
+                }
+
+            }
+        );
+
+
+        // ==========================================
         // BOT SUNSTER'S
         // ==========================================
 
@@ -3212,15 +3642,8 @@
             "click",
             () => {
 
-                /*
-                 * Todavía no conectamos Discord.
-                 * Este botón quedará preparado para
-                 * abrir el panel real de administración
-                 * del bot en una siguiente fase.
-                 */
-
                 alert(
-                    "La administración del Bot SUNSTER'S estará disponible cuando conectemos Discord."
+                    "La administración del Bot SUNSTER'S estará disponible cuando terminemos de conectar Discord."
                 );
 
             }
@@ -3280,6 +3703,8 @@
         // ==========================================
         // INICIO
         // ==========================================
+
+        checkDiscordResult();
 
         validateSession();
 
