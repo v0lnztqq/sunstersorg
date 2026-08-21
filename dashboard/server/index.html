@@ -1,7 +1,6 @@
 <!DOCTYPE html>
 <html lang="es">
 <head>
-
     <meta charset="UTF-8">
 
     <meta
@@ -14,7 +13,7 @@
         content="#28a9ff"
     >
 
-    <title>SUNSTER'S | Panel del servidor</title>
+    <title>SUNSTER'S | Servidor</title>
 
     <link
         rel="preconnect"
@@ -36,77 +35,48 @@
 
         * {
             box-sizing: border-box;
+            margin: 0;
+            padding: 0;
         }
 
         body {
-            margin: 0;
             min-height: 100vh;
-
-            font-family: "Outfit", sans-serif;
-
-            color: #ffffff;
-
             background:
                 radial-gradient(
                     circle at top left,
-                    rgba(40, 169, 255, 0.16),
+                    rgba(40, 169, 255, 0.12),
                     transparent 35%
                 ),
-                #060b12;
+                #07111d;
+
+            color: #ffffff;
+            font-family: "Outfit", sans-serif;
         }
 
-        .topbar {
-            height: 72px;
+        a {
+            color: inherit;
+            text-decoration: none;
+        }
 
+        .page {
+            width: 100%;
+            max-width: 1200px;
+            margin: 0 auto;
+            padding: 30px;
+        }
+
+        /* HEADER */
+
+        .topbar {
             display: flex;
             align-items: center;
             justify-content: space-between;
+            gap: 20px;
 
-            padding: 0 28px;
-
-            border-bottom:
-                1px solid rgba(255, 255, 255, 0.07);
-
-            background:
-                rgba(7, 14, 23, 0.92);
-
-            backdrop-filter: blur(12px);
-
-            position: sticky;
-            top: 0;
-
-            z-index: 10;
+            margin-bottom: 30px;
         }
 
-        .brand {
-            display: flex;
-            align-items: center;
-            gap: 12px;
-
-            font-size: 20px;
-            font-weight: 800;
-        }
-
-        .brand-mark {
-            width: 38px;
-            height: 38px;
-
-            display: flex;
-            align-items: center;
-            justify-content: center;
-
-            border-radius: 11px;
-
-            background: #28a9ff;
-
-            font-size: 17px;
-        }
-
-        .brand-name {
-            letter-spacing: 0.3px;
-        }
-
-        .back-button {
+        .back {
             display: inline-flex;
             align-items: center;
             gap: 8px;
@@ -115,52 +85,275 @@
 
             border-radius: 10px;
 
-            text-decoration: none;
+            color: #b9c7d6;
 
-            color: #dce8f3;
+            background: rgba(255,255,255,0.04);
 
-            background:
-                rgba(255, 255, 255, 0.05);
-
-            border:
-                1px solid rgba(255, 255, 255, 0.08);
+            border: 1px solid rgba(255,255,255,0.07);
 
             transition: 0.2s ease;
         }
 
-        .back-button:hover {
+        .back:hover {
+            color: white;
+
+            background: rgba(255,255,255,0.08);
+
+            transform: translateX(-2px);
+        }
+
+        .brand {
+            font-size: 20px;
+            font-weight: 800;
+            letter-spacing: -0.5px;
+        }
+
+        .brand span {
+            color: #28a9ff;
+        }
+
+        /* SERVER */
+
+        .server-header {
+            display: flex;
+            align-items: center;
+            gap: 20px;
+
+            padding: 25px;
+
+            border-radius: 18px;
+
             background:
-                rgba(255, 255, 255, 0.09);
+                linear-gradient(
+                    135deg,
+                    rgba(40,169,255,0.12),
+                    rgba(255,255,255,0.025)
+                );
 
-            transform: translateY(-1px);
+            border: 1px solid rgba(255,255,255,0.08);
+
+            margin-bottom: 20px;
         }
 
-        .container {
-            width: min(1100px, calc(100% - 32px));
+        .server-icon {
+            width: 82px;
+            height: 82px;
 
-            margin: 0 auto;
+            border-radius: 22px;
 
-            padding: 45px 0 60px;
+            object-fit: cover;
+
+            background: #172536;
+
+            display: flex;
+            align-items: center;
+            justify-content: center;
+
+            flex-shrink: 0;
         }
+
+        .server-icon-placeholder {
+            width: 100%;
+            height: 100%;
+
+            display: flex;
+            align-items: center;
+            justify-content: center;
+
+            font-size: 32px;
+            font-weight: 800;
+
+            color: #ffffff;
+
+            background:
+                linear-gradient(
+                    135deg,
+                    #28a9ff,
+                    #1676bd
+                );
+
+            border-radius: inherit;
+        }
+
+        .server-info {
+            min-width: 0;
+        }
+
+        .server-name {
+            font-size: 28px;
+            font-weight: 800;
+
+            overflow: hidden;
+            text-overflow: ellipsis;
+            white-space: nowrap;
+        }
+
+        .server-id {
+            margin-top: 5px;
+
+            color: #7f91a4;
+
+            font-size: 13px;
+
+            word-break: break-all;
+        }
+
+        .status {
+            display: inline-flex;
+            align-items: center;
+            gap: 8px;
+
+            margin-top: 12px;
+
+            padding: 7px 11px;
+
+            border-radius: 999px;
+
+            background: rgba(50, 220, 120, 0.10);
+
+            color: #5ee89a;
+
+            font-size: 13px;
+            font-weight: 600;
+        }
+
+        .status-dot {
+            width: 7px;
+            height: 7px;
+
+            border-radius: 50%;
+
+            background: #45e58b;
+        }
+
+        /* CONTENT */
+
+        .intro {
+            margin-bottom: 18px;
+        }
+
+        .intro h2 {
+            font-size: 22px;
+            margin-bottom: 5px;
+        }
+
+        .intro p {
+            color: #8395a8;
+            font-size: 14px;
+        }
+
+        .cards {
+            display: grid;
+
+            grid-template-columns:
+                repeat(
+                    auto-fit,
+                    minmax(250px, 1fr)
+                );
+
+            gap: 18px;
+        }
+
+        .card {
+            padding: 22px;
+
+            min-height: 170px;
+
+            border-radius: 16px;
+
+            background: rgba(255,255,255,0.035);
+
+            border: 1px solid rgba(255,255,255,0.07);
+
+            transition: 0.2s ease;
+        }
+
+        .card:hover {
+            transform: translateY(-3px);
+
+            border-color:
+                rgba(40,169,255,0.35);
+
+            background:
+                rgba(40,169,255,0.06);
+        }
+
+        .card-icon {
+            width: 45px;
+            height: 45px;
+
+            display: flex;
+            align-items: center;
+            justify-content: center;
+
+            border-radius: 12px;
+
+            background: rgba(40,169,255,0.12);
+
+            font-size: 21px;
+
+            margin-bottom: 15px;
+        }
+
+        .card h3 {
+            font-size: 17px;
+
+            margin-bottom: 7px;
+        }
+
+        .card p {
+            color: #8293a6;
+
+            font-size: 13px;
+
+            line-height: 1.5;
+        }
+
+        .coming {
+            display: inline-block;
+
+            margin-top: 14px;
+
+            padding: 5px 9px;
+
+            border-radius: 7px;
+
+            background: rgba(255,255,255,0.05);
+
+            color: #718398;
+
+            font-size: 11px;
+
+            font-weight: 600;
+        }
+
+        /* LOADING */
 
         .loading {
+            min-height: 70vh;
+
+            display: flex;
+            align-items: center;
+            justify-content: center;
+
             text-align: center;
+        }
 
-            padding: 80px 20px;
-
-            color: #9ba9b7;
+        .loader-box {
+            color: #8da0b4;
         }
 
         .spinner {
-            width: 42px;
-            height: 42px;
+            width: 38px;
+            height: 38px;
 
-            margin: 0 auto 18px;
+            margin: 0 auto 15px;
 
             border-radius: 50%;
 
             border:
-                3px solid rgba(255, 255, 255, 0.1);
+                3px solid
+                rgba(255,255,255,0.08);
 
             border-top-color: #28a9ff;
 
@@ -174,230 +367,87 @@
             }
         }
 
-        .server-header {
-            display: flex;
-            align-items: center;
-            gap: 20px;
+        /* ERROR */
 
-            margin-bottom: 30px;
-        }
+        .error {
+            min-height: 70vh;
 
-        .server-icon {
-            width: 82px;
-            height: 82px;
+            display: none;
 
-            flex-shrink: 0;
-
-            border-radius: 22px;
-
-            display: flex;
             align-items: center;
             justify-content: center;
 
-            background:
-                linear-gradient(
-                    135deg,
-                    #28a9ff,
-                    #1269a3
-                );
-
-            font-size: 30px;
-            font-weight: 800;
-
-            overflow: hidden;
-        }
-
-        .server-icon img {
-            width: 100%;
-            height: 100%;
-
-            object-fit: cover;
-        }
-
-        .server-info {
-            min-width: 0;
-        }
-
-        .server-info h1 {
-            margin: 0 0 6px;
-
-            font-size: clamp(26px, 5vw, 38px);
-
-            line-height: 1.1;
-
-            word-break: break-word;
-        }
-
-        .server-id {
-            margin: 0;
-
-            color: #8998a7;
-
-            font-size: 14px;
-
-            word-break: break-all;
-        }
-
-        .status-card {
-            display: flex;
-            align-items: center;
-            gap: 14px;
-
-            padding: 18px 20px;
-
-            margin-bottom: 28px;
-
-            border-radius: 16px;
-
-            background:
-                rgba(40, 169, 255, 0.07);
-
-            border:
-                1px solid rgba(40, 169, 255, 0.16);
-        }
-
-        .status-dot {
-            width: 12px;
-            height: 12px;
-
-            flex-shrink: 0;
-
-            border-radius: 50%;
-
-            background: #42d883;
-
-            box-shadow:
-                0 0 14px rgba(66, 216, 131, 0.55);
-        }
-
-        .status-text strong {
-            display: block;
-
-            margin-bottom: 3px;
-
-            font-size: 16px;
-        }
-
-        .status-text span {
-            color: #8e9ca9;
-
-            font-size: 14px;
-        }
-
-        .section-title {
-            margin: 0 0 16px;
-
-            font-size: 19px;
-        }
-
-        .cards {
-            display: grid;
-
-            grid-template-columns:
-                repeat(3, minmax(0, 1fr));
-
-            gap: 16px;
-        }
-
-        .card {
-            min-height: 145px;
-
-            padding: 22px;
-
-            border-radius: 17px;
-
-            background:
-                rgba(255, 255, 255, 0.035);
-
-            border:
-                1px solid rgba(255, 255, 255, 0.07);
-
-            transition: 0.2s ease;
-        }
-
-        .card:hover {
-            transform: translateY(-2px);
-
-            border-color:
-                rgba(40, 169, 255, 0.25);
-
-            background:
-                rgba(255, 255, 255, 0.05);
-        }
-
-        .card-icon {
-            font-size: 25px;
-
-            margin-bottom: 15px;
-        }
-
-        .card h3 {
-            margin: 0 0 6px;
-
-            font-size: 17px;
-        }
-
-        .card p {
-            margin: 0;
-
-            color: #8998a7;
-
-            font-size: 14px;
-
-            line-height: 1.5;
-        }
-
-        .error {
-            max-width: 600px;
-
-            margin: 70px auto;
-
-            padding: 28px;
-
             text-align: center;
+        }
+
+        .error-box {
+            width: 100%;
+            max-width: 500px;
+
+            padding: 35px;
 
             border-radius: 18px;
 
             background:
-                rgba(255, 70, 70, 0.06);
+                rgba(255,255,255,0.035);
 
             border:
-                1px solid rgba(255, 70, 70, 0.15);
+                1px solid
+                rgba(255,255,255,0.08);
         }
 
         .error-icon {
-            font-size: 38px;
+            font-size: 42px;
 
-            margin-bottom: 12px;
+            margin-bottom: 15px;
         }
 
         .error h2 {
-            margin: 0 0 10px;
+            margin-bottom: 8px;
         }
 
         .error p {
-            margin: 0;
+            color: #8495a8;
 
-            color: #9da9b5;
+            font-size: 14px;
 
             line-height: 1.5;
         }
 
-        @media (max-width: 760px) {
+        .error-button {
+            display: inline-block;
+
+            margin-top: 20px;
+
+            padding: 10px 16px;
+
+            border-radius: 10px;
+
+            background: #28a9ff;
+
+            color: white;
+
+            font-weight: 700;
+
+            transition: 0.2s ease;
+        }
+
+        .error-button:hover {
+            background: #1598ed;
+
+            transform: translateY(-1px);
+        }
+
+        /* RESPONSIVE */
+
+        @media (max-width: 600px) {
+
+            .page {
+                padding: 20px;
+            }
 
             .topbar {
-                padding: 0 16px;
-            }
-
-            .brand-name {
-                display: none;
-            }
-
-            .container {
-                width:
-                    min(100% - 24px, 1100px);
-
-                padding-top: 30px;
+                align-items: flex-start;
             }
 
             .server-header {
@@ -411,117 +461,157 @@
                 border-radius: 17px;
             }
 
-            .cards {
-                grid-template-columns: 1fr;
+            .server-name {
+                font-size: 21px;
             }
 
         }
 
     </style>
-
 </head>
 
 <body>
 
-    <header class="topbar">
+    <main class="page">
 
-        <div class="brand">
+        <header class="topbar">
 
-            <div class="brand-mark">
-                S
+            <a
+                href="../"
+                class="back"
+            >
+                ← Dashboard
+            </a>
+
+            <div class="brand">
+                SUNSTER<span>'S</span>
             </div>
 
-            <div class="brand-name">
-                SUNSTER'S
-            </div>
-
-        </div>
-
-        <a
-            href="../"
-            class="back-button"
-        >
-            ← Dashboard
-        </a>
-
-    </header>
+        </header>
 
 
-    <main class="container">
+        <!-- LOADING -->
 
-        <div
+        <section
             id="loading"
             class="loading"
         >
 
-            <div class="spinner"></div>
+            <div class="loader-box">
 
-            <div>
-                Cargando información del servidor...
+                <div class="spinner"></div>
+
+                <div>
+                    Comprobando acceso al servidor...
+                </div>
+
             </div>
 
-        </div>
+        </section>
 
 
-        <div
+        <!-- ERROR -->
+
+        <section
+            id="error"
+            class="error"
+        >
+
+            <div class="error-box">
+
+                <div
+                    id="errorIcon"
+                    class="error-icon"
+                >
+                    ⚠️
+                </div>
+
+                <h2 id="errorTitle">
+                    No se pudo acceder
+                </h2>
+
+                <p id="errorMessage">
+                    No tienes acceso a este servidor.
+                </p>
+
+                <a
+                    href="../"
+                    class="error-button"
+                >
+                    Volver al Dashboard
+                </a>
+
+            </div>
+
+        </section>
+
+
+        <!-- SERVER CONTENT -->
+
+        <section
             id="content"
             style="display: none;"
         >
 
-            <section class="server-header">
+            <div class="server-header">
 
                 <div
-                    class="server-icon"
                     id="serverIcon"
+                    class="server-icon"
                 >
-                    S
+                    <div
+                        id="serverIconPlaceholder"
+                        class="server-icon-placeholder"
+                    >
+                        S
+                    </div>
                 </div>
 
                 <div class="server-info">
 
-                    <h1 id="serverName">
+                    <h1
+                        id="serverName"
+                        class="server-name"
+                    >
                         Servidor
                     </h1>
 
-                    <p
-                        class="server-id"
+                    <div
                         id="serverId"
+                        class="server-id"
                     >
-                        ID: —
-                    </p>
+                        ID: -
+                    </div>
 
-                </div>
+                    <div class="status">
 
-            </section>
+                        <span class="status-dot"></span>
 
-
-            <section class="status-card">
-
-                <div class="status-dot"></div>
-
-                <div class="status-text">
-
-                    <strong>
                         SUNSTER'S Bot instalado
-                    </strong>
 
-                    <span>
-                        Tienes acceso para administrar este servidor.
-                    </span>
+                    </div>
 
                 </div>
 
-            </section>
+            </div>
 
 
-            <h2 class="section-title">
-                Administración
-            </h2>
+            <div class="intro">
+
+                <h2>
+                    Administración
+                </h2>
+
+                <p>
+                    Tienes acceso para administrar este servidor.
+                </p>
+
+            </div>
 
 
-            <section class="cards">
+            <div class="cards">
 
-                <article class="card">
+                <div class="card">
 
                     <div class="card-icon">
                         ⚙️
@@ -532,13 +622,18 @@
                     </h3>
 
                     <p>
-                        Configura el comportamiento de SUNSTER'S Bot.
+                        Configura el comportamiento
+                        de SUNSTER'S Bot en este servidor.
                     </p>
 
-                </article>
+                    <span class="coming">
+                        Próximamente
+                    </span>
+
+                </div>
 
 
-                <article class="card">
+                <div class="card">
 
                     <div class="card-icon">
                         🛡️
@@ -549,13 +644,18 @@
                     </h3>
 
                     <p>
-                        Próximamente podrás configurar las funciones de moderación.
+                        Administra las herramientas
+                        de moderación del servidor.
                     </p>
 
-                </article>
+                    <span class="coming">
+                        Próximamente
+                    </span>
+
+                </div>
 
 
-                <article class="card">
+                <div class="card">
 
                     <div class="card-icon">
                         📋
@@ -566,35 +666,19 @@
                     </h3>
 
                     <p>
-                        Consulta y configura los registros del servidor.
+                        Consulta y configura los
+                        registros del servidor.
                     </p>
 
-                </article>
+                    <span class="coming">
+                        Próximamente
+                    </span>
 
-            </section>
+                </div>
 
-        </div>
-
-
-        <div
-            id="error"
-            class="error"
-            style="display: none;"
-        >
-
-            <div class="error-icon">
-                ⚠️
             </div>
 
-            <h2 id="errorTitle">
-                No se puede acceder
-            </h2>
-
-            <p id="errorMessage">
-                No fue posible verificar este servidor.
-            </p>
-
-        </div>
+        </section>
 
     </main>
 
@@ -609,86 +693,74 @@
 
 
         const loading =
-            document.getElementById(
-                "loading"
-            );
+            document.getElementById("loading");
 
         const content =
-            document.getElementById(
-                "content"
-            );
+            document.getElementById("content");
 
         const error =
-            document.getElementById(
-                "error"
-            );
+            document.getElementById("error");
+
+        const errorIcon =
+            document.getElementById("errorIcon");
 
         const errorTitle =
-            document.getElementById(
-                "errorTitle"
-            );
+            document.getElementById("errorTitle");
 
         const errorMessage =
-            document.getElementById(
-                "errorMessage"
-            );
+            document.getElementById("errorMessage");
 
         const serverName =
-            document.getElementById(
-                "serverName"
-            );
+            document.getElementById("serverName");
 
         const serverId =
-            document.getElementById(
-                "serverId"
-            );
+            document.getElementById("serverId");
 
         const serverIcon =
+            document.getElementById("serverIcon");
+
+        const serverIconPlaceholder =
             document.getElementById(
-                "serverIcon"
+                "serverIconPlaceholder"
             );
 
 
         function showError(
             title,
-            message
+            message,
+            icon = "⚠️"
         ) {
 
-            loading.style.display =
-                "none";
+            loading.style.display = "none";
 
-            content.style.display =
-                "none";
+            content.style.display = "none";
 
-            error.style.display =
-                "block";
+            error.style.display = "flex";
 
-            errorTitle.textContent =
-                title;
+            errorIcon.textContent = icon;
 
-            errorMessage.textContent =
-                message;
+            errorTitle.textContent = title;
+
+            errorMessage.textContent = message;
 
         }
 
 
-        function canManageServer(
-            server
+        function getDiscordIconURL(
+            guildId,
+            icon
         ) {
 
-            if (
-                server.owner === true
-            ) {
-                return true;
+            if (!icon) {
+                return null;
             }
 
-            const permissions =
-                BigInt(
-                    server.permissions || "0"
-                );
-
             return (
-                (permissions & 0x20n) === 0x20n
+                "https://cdn.discordapp.com/icons/" +
+                guildId +
+                "/" +
+                icon +
+                ".png?size=128"
             );
 
         }
@@ -709,11 +781,11 @@
 
                 showError(
                     "Servidor no especificado",
-                    "La URL no contiene el ID del servidor."
+                    "No se encontró el ID del servidor en la dirección.",
+                    "🔎"
                 );
 
                 return;
-
             }
 
 
@@ -727,23 +799,28 @@
 
                 showError(
                     "Sesión no encontrada",
-                    "Debes iniciar sesión en SUNSTER'S para acceder al panel."
+                    "Inicia sesión en SUNSTER'S para administrar un servidor.",
+                    "🔐"
                 );
 
                 return;
-
             }
 
 
             try {
 
-                const serversResponse =
+                const response =
                     await fetch(
                         API_URL +
-                        "/discord/servers",
+                        "/discord/server?guild=" +
+                        encodeURIComponent(
+                            guildId
+                        ),
                         {
+                            method: "GET",
+
                             headers: {
-                                Authorization:
+                                "Authorization":
                                     "Bearer " +
                                     session
                             }
@@ -751,159 +828,157 @@
                     );
 
 
-                if (
-                    !serversResponse.ok
-                ) {
+                let data = null;
 
-                    throw new Error(
-                        "No se pudieron obtener tus servidores de Discord."
-                    );
+                try {
+
+                    data =
+                        await response.json();
+
+                } catch {
+
+                    data = null;
 
                 }
 
 
-                const serversData =
-                    await serversResponse.json();
+                /* SESIÓN INVÁLIDA */
+
+                if (response.status === 401) {
+
+                    localStorage.removeItem(
+                        SESSION_KEY
+                    );
+
+                    showError(
+                        "Sesión expirada",
+                        "Tu sesión ya no es válida. Vuelve al Dashboard e inicia sesión nuevamente.",
+                        "🔐"
+                    );
+
+                    return;
+                }
 
 
-                if (
-                    !serversData.ok ||
-                    !Array.isArray(
-                        serversData.servers
-                    )
-                ) {
+                /* SIN PERMISO */
+
+                if (response.status === 403) {
+
+                    showError(
+                        "Sin permisos",
+                        "No tienes permisos suficientes para administrar este servidor.",
+                        "🚫"
+                    );
+
+                    return;
+                }
+
+
+                /* BOT NO INSTALADO */
+
+                if (response.status === 409) {
+
+                    showError(
+                        "SUNSTER'S Bot no está instalado",
+                        "Este servidor está disponible para ti, pero primero debes añadir SUNSTER'S Bot.",
+                        "🤖"
+                    );
+
+                    return;
+                }
+
+
+                /* SERVIDOR NO ENCONTRADO */
+
+                if (response.status === 404) {
+
+                    showError(
+                        "Servidor no encontrado",
+                        "El servidor ya no está disponible en tu cuenta de Discord.",
+                        "🔎"
+                    );
+
+                    return;
+                }
+
+
+                if (!response.ok || !data?.ok) {
 
                     throw new Error(
-                        "La respuesta de Discord no es válida."
+                        "Respuesta inválida del servidor"
                     );
 
                 }
 
 
                 const server =
-                    serversData.servers.find(
-                        item =>
-                            String(
-                                item.id
-                            ) ===
-                            String(
-                                guildId
-                            )
-                    );
+                    data.server;
 
 
                 if (!server) {
 
-                    showError(
-                        "Sin acceso",
-                        "Este servidor no aparece entre los servidores que puedes administrar."
-                    );
-
-                    return;
-
-                }
-
-
-                if (
-                    !canManageServer(
-                        server
-                    )
-                ) {
-
-                    showError(
-                        "Sin permisos",
-                        "No tienes permisos suficientes para administrar este servidor."
-                    );
-
-                    return;
-
-                }
-
-
-                const botResponse =
-                    await fetch(
-                        API_URL +
-                        "/discord/bot-servers",
-                        {
-                            headers: {
-                                Authorization:
-                                    "Bearer " +
-                                    session
-                            }
-                        }
-                    );
-
-
-                if (
-                    !botResponse.ok
-                ) {
-
                     throw new Error(
-                        "No se pudo comprobar la instalación del bot."
+                        "No se recibió información del servidor"
                     );
 
                 }
 
 
-                const botData =
-                    await botResponse.json();
-
-
-                if (
-                    !botData.ok ||
-                    !Array.isArray(
-                        botData.servers
-                    )
-                ) {
-
-                    throw new Error(
-                        "La respuesta del bot no es válida."
-                    );
-
-                }
-
-
-                const botInstalled =
-                    botData.servers.some(
-                        id =>
-                            String(id) ===
-                            String(guildId)
-                    );
-
-
-                if (!botInstalled) {
-
-                    showError(
-                        "Bot no instalado",
-                        "SUNSTER'S Bot no está instalado en este servidor."
-                    );
-
-                    return;
-
-                }
-
+                /* NOMBRE */
 
                 serverName.textContent =
                     server.name ||
-                    "Servidor sin nombre";
+                    "Servidor de Discord";
 
+
+                /* ID */
 
                 serverId.textContent =
                     "ID: " +
                     server.id;
 
 
-                if (
-                    server.icon
-                ) {
+                /* ICONO */
 
-                    serverIcon.innerHTML =
-                        `
-                        <img
-                            src="https://cdn.discordapp.com/icons/${encodeURIComponent(server.id)}/${encodeURIComponent(server.icon)}.png?size=128"
-                            alt="Icono del servidor"
-                        >
-                        `;
+                const iconURL =
+                    getDiscordIconURL(
+                        server.id,
+                        server.icon
+                    );
+
+
+                if (iconURL) {
+
+                    const image =
+                        document.createElement(
+                            "img"
+                        );
+
+                    image.src =
+                        iconURL;
+
+                    image.alt =
+                        "Icono del servidor";
+
+                    image.className =
+                        "server-icon";
+
+                    image.onerror =
+                        function () {
+
+                            this.remove();
+
+                            serverIconPlaceholder.style.display =
+                                "flex";
+
+                        };
+
+                    serverIconPlaceholder.style.display =
+                        "none";
+
+                    serverIcon.appendChild(
+                        image
+                    );
 
                 } else {
 
@@ -912,16 +987,22 @@
                             server.name ||
                             "S"
                         )
+                        .trim()
                         .charAt(0)
                         .toUpperCase();
 
-                    serverIcon.textContent =
+                    serverIconPlaceholder.textContent =
                         firstLetter;
 
                 }
 
 
+                /* MOSTRAR PANEL */
+
                 loading.style.display =
+                    "none";
+
+                error.style.display =
                     "none";
 
                 content.style.display =
@@ -935,9 +1016,9 @@
                 );
 
                 showError(
-                    "Error al cargar",
-                    err.message ||
-                    "Ocurrió un error inesperado."
+                    "Error de conexión",
+                    "No pudimos comprobar el servidor. Inténtalo nuevamente.",
+                    "🌐"
                 );
 
             }
