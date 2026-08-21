@@ -1267,6 +1267,11 @@
         }
 
 
+        .bot-server-button:active {
+            transform: scale(.98);
+        }
+
+
         .bot-no-servers {
             grid-column: 1 / -1;
 
@@ -3349,93 +3354,136 @@
                     )
                     .join("");
 
-
-            document
-                .querySelectorAll(
-                    ".bot-server-button"
-                )
-                .forEach(
-                    button => {
-
-                        button.addEventListener(
-                            "click",
-                            () => {
-
-                                const serverId =
-                                    button.dataset.serverId;
+        }
 
 
-                                const serverName =
-                                    button.dataset.serverName;
+        // ==========================================
+        // BOTONES DE SERVIDORES
+        //
+        // Usamos delegación de eventos para que
+        // los botones sigan funcionando aunque
+        // el contenido se vuelva a renderizar.
+        // ==========================================
+
+        botServersGrid.addEventListener(
+            "click",
+            event => {
+
+                const button =
+                    event.target.closest(
+                        ".bot-server-button"
+                    );
 
 
-                                const action =
-                                    button.dataset.action;
+                if (!button) {
+                    return;
+                }
 
 
-                                // ==========================================
-                                // ADMINISTRAR
-                                // ==========================================
-
-                                if (
-                                    action === "manage"
-                                ) {
-
-                                    console.log(
-                                        "Servidor seleccionado para administrar:",
-                                        serverId,
-                                        serverName
-                                    );
+                const serverId =
+                    button.dataset.serverId;
 
 
-                                    window.location.href =
-                                        "server/?guild=" +
-                                        encodeURIComponent(
-                                            serverId
-                                        );
+                const serverName =
+                    button.dataset.serverName;
 
 
-                                    return;
-
-                                }
-
-
-                                // ==========================================
-                                // AÑADIR BOT
-                                // ==========================================
-
-                                if (
-                                    action === "add"
-                                ) {
-
-                                    const inviteURL =
-                                        "https://discord.com/oauth2/authorize" +
-                                        "?client_id=1538647178074005575" +
-                                        "&scope=bot%20applications.commands";
+                const action =
+                    button.dataset.action;
 
 
-                                    window.open(
-                                        inviteURL,
-                                        "_blank",
-                                        "noopener,noreferrer"
-                                    );
+                if (!serverId) {
+
+                    console.error(
+                        "No se encontró el ID del servidor."
+                    );
+
+                    return;
+
+                }
 
 
-                                    console.log(
-                                        "Añadiendo SUNSTER'S Bot:",
-                                        serverId,
-                                        serverName
-                                    );
+                // ==========================================
+                // ADMINISTRAR
+                // ==========================================
 
-                                }
+                if (
+                    action === "manage"
+                ) {
 
-                            }
+                    console.log(
+                        "Servidor seleccionado para administrar:",
+                        serverId,
+                        serverName
+                    );
+
+
+                    /*
+                     * IMPORTANTE:
+                     *
+                     * Estamos en:
+                     * /sunstersorg/dashboard/
+                     *
+                     * El panel del servidor está en:
+                     * /sunstersorg/dashboard/server/
+                     *
+                     * Por eso usamos una ruta absoluta
+                     * desde GitHub Pages.
+                     */
+
+                    const serverURL =
+                        "/sunstersorg/dashboard/server/?guild=" +
+                        encodeURIComponent(
+                            serverId
                         );
 
-                    }
-                );
 
-        }
+                    console.log(
+                        "Abriendo panel:",
+                        serverURL
+                    );
+
+
+                    window.location.href =
+                        serverURL;
+
+
+                    return;
+
+                }
+
+
+                // ==========================================
+                // AÑADIR BOT
+                // ==========================================
+
+                if (
+                    action === "add"
+                ) {
+
+                    const inviteURL =
+                        "https://discord.com/oauth2/authorize" +
+                        "?client_id=1538647178074005575" +
+                        "&scope=bot%20applications.commands";
+
+
+                    window.open(
+                        inviteURL,
+                        "_blank",
+                        "noopener,noreferrer"
+                    );
+
+
+                    console.log(
+                        "Añadiendo SUNSTER'S Bot:",
+                        serverId,
+                        serverName
+                    );
+
+                }
+
+            }
+        );
 
 
         // ==========================================
