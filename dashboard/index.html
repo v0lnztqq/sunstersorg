@@ -1558,17 +1558,11 @@
 
 <body>
 
-    <!-- ================================
-         APLICACIÓN
-    ================================ -->
-
     <div
         class="app"
         id="app"
         style="display:none;"
     >
-
-        <!-- SIDEBAR -->
 
         <aside
             class="sidebar"
@@ -1669,8 +1663,6 @@
         </aside>
 
 
-        <!-- CONTENIDO -->
-
         <main class="main">
 
             <div class="topbar">
@@ -1721,10 +1713,6 @@
 
             </div>
 
-
-            <!-- ================================
-                 INICIO
-            ================================ -->
 
             <section
                 class="panel active"
@@ -1808,10 +1796,6 @@
 
             </section>
 
-
-            <!-- ================================
-                 MI CUENTA
-            ================================ -->
 
             <section
                 class="panel"
@@ -1910,10 +1894,6 @@
             </section>
 
 
-            <!-- ================================
-                 DISCORD
-            ================================ -->
-
             <section
                 class="panel"
                 id="panel-discord"
@@ -1998,10 +1978,6 @@
             </section>
 
 
-            <!-- ================================
-                 SERVIDORES
-            ================================ -->
-
             <section
                 class="panel"
                 id="panel-servers"
@@ -2054,10 +2030,6 @@
 
             </section>
 
-
-            <!-- ================================
-                 BOT SUNSTER'S
-            ================================ -->
 
             <section
                 class="panel"
@@ -2192,10 +2164,6 @@
             </section>
 
 
-            <!-- ================================
-                 CONFIGURACIÓN
-            ================================ -->
-
             <section
                 class="panel"
                 id="panel-settings"
@@ -2229,10 +2197,6 @@
 
     </div>
 
-
-    <!-- ================================
-         ERROR / NO AUTENTICADO
-    ================================ -->
 
     <div
         class="error-screen"
@@ -3052,27 +3016,14 @@
                     servers.length;
 
 
-                /*
-                 * Mis servidores.
-                 */
-
                 renderServers(
                     servers
                 );
 
 
-                /*
-                 * Comprobar dónde está instalado
-                 * realmente SUNSTER'S Bot.
-                 */
-
                 installedBotServerIds =
                     await loadBotServers();
 
-
-                /*
-                 * Renderizar la sección del bot.
-                 */
 
                 renderBotServers(
                     servers
@@ -3275,11 +3226,6 @@
             }
 
 
-            /*
-             * Servidores administrables
-             * donde está instalado el bot.
-             */
-
             const installedManageable =
                 manageable.filter(
                     server =>
@@ -3404,10 +3350,6 @@
                     .join("");
 
 
-            /*
-             * Eventos de botones.
-             */
-
             document
                 .querySelectorAll(
                     ".bot-server-button"
@@ -3431,25 +3373,26 @@
                                     button.dataset.action;
 
 
-                                /*
-                                 * ADMINISTRAR
-                                 */
+                                // ==========================================
+                                // ADMINISTRAR
+                                // ==========================================
 
                                 if (
                                     action === "manage"
                                 ) {
 
-                                    alert(
-                                        "La administración de \"" +
-                                        serverName +
-                                        "\" será conectada en la siguiente fase."
-                                    );
-
-
                                     console.log(
                                         "Servidor seleccionado para administrar:",
-                                        serverId
+                                        serverId,
+                                        serverName
                                     );
+
+
+                                    window.location.href =
+                                        "server/?guild=" +
+                                        encodeURIComponent(
+                                            serverId
+                                        );
 
 
                                     return;
@@ -3457,9 +3400,9 @@
                                 }
 
 
-                                /*
-                                 * AÑADIR BOT
-                                 */
+                                // ==========================================
+                                // AÑADIR BOT
+                                // ==========================================
 
                                 if (
                                     action === "add"
