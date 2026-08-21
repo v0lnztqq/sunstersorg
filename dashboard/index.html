@@ -32,104 +32,57 @@
     <style>
 
         :root {
-
-            --bg:
-                #04070b;
-
-            --bg-soft:
-                #071019;
-
-            --sidebar:
-                rgba(6, 12, 19, .92);
-
-            --surface:
-                rgba(11, 20, 30, .72);
-
-            --surface-strong:
-                rgba(13, 25, 38, .94);
-
-            --blue:
-                #28a9ff;
-
-            --blue-light:
-                #72c8ff;
-
-            --text:
-                #f5f9ff;
-
-            --muted:
-                #91a1b2;
-
-            --muted-2:
-                #617284;
-
-            --border:
-                rgba(40, 169, 255, .15);
-
-            --border-hover:
-                rgba(40, 169, 255, .45);
-
-            --radius:
-                18px;
-
+            --bg: #04070b;
+            --bg-soft: #071019;
+            --sidebar: rgba(6, 12, 19, .92);
+            --surface: rgba(11, 20, 30, .72);
+            --surface-strong: rgba(13, 25, 38, .94);
+            --blue: #28a9ff;
+            --blue-light: #72c8ff;
+            --text: #f5f9ff;
+            --muted: #91a1b2;
+            --muted-2: #617284;
+            --border: rgba(40, 169, 255, .15);
+            --border-hover: rgba(40, 169, 255, .45);
+            --radius: 18px;
         }
 
 
         * {
-
             margin: 0;
             padding: 0;
-
             box-sizing: border-box;
-
-            font-family:
-                'Outfit',
-                sans-serif;
-
+            font-family: 'Outfit', sans-serif;
         }
 
 
         html {
-
-            scroll-behavior:
-                smooth;
-
+            scroll-behavior: smooth;
         }
 
 
         body {
-
-            min-height:
-                100vh;
-
-            overflow-x:
-                hidden;
-
-            color:
-                var(--text);
+            min-height: 100vh;
+            overflow-x: hidden;
+            color: var(--text);
 
             background:
-
                 radial-gradient(
                     circle at 50% -10%,
                     rgba(40,169,255,.11),
                     transparent 30%
                 ),
-
                 linear-gradient(
                     145deg,
                     #04070b 0%,
                     #071019 52%,
                     #04070b 100%
                 );
-
         }
 
 
         button {
-
             font: inherit;
-
         }
 
 
@@ -138,13 +91,8 @@
         ================================ */
 
         .app {
-
-            min-height:
-                100vh;
-
-            display:
-                flex;
-
+            min-height: 100vh;
+            display: flex;
         }
 
 
@@ -153,312 +101,153 @@
         ================================ */
 
         .sidebar {
+            position: fixed;
+            top: 0;
+            left: 0;
+            bottom: 0;
+            width: 260px;
+            padding: 22px 16px;
+            display: flex;
+            flex-direction: column;
 
-            position:
-                fixed;
+            background: var(--sidebar);
+            border-right: 1px solid var(--border);
 
-            top:
-                0;
+            backdrop-filter: blur(20px);
+            -webkit-backdrop-filter: blur(20px);
 
-            left:
-                0;
-
-            bottom:
-                0;
-
-            width:
-                260px;
-
-            padding:
-                22px 16px;
-
-            display:
-                flex;
-
-            flex-direction:
-                column;
-
-            background:
-                var(--sidebar);
-
-            border-right:
-                1px solid var(--border);
-
-            backdrop-filter:
-                blur(20px);
-
-            -webkit-backdrop-filter:
-                blur(20px);
-
-            z-index:
-                1000;
-
+            z-index: 1000;
         }
 
 
         .brand {
-
-            display:
-                flex;
-
-            align-items:
-                center;
-
-            gap:
-                11px;
-
-            padding:
-                8px 10px 26px;
-
-            text-decoration:
-                none;
-
-            color:
-                var(--text);
-
+            display: flex;
+            align-items: center;
+            gap: 11px;
+            padding: 8px 10px 26px;
+            text-decoration: none;
+            color: var(--text);
         }
 
 
         .brand-mark {
-
-            width:
-                36px;
-
-            height:
-                36px;
-
-            display:
-                grid;
-
-            place-items:
-                center;
-
-            border-radius:
-                11px;
-
-            color:
-                white;
-
-            background:
-                var(--blue);
-
-            font-weight:
-                800;
-
+            width: 36px;
+            height: 36px;
+            display: grid;
+            place-items: center;
+            border-radius: 11px;
+            color: white;
+            background: var(--blue);
+            font-weight: 800;
         }
 
 
         .brand-name {
-
-            font-size:
-                1.1rem;
-
-            font-weight:
-                800;
-
-            letter-spacing:
-                -.4px;
-
+            font-size: 1.1rem;
+            font-weight: 800;
+            letter-spacing: -.4px;
         }
 
 
         .brand-name span {
-
-            color:
-                var(--blue);
-
+            color: var(--blue);
         }
 
 
         .nav-title {
-
-            padding:
-                0 10px 10px;
-
-            color:
-                var(--muted-2);
-
-            font-size:
-                .68rem;
-
-            font-weight:
-                700;
-
-            letter-spacing:
-                1.5px;
-
-            text-transform:
-                uppercase;
-
+            padding: 0 10px 10px;
+            color: var(--muted-2);
+            font-size: .68rem;
+            font-weight: 700;
+            letter-spacing: 1.5px;
+            text-transform: uppercase;
         }
 
 
         .sidebar-nav {
-
-            display:
-                flex;
-
-            flex-direction:
-                column;
-
-            gap:
-                5px;
-
+            display: flex;
+            flex-direction: column;
+            gap: 5px;
         }
 
 
         .nav-item {
+            width: 100%;
+            min-height: 44px;
 
-            width:
-                100%;
+            display: flex;
+            align-items: center;
+            gap: 11px;
 
-            min-height:
-                44px;
+            padding: 0 12px;
 
-            display:
-                flex;
+            border: 1px solid transparent;
+            border-radius: 12px;
 
-            align-items:
-                center;
+            color: var(--muted);
+            background: transparent;
 
-            gap:
-                11px;
+            cursor: pointer;
+            text-align: left;
 
-            padding:
-                0 12px;
-
-            border:
-                1px solid transparent;
-
-            border-radius:
-                12px;
-
-            color:
-                var(--muted);
-
-            background:
-                transparent;
-
-            cursor:
-                pointer;
-
-            text-align:
-                left;
-
-            transition:
-                .2s ease;
-
+            transition: .2s ease;
         }
 
 
         .nav-item:hover {
-
-            color:
-                var(--text);
-
-            background:
-                rgba(40,169,255,.06);
-
+            color: var(--text);
+            background: rgba(40,169,255,.06);
         }
 
 
         .nav-item.active {
-
-            color:
-                var(--blue-light);
-
-            background:
-                rgba(40,169,255,.11);
-
-            border-color:
-                rgba(40,169,255,.10);
-
+            color: var(--blue-light);
+            background: rgba(40,169,255,.11);
+            border-color: rgba(40,169,255,.10);
         }
 
 
         .nav-icon {
-
-            width:
-                22px;
-
-            display:
-                grid;
-
-            place-items:
-                center;
-
-            font-size:
-                1rem;
-
+            width: 22px;
+            display: grid;
+            place-items: center;
+            font-size: 1rem;
         }
 
 
         .sidebar-bottom {
-
-            margin-top:
-                auto;
-
-            padding-top:
-                15px;
-
-            border-top:
-                1px solid var(--border);
-
+            margin-top: auto;
+            padding-top: 15px;
+            border-top: 1px solid var(--border);
         }
 
 
         .logout-button {
+            width: 100%;
+            min-height: 44px;
 
-            width:
-                100%;
+            display: flex;
+            align-items: center;
+            gap: 11px;
 
-            min-height:
-                44px;
+            padding: 0 12px;
 
-            display:
-                flex;
+            border: 1px solid transparent;
+            border-radius: 12px;
 
-            align-items:
-                center;
+            color: var(--muted);
+            background: transparent;
 
-            gap:
-                11px;
+            cursor: pointer;
+            text-align: left;
 
-            padding:
-                0 12px;
-
-            border:
-                1px solid transparent;
-
-            border-radius:
-                12px;
-
-            color:
-                var(--muted);
-
-            background:
-                transparent;
-
-            cursor:
-                pointer;
-
-            text-align:
-                left;
-
-            transition:
-                .2s ease;
-
+            transition: .2s ease;
         }
 
 
         .logout-button:hover {
-
-            color:
-                #ff7d7d;
-
-            background:
-                rgba(255,80,80,.06);
-
+            color: #ff7d7d;
+            background: rgba(255,80,80,.06);
         }
 
 
@@ -467,162 +256,82 @@
         ================================ */
 
         .main {
-
-            width:
-                calc(100% - 260px);
-
-            margin-left:
-                260px;
-
-            min-height:
-                100vh;
-
-            padding:
-                32px;
-
+            width: calc(100% - 260px);
+            margin-left: 260px;
+            min-height: 100vh;
+            padding: 32px;
         }
 
 
         .topbar {
-
-            display:
-                flex;
-
-            align-items:
-                center;
-
-            justify-content:
-                space-between;
-
-            gap:
-                20px;
-
-            margin-bottom:
-                30px;
-
+            display: flex;
+            align-items: center;
+            justify-content: space-between;
+            gap: 20px;
+            margin-bottom: 30px;
         }
 
 
         .page-title {
-
-            font-size:
-                clamp(
-                    1.8rem,
-                    4vw,
-                    2.7rem
-                );
-
-            letter-spacing:
-                -1.2px;
-
+            font-size: clamp(1.8rem, 4vw, 2.7rem);
+            letter-spacing: -1.2px;
         }
 
 
         .page-title span {
-
-            color:
-                var(--blue);
-
+            color: var(--blue);
         }
 
 
         .page-subtitle {
-
-            margin-top:
-                6px;
-
-            color:
-                var(--muted);
-
-            font-size:
-                .92rem;
-
+            margin-top: 6px;
+            color: var(--muted);
+            font-size: .92rem;
         }
 
 
         .user-pill {
+            display: flex;
+            align-items: center;
+            gap: 10px;
 
-            display:
-                flex;
+            padding: 8px 12px;
 
-            align-items:
-                center;
+            border: 1px solid var(--border);
+            border-radius: 13px;
 
-            gap:
-                10px;
-
-            padding:
-                8px 12px;
-
-            border:
-                1px solid var(--border);
-
-            border-radius:
-                13px;
-
-            background:
-                rgba(255,255,255,.025);
-
+            background: rgba(255,255,255,.025);
         }
 
 
         .user-avatar {
+            width: 34px;
+            height: 34px;
 
-            width:
-                34px;
+            display: grid;
+            place-items: center;
 
-            height:
-                34px;
+            border-radius: 10px;
 
-            display:
-                grid;
+            color: var(--blue-light);
+            background: rgba(40,169,255,.11);
 
-            place-items:
-                center;
-
-            border-radius:
-                10px;
-
-            color:
-                var(--blue-light);
-
-            background:
-                rgba(40,169,255,.11);
-
-            font-size:
-                .85rem;
-
-            font-weight:
-                800;
-
+            font-size: .85rem;
+            font-weight: 800;
         }
 
 
         .user-pill-text strong {
-
-            display:
-                block;
-
-            font-size:
-                .84rem;
-
+            display: block;
+            font-size: .84rem;
         }
 
 
         .user-pill-text span {
-
-            display:
-                block;
-
-            margin-top:
-                2px;
-
-            color:
-                var(--muted-2);
-
-            font-size:
-                .7rem;
-
+            display: block;
+            margin-top: 2px;
+            color: var(--muted-2);
+            font-size: .7rem;
         }
 
 
@@ -631,69 +340,40 @@
         ================================ */
 
         .panel {
-
-            display:
-                none;
-
-            animation:
-                fadeIn .3s ease;
-
+            display: none;
+            animation: fadeIn .3s ease;
         }
 
 
         .panel.active {
-
-            display:
-                block;
-
+            display: block;
         }
 
 
         @keyframes fadeIn {
 
             from {
-
-                opacity:
-                    0;
-
-                transform:
-                    translateY(8px);
-
+                opacity: 0;
+                transform: translateY(8px);
             }
 
             to {
-
-                opacity:
-                    1;
-
-                transform:
-                    translateY(0);
-
+                opacity: 1;
+                transform: translateY(0);
             }
 
         }
 
 
         .glass {
+            background: var(--surface);
+            border: 1px solid var(--border);
+            border-radius: var(--radius);
 
-            background:
-                var(--surface);
+            backdrop-filter: blur(18px);
+            -webkit-backdrop-filter: blur(18px);
 
-            border:
-                1px solid var(--border);
-
-            border-radius:
-                var(--radius);
-
-            backdrop-filter:
-                blur(18px);
-
-            -webkit-backdrop-filter:
-                blur(18px);
-
-            box-shadow:
-                0 20px 60px rgba(0,0,0,.14);
-
+            box-shadow: 0 20px 60px rgba(0,0,0,.14);
         }
 
 
@@ -702,44 +382,24 @@
         ================================ */
 
         .welcome {
-
-            position:
-                relative;
-
-            overflow:
-                hidden;
-
-            padding:
-                32px;
-
-            margin-bottom:
-                18px;
-
+            position: relative;
+            overflow: hidden;
+            padding: 32px;
+            margin-bottom: 18px;
         }
 
 
         .welcome::before {
+            content: "";
+            position: absolute;
 
-            content:
-                "";
+            width: 320px;
+            height: 320px;
 
-            position:
-                absolute;
+            top: -190px;
+            right: -90px;
 
-            width:
-                320px;
-
-            height:
-                320px;
-
-            top:
-                -190px;
-
-            right:
-                -90px;
-
-            border-radius:
-                50%;
+            border-radius: 50%;
 
             background:
                 radial-gradient(
@@ -747,138 +407,73 @@
                     rgba(40,169,255,.16),
                     transparent 68%
                 );
-
         }
 
 
         .welcome-content {
-
-            position:
-                relative;
-
-            z-index:
-                1;
-
+            position: relative;
+            z-index: 1;
         }
 
 
         .eyebrow {
-
-            color:
-                var(--blue-light);
-
-            font-size:
-                .72rem;
-
-            font-weight:
-                700;
-
-            letter-spacing:
-                2px;
-
-            text-transform:
-                uppercase;
-
+            color: var(--blue-light);
+            font-size: .72rem;
+            font-weight: 700;
+            letter-spacing: 2px;
+            text-transform: uppercase;
         }
 
 
         .welcome h2 {
-
-            margin-top:
-                9px;
-
-            font-size:
-                2rem;
-
-            letter-spacing:
-                -1px;
-
+            margin-top: 9px;
+            font-size: 2rem;
+            letter-spacing: -1px;
         }
 
 
         .welcome h2 span {
-
-            color:
-                var(--blue);
-
+            color: var(--blue);
         }
 
 
         .welcome p {
-
-            max-width:
-                650px;
-
-            margin-top:
-                9px;
-
-            color:
-                var(--muted);
-
-            line-height:
-                1.65;
-
-            font-size:
-                .93rem;
-
+            max-width: 650px;
+            margin-top: 9px;
+            color: var(--muted);
+            line-height: 1.65;
+            font-size: .93rem;
         }
 
 
         .stats {
-
-            display:
-                grid;
-
-            grid-template-columns:
-                repeat(3, 1fr);
-
-            gap:
-                15px;
-
+            display: grid;
+            grid-template-columns: repeat(3, 1fr);
+            gap: 15px;
         }
 
 
         .stat {
-
-            padding:
-                22px;
-
+            padding: 22px;
         }
 
 
         .stat-label {
-
-            color:
-                var(--muted);
-
-            font-size:
-                .76rem;
-
-            font-weight:
-                600;
-
+            color: var(--muted);
+            font-size: .76rem;
+            font-weight: 600;
         }
 
 
         .stat-value {
-
-            margin-top:
-                9px;
-
-            font-size:
-                1.35rem;
-
-            font-weight:
-                800;
-
+            margin-top: 9px;
+            font-size: 1.35rem;
+            font-weight: 800;
         }
 
 
         .stat-value.blue {
-
-            color:
-                var(--blue-light);
-
+            color: var(--blue-light);
         }
 
 
@@ -887,253 +482,88 @@
         ================================ */
 
         .account-card {
+            display: grid;
+            grid-template-columns: 92px 1fr;
+            align-items: center;
+            gap: 22px;
 
-            display:
-                grid;
-
-            grid-template-columns:
-                92px 1fr;
-
-            align-items:
-                center;
-
-            gap:
-                22px;
-
-            padding:
-                26px;
-
-            margin-bottom:
-                18px;
-
+            padding: 26px;
+            margin-bottom: 18px;
         }
 
 
         .large-avatar {
+            width: 92px;
+            height: 92px;
 
-            width:
-                92px;
+            display: grid;
+            place-items: center;
 
-            height:
-                92px;
+            border-radius: 24px;
 
-            display:
-                grid;
+            color: var(--blue-light);
+            background: rgba(40,169,255,.10);
 
-            place-items:
-                center;
+            border: 1px solid var(--border);
 
-            border-radius:
-                24px;
-
-            color:
-                var(--blue-light);
-
-            background:
-                rgba(40,169,255,.10);
-
-            border:
-                1px solid var(--border);
-
-            font-size:
-                2rem;
-
-            font-weight:
-                800;
-
+            font-size: 2rem;
+            font-weight: 800;
         }
 
 
         .account-card h3 {
-
-            font-size:
-                1.35rem;
-
+            font-size: 1.35rem;
         }
 
 
         .account-card p {
-
-            margin-top:
-                5px;
-
-            color:
-                var(--muted);
-
+            margin-top: 5px;
+            color: var(--muted);
         }
 
 
         .info-grid {
-
-            display:
-                grid;
-
-            grid-template-columns:
-                repeat(2, 1fr);
-
-            gap:
-                15px;
-
+            display: grid;
+            grid-template-columns: repeat(2, 1fr);
+            gap: 15px;
         }
 
 
         .info-row {
-
-            padding:
-                20px;
-
+            padding: 20px;
         }
 
 
         .info-row-label {
-
-            color:
-                var(--muted);
-
-            font-size:
-                .75rem;
-
+            color: var(--muted);
+            font-size: .75rem;
         }
 
 
         .info-row-value {
-
-            margin-top:
-                8px;
-
-            font-size:
-                .95rem;
-
-            font-weight:
-                600;
-
+            margin-top: 8px;
+            font-size: .95rem;
+            font-weight: 600;
         }
 
 
         .status {
-
-            display:
-                inline-flex;
-
-            align-items:
-                center;
-
-            gap:
-                7px;
-
-            color:
-                var(--blue-light);
-
+            display: inline-flex;
+            align-items: center;
+            gap: 7px;
+            color: var(--blue-light);
         }
 
 
         .status::before {
+            content: "";
+            width: 7px;
+            height: 7px;
 
-            content:
-                "";
+            border-radius: 50%;
 
-            width:
-                7px;
-
-            height:
-                7px;
-
-            border-radius:
-                50%;
-
-            background:
-                #55d6ff;
-
-            box-shadow:
-                0 0 12px #28a9ff;
-
-        }
-
-
-        /* ================================
-           PLACEHOLDER PANELS
-        ================================ */
-
-        .empty-panel {
-
-            min-height:
-                330px;
-
-            display:
-                grid;
-
-            place-items:
-                center;
-
-            padding:
-                40px;
-
-            text-align:
-                center;
-
-        }
-
-
-        .empty-icon {
-
-            width:
-                60px;
-
-            height:
-                60px;
-
-            margin:
-                0 auto 17px;
-
-            display:
-                grid;
-
-            place-items:
-                center;
-
-            border:
-                1px solid var(--border);
-
-            border-radius:
-                18px;
-
-            color:
-                var(--blue);
-
-            background:
-                rgba(40,169,255,.06);
-
-            font-size:
-                1.4rem;
-
-        }
-
-
-        .empty-panel h3 {
-
-            font-size:
-                1.3rem;
-
-        }
-
-
-        .empty-panel p {
-
-            max-width:
-                500px;
-
-            margin:
-                8px auto 0;
-
-            color:
-                var(--muted);
-
-            line-height:
-                1.6;
-
-            font-size:
-                .88rem;
-
+            background: #55d6ff;
+            box-shadow: 0 0 12px #28a9ff;
         }
 
 
@@ -1141,91 +571,357 @@
            DISCORD
         ================================ */
 
-        .discord-button {
-
-            min-height:
-                46px;
-
-            padding:
-                0 22px;
-
-            margin-top:
-                22px;
-
-            border:
-                1px solid rgba(40,169,255,.35);
-
-            border-radius:
-                12px;
-
-            color:
-                white;
-
-            background:
-                var(--blue);
-
-            cursor:
-                pointer;
-
-            font-weight:
-                700;
-
-            transition:
-                .2s ease;
-
+        .discord-card {
+            padding: 30px;
         }
 
 
-        .discord-button:hover {
-
-            transform:
-                translateY(-1px);
-
-            box-shadow:
-                0 10px 25px rgba(40,169,255,.18);
-
+        .discord-card-header {
+            display: flex;
+            align-items: center;
+            justify-content: space-between;
+            gap: 20px;
+            margin-bottom: 25px;
         }
 
 
-        .discord-button:disabled {
+        .discord-title {
+            display: flex;
+            align-items: center;
+            gap: 16px;
+        }
 
-            opacity:
-                .65;
 
-            cursor:
-                not-allowed;
+        .discord-icon {
+            width: 58px;
+            height: 58px;
 
-            transform:
-                none;
+            display: grid;
+            place-items: center;
 
-            box-shadow:
-                none;
+            border-radius: 17px;
 
+            background: rgba(40,169,255,.10);
+            border: 1px solid var(--border);
+
+            font-size: 1.5rem;
+        }
+
+
+        .discord-title h2 {
+            font-size: 1.35rem;
+        }
+
+
+        .discord-title p {
+            margin-top: 4px;
+            color: var(--muted);
+            font-size: .84rem;
+        }
+
+
+        .discord-status {
+            padding: 5px 10px;
+            border-radius: 999px;
+            color: var(--muted);
+            background: rgba(255,255,255,.04);
+            border: 1px solid var(--border);
+            font-size: .72rem;
+            font-weight: 600;
+        }
+
+
+        .discord-status.connected {
+            color: #55e89a;
+            border-color: rgba(85,232,154,.2);
+            background: rgba(85,232,154,.06);
+        }
+
+
+        .discord-description {
+            color: var(--muted);
+            line-height: 1.65;
+            font-size: .9rem;
+        }
+
+
+        .discord-actions {
+            display: flex;
+            flex-wrap: wrap;
+            gap: 10px;
+            margin-top: 22px;
+        }
+
+
+        .primary-button,
+        .secondary-button {
+            min-height: 44px;
+            padding: 0 17px;
+
+            border-radius: 11px;
+
+            cursor: pointer;
+
+            font-size: .8rem;
+            font-weight: 700;
+
+            transition: .2s ease;
+        }
+
+
+        .primary-button {
+            color: white;
+            background: var(--blue);
+            border: 1px solid rgba(40,169,255,.35);
+        }
+
+
+        .primary-button:hover {
+            transform: translateY(-1px);
+            box-shadow: 0 10px 25px rgba(40,169,255,.18);
+        }
+
+
+        .secondary-button {
+            color: var(--blue-light);
+            background: rgba(40,169,255,.05);
+            border: 1px solid var(--border);
+        }
+
+
+        .secondary-button:hover {
+            border-color: var(--border-hover);
+            background: rgba(40,169,255,.09);
         }
 
 
         .discord-message {
-
-            display:
-                none;
-
-            margin-top:
-                15px;
-
-            color:
-                var(--muted);
-
-            font-size:
-                .82rem;
-
+            margin-top: 15px;
+            color: var(--muted);
+            font-size: .78rem;
         }
 
 
-        .discord-connected {
+        /* ================================
+           SERVERS
+        ================================ */
 
-            color:
-                #55e89a;
+        .servers-header {
+            display: flex;
+            align-items: flex-end;
+            justify-content: space-between;
+            gap: 20px;
+            margin-bottom: 18px;
+        }
 
+
+        .servers-header h2 {
+            font-size: 1.55rem;
+        }
+
+
+        .servers-header p {
+            margin-top: 5px;
+            color: var(--muted);
+            font-size: .86rem;
+        }
+
+
+        .servers-actions {
+            display: flex;
+            gap: 8px;
+        }
+
+
+        .servers-grid {
+            display: grid;
+            grid-template-columns: repeat(2, 1fr);
+            gap: 15px;
+        }
+
+
+        .server-card {
+            display: flex;
+            align-items: center;
+            justify-content: space-between;
+            gap: 15px;
+
+            padding: 18px;
+
+            background: var(--surface);
+
+            border: 1px solid var(--border);
+            border-radius: 15px;
+
+            transition: .2s ease;
+        }
+
+
+        .server-card:hover {
+            border-color: var(--border-hover);
+            transform: translateY(-1px);
+        }
+
+
+        .server-left {
+            min-width: 0;
+
+            display: flex;
+            align-items: center;
+            gap: 13px;
+        }
+
+
+        .server-icon {
+            width: 54px;
+            height: 54px;
+
+            flex-shrink: 0;
+
+            display: grid;
+            place-items: center;
+
+            overflow: hidden;
+
+            border-radius: 15px;
+
+            background: rgba(40,169,255,.08);
+            border: 1px solid var(--border);
+
+            color: var(--blue-light);
+
+            font-size: 1.15rem;
+            font-weight: 800;
+        }
+
+
+        .server-icon img {
+            width: 100%;
+            height: 100%;
+            object-fit: cover;
+        }
+
+
+        .server-name {
+            overflow: hidden;
+            text-overflow: ellipsis;
+            white-space: nowrap;
+
+            font-size: .94rem;
+            font-weight: 700;
+        }
+
+
+        .server-meta {
+            display: flex;
+            flex-wrap: wrap;
+            gap: 6px;
+            margin-top: 6px;
+        }
+
+
+        .server-badge {
+            display: inline-flex;
+            align-items: center;
+
+            padding: 3px 7px;
+
+            border-radius: 999px;
+
+            color: var(--muted);
+
+            background: rgba(255,255,255,.035);
+            border: 1px solid rgba(255,255,255,.05);
+
+            font-size: .64rem;
+        }
+
+
+        .server-badge.owner {
+            color: #72c8ff;
+            border-color: rgba(40,169,255,.18);
+            background: rgba(40,169,255,.06);
+        }
+
+
+        .server-id {
+            margin-top: 5px;
+            color: var(--muted-2);
+            font-size: .65rem;
+        }
+
+
+        .server-empty {
+            grid-column: 1 / -1;
+
+            padding: 45px 25px;
+
+            text-align: center;
+
+            border: 1px dashed var(--border);
+            border-radius: 15px;
+
+            color: var(--muted);
+            background: rgba(40,169,255,.025);
+        }
+
+
+        .server-empty-icon {
+            margin-bottom: 10px;
+            font-size: 1.8rem;
+        }
+
+
+        .server-empty strong {
+            display: block;
+            color: var(--text);
+            font-size: .95rem;
+        }
+
+
+        .server-empty p {
+            max-width: 520px;
+            margin: 6px auto 0;
+            line-height: 1.6;
+            font-size: .78rem;
+        }
+
+
+        .loading {
+            grid-column: 1 / -1;
+
+            padding: 45px;
+
+            text-align: center;
+
+            color: var(--muted);
+
+            border: 1px solid var(--border);
+            border-radius: 15px;
+
+            background: rgba(40,169,255,.025);
+        }
+
+
+        .loading-spinner {
+            width: 28px;
+            height: 28px;
+
+            margin: 0 auto 12px;
+
+            border: 3px solid rgba(40,169,255,.15);
+            border-top-color: var(--blue);
+
+            border-radius: 50%;
+
+            animation: spin .8s linear infinite;
+        }
+
+
+        @keyframes spin {
+            to {
+                transform: rotate(360deg);
+            }
         }
 
 
@@ -1234,30 +930,17 @@
         ================================ */
 
         .bot-header {
+            position: relative;
+            overflow: hidden;
 
-            position:
-                relative;
+            display: flex;
+            align-items: center;
+            justify-content: space-between;
 
-            overflow:
-                hidden;
+            gap: 20px;
 
-            display:
-                flex;
-
-            align-items:
-                center;
-
-            justify-content:
-                space-between;
-
-            gap:
-                20px;
-
-            padding:
-                30px;
-
-            margin-bottom:
-                18px;
+            padding: 30px;
+            margin-bottom: 18px;
 
             background:
                 linear-gradient(
@@ -1266,37 +949,23 @@
                     rgba(9,27,43,.92)
                 );
 
-            border:
-                1px solid var(--border);
-
-            border-radius:
-                var(--radius);
-
+            border: 1px solid var(--border);
+            border-radius: var(--radius);
         }
 
 
         .bot-header::after {
+            content: "";
 
-            content:
-                "";
+            position: absolute;
 
-            position:
-                absolute;
+            width: 260px;
+            height: 260px;
 
-            width:
-                260px;
+            right: -100px;
+            top: -130px;
 
-            height:
-                260px;
-
-            right:
-                -100px;
-
-            top:
-                -130px;
-
-            border-radius:
-                50%;
+            border-radius: 50%;
 
             background:
                 radial-gradient(
@@ -1305,541 +974,359 @@
                     transparent 70%
                 );
 
-            pointer-events:
-                none;
-
+            pointer-events: none;
         }
 
 
         .bot-info {
+            position: relative;
+            z-index: 1;
 
-            position:
-                relative;
-
-            z-index:
-                1;
-
-            display:
-                flex;
-
-            align-items:
-                center;
-
-            gap:
-                20px;
-
+            display: flex;
+            align-items: center;
+            gap: 20px;
         }
 
 
         .bot-avatar {
+            width: 80px;
+            height: 80px;
 
-            width:
-                80px;
+            flex-shrink: 0;
 
-            height:
-                80px;
+            display: grid;
+            place-items: center;
 
-            flex-shrink:
-                0;
+            border-radius: 22px;
 
-            display:
-                grid;
-
-            place-items:
-                center;
-
-            border-radius:
-                22px;
-
-            background:
-                var(--blue);
+            background: var(--blue);
 
             box-shadow:
                 0 12px 35px rgba(40,169,255,.18);
 
-            font-size:
-                2rem;
-
+            font-size: 2rem;
         }
 
 
         .bot-info h2 {
-
-            font-size:
-                1.65rem;
-
-            letter-spacing:
-                -.6px;
-
+            font-size: 1.65rem;
+            letter-spacing: -.6px;
         }
 
 
         .bot-info p {
-
-            margin-top:
-                5px;
-
-            color:
-                var(--muted);
-
-            font-size:
-                .9rem;
-
+            margin-top: 5px;
+            color: var(--muted);
+            font-size: .9rem;
         }
 
 
         .bot-status {
+            display: inline-flex;
+            align-items: center;
+            gap: 7px;
 
-            display:
-                inline-flex;
+            margin-top: 10px;
 
-            align-items:
-                center;
+            color: #55e89a;
 
-            gap:
-                7px;
-
-            margin-top:
-                10px;
-
-            color:
-                #55e89a;
-
-            font-size:
-                .78rem;
-
-            font-weight:
-                600;
-
+            font-size: .78rem;
+            font-weight: 600;
         }
 
 
         .bot-status-dot {
+            width: 8px;
+            height: 8px;
 
-            width:
-                8px;
+            border-radius: 50%;
 
-            height:
-                8px;
-
-            border-radius:
-                50%;
-
-            background:
-                #55e89a;
+            background: #55e89a;
 
             box-shadow:
                 0 0 12px rgba(85,232,154,.6);
-
         }
 
 
         .bot-button {
+            position: relative;
+            z-index: 1;
 
-            position:
-                relative;
+            min-height: 44px;
+            padding: 0 19px;
 
-            z-index:
-                1;
+            border: 1px solid rgba(40,169,255,.35);
+            border-radius: 12px;
 
-            min-height:
-                44px;
+            color: white;
+            background: var(--blue);
 
-            padding:
-                0 19px;
+            cursor: pointer;
 
-            border:
-                1px solid rgba(40,169,255,.35);
+            font-size: .84rem;
+            font-weight: 700;
 
-            border-radius:
-                12px;
-
-            color:
-                white;
-
-            background:
-                var(--blue);
-
-            cursor:
-                pointer;
-
-            font-size:
-                .84rem;
-
-            font-weight:
-                700;
-
-            transition:
-                .2s ease;
-
+            transition: .2s ease;
         }
 
 
         .bot-button:hover {
-
-            transform:
-                translateY(-1px);
-
-            box-shadow:
-                0 10px 25px rgba(40,169,255,.18);
-
+            transform: translateY(-1px);
+            box-shadow: 0 10px 25px rgba(40,169,255,.18);
         }
 
 
         .bot-stats {
-
-            display:
-                grid;
-
-            grid-template-columns:
-                repeat(3, 1fr);
-
-            gap:
-                15px;
-
-            margin-bottom:
-                25px;
-
+            display: grid;
+            grid-template-columns: repeat(3, 1fr);
+            gap: 15px;
+            margin-bottom: 25px;
         }
 
 
         .bot-stat {
-
-            padding:
-                22px;
-
+            padding: 22px;
         }
 
 
         .bot-stat-label {
-
-            color:
-                var(--muted);
-
-            font-size:
-                .76rem;
-
+            color: var(--muted);
+            font-size: .76rem;
         }
 
 
         .bot-stat-value {
+            margin-top: 8px;
+            font-size: 1.5rem;
+            font-weight: 800;
+        }
 
-            margin-top:
-                8px;
 
-            font-size:
-                1.5rem;
-
-            font-weight:
-                800;
-
+        .bot-stat-value.blue {
+            color: var(--blue-light);
         }
 
 
         .bot-section-heading {
-
-            margin-bottom:
-                14px;
-
+            margin-bottom: 14px;
         }
 
 
         .bot-section-heading h2 {
-
-            font-size:
-                1.25rem;
-
+            font-size: 1.25rem;
         }
 
 
         .bot-section-heading p {
-
-            margin-top:
-                5px;
-
-            color:
-                var(--muted);
-
-            font-size:
-                .86rem;
-
+            margin-top: 5px;
+            color: var(--muted);
+            font-size: .86rem;
         }
 
 
         .bot-servers {
-
-            display:
-                grid;
-
-            grid-template-columns:
-                repeat(2, 1fr);
-
-            gap:
-                15px;
-
+            display: grid;
+            grid-template-columns: repeat(2, 1fr);
+            gap: 15px;
         }
 
 
         .bot-server-card {
+            display: flex;
+            align-items: center;
+            justify-content: space-between;
 
-            display:
-                flex;
+            gap: 15px;
+            padding: 18px;
 
-            align-items:
-                center;
+            background: var(--surface);
 
-            justify-content:
-                space-between;
-
-            gap:
-                15px;
-
-            padding:
-                18px;
-
-            background:
-                var(--surface);
-
-            border:
-                1px solid var(--border);
-
-            border-radius:
-                15px;
-
+            border: 1px solid var(--border);
+            border-radius: 15px;
         }
 
 
         .bot-server-left {
-
-            display:
-                flex;
-
-            align-items:
-                center;
-
-            gap:
-                13px;
-
-            min-width:
-                0;
-
+            display: flex;
+            align-items: center;
+            gap: 13px;
+            min-width: 0;
         }
 
 
         .bot-server-icon {
+            width: 50px;
+            height: 50px;
 
-            width:
-                50px;
+            flex-shrink: 0;
 
-            height:
-                50px;
+            display: grid;
+            place-items: center;
 
-            flex-shrink:
-                0;
+            overflow: hidden;
 
-            display:
-                grid;
+            border-radius: 14px;
 
-            place-items:
-                center;
+            background: rgba(40,169,255,.08);
+            border: 1px solid var(--border);
 
-            border-radius:
-                14px;
+            font-size: 1.2rem;
+        }
 
-            background:
-                rgba(40,169,255,.08);
 
-            border:
-                1px solid var(--border);
-
-            font-size:
-                1.2rem;
-
+        .bot-server-icon img {
+            width: 100%;
+            height: 100%;
+            object-fit: cover;
         }
 
 
         .bot-server-name {
+            font-size: .92rem;
+            font-weight: 700;
 
-            font-size:
-                .92rem;
-
-            font-weight:
-                700;
-
-            overflow:
-                hidden;
-
-            text-overflow:
-                ellipsis;
-
-            white-space:
-                nowrap;
-
+            overflow: hidden;
+            text-overflow: ellipsis;
+            white-space: nowrap;
         }
 
 
         .bot-server-description {
-
-            margin-top:
-                4px;
-
-            color:
-                var(--muted-2);
-
-            font-size:
-                .72rem;
-
+            margin-top: 4px;
+            color: var(--muted-2);
+            font-size: .72rem;
         }
 
 
         .bot-server-status {
+            display: flex;
+            align-items: center;
+            gap: 6px;
 
-            display:
-                flex;
+            margin-top: 6px;
 
-            align-items:
-                center;
-
-            gap:
-                6px;
-
-            margin-top:
-                6px;
-
-            color:
-                #55e89a;
-
-            font-size:
-                .7rem;
-
+            color: #55e89a;
+            font-size: .7rem;
         }
 
 
         .bot-server-status span {
+            width: 6px;
+            height: 6px;
 
-            width:
-                6px;
-
-            height:
-                6px;
-
-            border-radius:
-                50%;
-
-            background:
-                #55e89a;
-
+            border-radius: 50%;
+            background: #55e89a;
         }
 
 
         .bot-server-button {
+            flex-shrink: 0;
 
-            flex-shrink:
-                0;
+            min-height: 38px;
+            padding: 0 13px;
 
-            min-height:
-                38px;
+            border: 1px solid var(--border);
+            border-radius: 10px;
 
-            padding:
-                0 13px;
+            color: var(--blue-light);
+            background: rgba(40,169,255,.04);
 
-            border:
-                1px solid var(--border);
+            cursor: pointer;
 
-            border-radius:
-                10px;
+            font-size: .76rem;
+            font-weight: 600;
 
-            color:
-                var(--blue-light);
-
-            background:
-                rgba(40,169,255,.04);
-
-            cursor:
-                pointer;
-
-            font-size:
-                .76rem;
-
-            font-weight:
-                600;
-
-            transition:
-                .2s ease;
-
+            transition: .2s ease;
         }
 
 
         .bot-server-button:hover {
-
-            border-color:
-                var(--border-hover);
-
-            background:
-                rgba(40,169,255,.08);
-
+            border-color: var(--border-hover);
+            background: rgba(40,169,255,.08);
         }
 
 
         .bot-no-servers {
+            grid-column: 1 / -1;
 
-            grid-column:
-                1 / -1;
+            padding: 30px;
 
-            padding:
-                30px;
+            text-align: center;
 
-            text-align:
-                center;
+            border: 1px dashed var(--border);
+            border-radius: 15px;
 
-            border:
-                1px dashed var(--border);
-
-            border-radius:
-                15px;
-
-            color:
-                var(--muted);
-
-            background:
-                rgba(40,169,255,.025);
-
+            color: var(--muted);
+            background: rgba(40,169,255,.025);
         }
 
 
         .bot-no-servers-icon {
-
-            font-size:
-                1.7rem;
-
-            margin-bottom:
-                8px;
-
+            font-size: 1.7rem;
+            margin-bottom: 8px;
         }
 
 
         .bot-no-servers strong {
-
-            display:
-                block;
-
-            color:
-                var(--text);
-
-            font-size:
-                .95rem;
-
+            display: block;
+            color: var(--text);
+            font-size: .95rem;
         }
 
 
         .bot-no-servers p {
+            margin-top: 5px;
+            font-size: .78rem;
+        }
 
-            margin-top:
-                5px;
 
-            font-size:
-                .78rem;
+        /* ================================
+           EMPTY
+        ================================ */
 
+        .empty-panel {
+            min-height: 330px;
+
+            display: grid;
+            place-items: center;
+
+            padding: 40px;
+            text-align: center;
+        }
+
+
+        .empty-icon {
+            width: 60px;
+            height: 60px;
+
+            margin: 0 auto 17px;
+
+            display: grid;
+            place-items: center;
+
+            border: 1px solid var(--border);
+            border-radius: 18px;
+
+            color: var(--blue);
+            background: rgba(40,169,255,.06);
+
+            font-size: 1.4rem;
+        }
+
+
+        .empty-panel h3 {
+            font-size: 1.3rem;
+        }
+
+
+        .empty-panel p {
+            max-width: 500px;
+            margin: 8px auto 0;
+
+            color: var(--muted);
+
+            line-height: 1.6;
+            font-size: .88rem;
         }
 
 
@@ -1848,101 +1335,59 @@
         ================================ */
 
         .error-screen {
+            min-height: 100vh;
 
-            min-height:
-                100vh;
+            display: none;
+            place-items: center;
 
-            display:
-                none;
-
-            place-items:
-                center;
-
-            padding:
-                30px;
-
-            text-align:
-                center;
-
+            padding: 30px;
+            text-align: center;
         }
 
 
         .error-screen.active {
-
-            display:
-                grid;
-
+            display: grid;
         }
 
 
         .error-box {
-
-            width:
-                min(500px,100%);
-
-            padding:
-                35px;
-
+            width: min(500px,100%);
+            padding: 35px;
         }
 
 
         .error-box h1 {
-
-            font-size:
-                1.8rem;
-
+            font-size: 1.8rem;
         }
 
 
         .error-box p {
-
-            margin-top:
-                9px;
-
-            color:
-                var(--muted);
-
-            line-height:
-                1.6;
-
+            margin-top: 9px;
+            color: var(--muted);
+            line-height: 1.6;
         }
 
 
         .back-button {
+            display: inline-flex;
 
-            display:
-                inline-flex;
+            margin-top: 22px;
 
-            margin-top:
-                22px;
+            min-height: 46px;
 
-            min-height:
-                46px;
+            align-items: center;
 
-            align-items:
-                center;
+            padding: 0 18px;
 
-            padding:
-                0 18px;
+            border: 1px solid var(--border);
+            border-radius: 12px;
 
-            border:
-                1px solid var(--border);
+            color: var(--text);
+            background: rgba(40,169,255,.06);
 
-            border-radius:
-                12px;
+            text-decoration: none;
 
-            color:
-                var(--text);
-
-            background:
-                rgba(40,169,255,.06);
-
-            text-decoration:
-                none;
-
-            font-weight:
-                700;
-
+            font-weight: 700;
         }
 
 
@@ -1951,105 +1396,64 @@
         ================================ */
 
         .mobile-toggle {
+            display: none;
 
-            display:
-                none;
+            width: 42px;
+            height: 42px;
 
-            width:
-                42px;
+            place-items: center;
 
-            height:
-                42px;
+            border: 1px solid var(--border);
+            border-radius: 11px;
 
-            place-items:
-                center;
+            color: white;
+            background: rgba(255,255,255,.03);
 
-            border:
-                1px solid var(--border);
+            cursor: pointer;
 
-            border-radius:
-                11px;
-
-            color:
-                white;
-
-            background:
-                rgba(255,255,255,.03);
-
-            cursor:
-                pointer;
-
-            font-size:
-                1.1rem;
-
+            font-size: 1.1rem;
         }
 
 
         @media (max-width: 850px) {
 
             .sidebar {
-
-                transform:
-                    translateX(-100%);
-
-                transition:
-                    .3s ease;
-
+                transform: translateX(-100%);
+                transition: .3s ease;
             }
 
 
             .sidebar.open {
-
-                transform:
-                    translateX(0);
-
+                transform: translateX(0);
             }
 
 
             .main {
-
-                width:
-                    100%;
-
-                margin-left:
-                    0;
-
-                padding:
-                    20px;
-
+                width: 100%;
+                margin-left: 0;
+                padding: 20px;
             }
 
 
             .mobile-toggle {
-
-                display:
-                    grid;
-
+                display: grid;
             }
 
 
             .topbar {
-
-                align-items:
-                    flex-start;
-
+                align-items: flex-start;
             }
 
 
             .stats,
             .bot-stats {
-
-                grid-template-columns:
-                    1fr;
-
+                grid-template-columns: 1fr;
             }
 
 
-            .bot-servers {
-
-                grid-template-columns:
-                    1fr;
-
+            .bot-servers,
+            .servers-grid {
+                grid-template-columns: 1fr;
             }
 
         }
@@ -2058,105 +1462,70 @@
         @media (max-width: 600px) {
 
             .topbar {
-
-                flex-direction:
-                    column;
-
+                flex-direction: column;
             }
 
 
             .user-pill {
-
-                width:
-                    100%;
-
+                width: 100%;
             }
 
 
             .info-grid {
-
-                grid-template-columns:
-                    1fr;
-
+                grid-template-columns: 1fr;
             }
 
 
             .account-card {
-
-                grid-template-columns:
-                    1fr;
-
-                text-align:
-                    center;
-
+                grid-template-columns: 1fr;
+                text-align: center;
             }
 
 
             .large-avatar {
+                margin: auto;
+            }
 
-                margin:
-                    auto;
 
+            .discord-card-header,
+            .servers-header {
+                align-items: flex-start;
+                flex-direction: column;
             }
 
 
             .bot-header {
-
-                flex-direction:
-                    column;
-
-                align-items:
-                    flex-start;
-
-                padding:
-                    23px;
-
+                flex-direction: column;
+                align-items: flex-start;
+                padding: 23px;
             }
 
 
             .bot-info {
-
-                align-items:
-                    flex-start;
-
+                align-items: flex-start;
             }
 
 
             .bot-avatar {
-
-                width:
-                    65px;
-
-                height:
-                    65px;
-
-                border-radius:
-                    18px;
-
+                width: 65px;
+                height: 65px;
+                border-radius: 18px;
             }
 
 
             .bot-button {
-
-                width:
-                    100%;
-
+                width: 100%;
             }
 
 
+            .server-card,
             .bot-server-card {
-
-                align-items:
-                    flex-start;
-
+                align-items: flex-start;
             }
 
 
             .bot-server-button {
-
-                margin-top:
-                    5px;
-
+                margin-top: 5px;
             }
 
         }
@@ -2179,9 +1548,7 @@
     >
 
 
-        <!-- ================================
-             SIDEBAR
-        ================================ -->
+        <!-- SIDEBAR -->
 
         <aside
             class="sidebar"
@@ -2211,18 +1578,12 @@
 
             <nav class="sidebar-nav">
 
-
                 <button
                     class="nav-item active"
                     data-panel="home"
                 >
-
-                    <span class="nav-icon">
-                        🏠
-                    </span>
-
+                    <span class="nav-icon">🏠</span>
                     Inicio
-
                 </button>
 
 
@@ -2230,13 +1591,8 @@
                     class="nav-item"
                     data-panel="account"
                 >
-
-                    <span class="nav-icon">
-                        👤
-                    </span>
-
+                    <span class="nav-icon">👤</span>
                     Mi cuenta
-
                 </button>
 
 
@@ -2244,13 +1600,8 @@
                     class="nav-item"
                     data-panel="discord"
                 >
-
-                    <span class="nav-icon">
-                        💬
-                    </span>
-
+                    <span class="nav-icon">💬</span>
                     Discord
-
                 </button>
 
 
@@ -2258,13 +1609,8 @@
                     class="nav-item"
                     data-panel="servers"
                 >
-
-                    <span class="nav-icon">
-                        🖥
-                    </span>
-
+                    <span class="nav-icon">🖥</span>
                     Mis servidores
-
                 </button>
 
 
@@ -2272,13 +1618,8 @@
                     class="nav-item"
                     data-panel="bot"
                 >
-
-                    <span class="nav-icon">
-                        🤖
-                    </span>
-
+                    <span class="nav-icon">🤖</span>
                     Bot SUNSTER'S
-
                 </button>
 
 
@@ -2286,15 +1627,9 @@
                     class="nav-item"
                     data-panel="settings"
                 >
-
-                    <span class="nav-icon">
-                        ⚙
-                    </span>
-
+                    <span class="nav-icon">⚙</span>
                     Configuración
-
                 </button>
-
 
             </nav>
 
@@ -2305,13 +1640,8 @@
                     class="logout-button"
                     id="logoutButton"
                 >
-
-                    <span class="nav-icon">
-                        ↪
-                    </span>
-
+                    <span class="nav-icon">↪</span>
                     Cerrar sesión
-
                 </button>
 
             </div>
@@ -2319,9 +1649,7 @@
         </aside>
 
 
-        <!-- ================================
-             CONTENIDO
-        ================================ -->
+        <!-- CONTENIDO -->
 
         <main class="main">
 
@@ -2413,7 +1741,6 @@
 
                 <div class="stats">
 
-
                     <div class="glass stat">
 
                         <div class="stat-label">
@@ -2437,7 +1764,7 @@
                             class="stat-value"
                             id="discordStat"
                         >
-                            No vinculado
+                            Comprobando...
                         </div>
 
                     </div>
@@ -2451,13 +1778,12 @@
 
                         <div
                             class="stat-value"
-                            id="serverStat"
+                            id="homeServerCount"
                         >
-                            0
+                            —
                         </div>
 
                     </div>
-
 
                 </div>
 
@@ -2499,7 +1825,6 @@
 
 
                 <div class="info-grid">
-
 
                     <div class="glass info-row">
 
@@ -2561,7 +1886,6 @@
 
                     </div>
 
-
                 </div>
 
             </section>
@@ -2576,42 +1900,79 @@
                 id="panel-discord"
             >
 
-                <div class="glass empty-panel">
+                <div class="glass discord-card">
 
-                    <div>
+                    <div class="discord-card-header">
 
-                        <div
-                            class="empty-icon"
-                            id="discordIcon"
-                        >
-                            💬
+                        <div class="discord-title">
+
+                            <div
+                                class="discord-icon"
+                                id="discordIcon"
+                            >
+                                💬
+                            </div>
+
+                            <div>
+
+                                <h2 id="discordTitle">
+                                    Discord
+                                </h2>
+
+                                <p id="discordDescription">
+                                    Conecta tu cuenta de Discord con SUNSTER'S.
+                                </p>
+
+                            </div>
+
                         </div>
 
-                        <h3 id="discordTitle">
-                            Vincular Discord
-                        </h3>
 
-                        <p id="discordDescription">
-                            Conecta tu cuenta de Discord con tu cuenta
-                            SUNSTER'S para poder verificar tu identidad,
-                            consultar tus servidores y utilizar nuestros
-                            sistemas.
-                        </p>
-
-                        <button
-                            class="discord-button"
-                            type="button"
-                            id="connectDiscordButton"
+                        <div
+                            class="discord-status"
+                            id="discordStatus"
                         >
-                            🔗 Conectar Discord
-                        </button>
-
-                        <p
-                            class="discord-message"
-                            id="discordMessage"
-                        ></p>
+                            Comprobando...
+                        </div>
 
                     </div>
+
+
+                    <p
+                        class="discord-description"
+                        id="discordMainDescription"
+                    >
+                        Al vincular Discord podremos identificar tus servidores
+                        y preparar las funciones de administración de SUNSTER'S.
+                    </p>
+
+
+                    <div class="discord-actions">
+
+                        <button
+                            class="primary-button"
+                            id="connectDiscordButton"
+                            type="button"
+                        >
+                            Vincular Discord
+                        </button>
+
+
+                        <button
+                            class="secondary-button"
+                            id="refreshDiscordButton"
+                            type="button"
+                        >
+                            Actualizar
+                        </button>
+
+                    </div>
+
+
+                    <div
+                        class="discord-message"
+                        id="discordMessage"
+                    ></div>
 
                 </div>
 
@@ -2627,23 +1988,46 @@
                 id="panel-servers"
             >
 
-                <div class="glass empty-panel">
+                <div class="servers-header">
 
                     <div>
 
-                        <div class="empty-icon">
-                            🖥
-                        </div>
-
-                        <h3>
+                        <h2>
                             Mis servidores
-                        </h3>
+                        </h2>
 
                         <p>
-                            Próximamente podrás ver aquí los servidores
-                            de Discord asociados a tu cuenta SUNSTER'S
-                            y administrar sus configuraciones.
+                            Los servidores de Discord asociados a tu cuenta.
                         </p>
+
+                    </div>
+
+
+                    <div class="servers-actions">
+
+                        <button
+                            class="secondary-button"
+                            id="refreshServersButton"
+                            type="button"
+                        >
+                            🔄 Actualizar
+                        </button>
+
+                    </div>
+
+                </div>
+
+
+                <div
+                    class="servers-grid"
+                    id="serversGrid"
+                >
+
+                    <div class="loading">
+
+                        <div class="loading-spinner"></div>
+
+                        Cargando servidores...
 
                     </div>
 
@@ -2660,7 +2044,6 @@
                 class="panel"
                 id="panel-bot"
             >
-
 
                 <div class="bot-header">
 
@@ -2706,7 +2089,6 @@
 
                 <div class="bot-stats">
 
-
                     <div class="glass bot-stat">
 
                         <div class="bot-stat-label">
@@ -2717,7 +2099,7 @@
                             class="bot-stat-value"
                             id="botServerCount"
                         >
-                            0
+                            —
                         </div>
 
                     </div>
@@ -2748,19 +2130,18 @@
 
                     </div>
 
-
                 </div>
 
 
                 <div class="bot-section-heading">
 
                     <h2>
-                        Mis servidores
+                        Servidores disponibles
                     </h2>
 
                     <p>
-                        Aquí aparecerán los servidores de Discord
-                        que puedas administrar con SUNSTER'S Bot.
+                        Aquí aparecerán los servidores donde podrás
+                        administrar el Bot SUNSTER'S.
                     </p>
 
                 </div>
@@ -2768,7 +2149,7 @@
 
                 <div
                     class="bot-servers"
-                    id="botServers"
+                    id="botServersGrid"
                 >
 
                     <div class="bot-no-servers">
@@ -2778,18 +2159,16 @@
                         </div>
 
                         <strong>
-                            Todavía no hay servidores conectados
+                            Cargando servidores...
                         </strong>
 
                         <p>
-                            Cuando vinculemos Discord, aquí aparecerán
-                            tus servidores disponibles para administrar.
+                            Estamos obteniendo la información de Discord.
                         </p>
 
                     </div>
 
                 </div>
-
 
             </section>
 
@@ -2946,16 +2325,28 @@
             document.getElementById("discordStat");
 
 
-        const serverStat =
-            document.getElementById("serverStat");
+        const homeServerCount =
+            document.getElementById("homeServerCount");
 
 
         const botServerCount =
             document.getElementById("botServerCount");
 
 
-        const botServers =
-            document.getElementById("botServers");
+        const serversGrid =
+            document.getElementById("serversGrid");
+
+
+        const botServersGrid =
+            document.getElementById("botServersGrid");
+
+
+        const discordStatus =
+            document.getElementById("discordStatus");
+
+
+        const discordMessage =
+            document.getElementById("discordMessage");
 
 
         const connectDiscordButton =
@@ -2964,27 +2355,15 @@
             );
 
 
-        const discordMessage =
+        const refreshDiscordButton =
             document.getElementById(
-                "discordMessage"
+                "refreshDiscordButton"
             );
 
 
-        const discordTitle =
+        const refreshServersButton =
             document.getElementById(
-                "discordTitle"
-            );
-
-
-        const discordDescription =
-            document.getElementById(
-                "discordDescription"
-            );
-
-
-        const discordIcon =
-            document.getElementById(
-                "discordIcon"
+                "refreshServersButton"
             );
 
 
@@ -3042,9 +2421,7 @@
         // MOSTRAR USUARIO
         // ==========================================
 
-        function renderUser(
-            user
-        ) {
+        function renderUser(user) {
 
             const username =
                 user.username ||
@@ -3169,6 +2546,15 @@
 
                 showApp();
 
+
+                /*
+                 * Una vez validada la sesión,
+                 * obtenemos los servidores reales.
+                 */
+
+                await loadDiscordServers();
+
+
                 return true;
 
 
@@ -3191,6 +2577,13 @@
                     );
 
                     showApp();
+
+                    /*
+                     * Intentamos igualmente obtener
+                     * los servidores.
+                     */
+
+                    loadDiscordServers();
 
                     return true;
 
@@ -3331,31 +2724,308 @@
 
 
         // ==========================================
-        // DISCORD
+        // ICONO DEL SERVIDOR
         // ==========================================
 
-        function showDiscordMessage(
-            message,
-            success = false
-        ) {
+        function getServerIcon(server) {
 
-            discordMessage.textContent =
-                message;
+            if (!server.icon) {
 
-            discordMessage.style.display =
-                "block";
+                return `
+                    <span>
+                        ${escapeHtml(
+                            (server.name || "S")
+                                .charAt(0)
+                                .toUpperCase()
+                        )}
+                    </span>
+                `;
 
-            if (success) {
+            }
 
-                discordMessage.classList.add(
-                    "discord-connected"
+
+            return `
+                <img
+                    src="https://cdn.discordapp.com/icons/${encodeURIComponent(server.id)}/${encodeURIComponent(server.icon)}.png?size=128"
+                    alt=""
+                    loading="lazy"
+                >
+            `;
+
+        }
+
+
+        // ==========================================
+        // ESCAPAR TEXTO
+        // ==========================================
+
+        function escapeHtml(value) {
+
+            return String(value)
+                .replaceAll("&", "&amp;")
+                .replaceAll("<", "&lt;")
+                .replaceAll(">", "&gt;")
+                .replaceAll('"', "&quot;")
+                .replaceAll("'", "&#039;");
+
+        }
+
+
+        // ==========================================
+        // PERMISOS DE DISCORD
+        // ==========================================
+
+        function canManageServer(server) {
+
+            /*
+             * 0x20 = MANAGE_GUILD
+             *
+             * También permitimos al propietario.
+             */
+
+            if (server.owner === true) {
+                return true;
+            }
+
+
+            const permissions =
+                BigInt(
+                    server.permissions || "0"
                 );
 
-            } else {
 
-                discordMessage.classList.remove(
-                    "discord-connected"
+            return (
+                (permissions & 0x20n) ===
+                0x20n
+            );
+
+        }
+
+
+        // ==========================================
+        // CARGAR SERVIDORES DE DISCORD
+        // ==========================================
+
+        async function loadDiscordServers() {
+
+            const token =
+                getToken();
+
+
+            if (!token) {
+                return;
+            }
+
+
+            /*
+             * Estado de carga.
+             */
+
+            serversGrid.innerHTML = `
+                <div class="loading">
+
+                    <div class="loading-spinner"></div>
+
+                    Cargando servidores de Discord...
+
+                </div>
+            `;
+
+
+            botServersGrid.innerHTML = `
+                <div class="bot-no-servers">
+
+                    <div class="bot-no-servers-icon">
+                        ⏳
+                    </div>
+
+                    <strong>
+                        Cargando servidores...
+                    </strong>
+
+                    <p>
+                        Estamos obteniendo la información de Discord.
+                    </p>
+
+                </div>
+            `;
+
+
+            try {
+
+                const response =
+                    await fetch(
+                        API_URL + "/discord/servers",
+                        {
+                            method: "GET",
+
+                            headers: {
+                                "Authorization":
+                                    "Bearer " + token
+                            }
+                        }
+                    );
+
+
+                let data = null;
+
+
+                try {
+
+                    data =
+                        await response.json();
+
+                } catch {
+
+                    data = null;
+
+                }
+
+
+                /*
+                 * Discord no está vinculado.
+                 */
+
+                if (
+                    response.status === 400 ||
+                    response.status === 404
+                ) {
+
+                    setDiscordDisconnected();
+
+
+                    renderNoServers(
+                        "Discord no está vinculado",
+                        "Vincula tu cuenta de Discord desde el apartado Discord para poder cargar tus servidores."
+                    );
+
+
+                    return;
+
+                }
+
+
+                /*
+                 * Sesión inválida.
+                 */
+
+                if (response.status === 401) {
+
+                    setDiscordDisconnected();
+
+
+                    renderNoServers(
+                        "La conexión con Discord expiró",
+                        "Vuelve a vincular tu cuenta de Discord para continuar."
+                    );
+
+
+                    return;
+
+                }
+
+
+                if (
+                    !response.ok ||
+                    !data ||
+                    !Array.isArray(data.servers)
+                ) {
+
+                    throw new Error(
+                        data?.error ||
+                        "No se pudieron obtener los servidores."
+                    );
+
+                }
+
+
+                const servers =
+                    data.servers;
+
+
+                setDiscordConnected();
+
+
+                /*
+                 * Actualizar estadísticas.
+                 */
+
+                homeServerCount.textContent =
+                    servers.length;
+
+
+                botServerCount.textContent =
+                    servers.filter(
+                        canManageServer
+                    ).length;
+
+
+                /*
+                 * Renderizar Mis servidores.
+                 */
+
+                renderServers(
+                    servers
                 );
+
+
+                /*
+                 * Renderizar servidores
+                 * administrables por el bot.
+                 */
+
+                renderBotServers(
+                    servers
+                );
+
+
+            } catch (error) {
+
+                console.error(
+                    "Error cargando servidores:",
+                    error
+                );
+
+
+                serversGrid.innerHTML = `
+                    <div class="server-empty">
+
+                        <div class="server-empty-icon">
+                            ⚠️
+                        </div>
+
+                        <strong>
+                            No pudimos cargar tus servidores
+                        </strong>
+
+                        <p>
+                            ${escapeHtml(
+                                error.message ||
+                                "Ocurrió un error al consultar Discord."
+                            )}
+                        </p>
+
+                    </div>
+                `;
+
+
+                botServersGrid.innerHTML = `
+                    <div class="bot-no-servers">
+
+                        <div class="bot-no-servers-icon">
+                            ⚠️
+                        </div>
+
+                        <strong>
+                            No pudimos cargar los servidores
+                        </strong>
+
+                        <p>
+                            Intenta actualizar nuevamente.
+                        </p>
+
+                    </div>
+                `;
 
             }
 
@@ -3363,30 +3033,316 @@
 
 
         // ==========================================
-        // ESTADO DISCORD
+        // RENDER SERVIDORES
+        // ==========================================
+
+        function renderServers(servers) {
+
+            if (!servers.length) {
+
+                renderNoServers(
+                    "No encontramos servidores",
+                    "Tu cuenta de Discord no tiene servidores disponibles para mostrar."
+                );
+
+
+                return;
+
+            }
+
+
+            serversGrid.innerHTML =
+                servers
+                    .map(
+                        server => {
+
+                            const owner =
+                                server.owner === true;
+
+
+                            return `
+                                <div class="server-card">
+
+                                    <div class="server-left">
+
+                                        <div class="server-icon">
+
+                                            ${getServerIcon(server)}
+
+                                        </div>
+
+
+                                        <div>
+
+                                            <div class="server-name">
+                                                ${escapeHtml(
+                                                    server.name ||
+                                                    "Servidor sin nombre"
+                                                )}
+                                            </div>
+
+
+                                            <div class="server-meta">
+
+                                                ${
+                                                    owner
+                                                        ? `
+                                                            <span class="server-badge owner">
+                                                                👑 Propietario
+                                                            </span>
+                                                          `
+                                                        : `
+                                                            <span class="server-badge">
+                                                                Discord
+                                                            </span>
+                                                          `
+                                                }
+
+                                            </div>
+
+
+                                            <div class="server-id">
+
+                                                ID:
+                                                ${escapeHtml(
+                                                    server.id
+                                                )}
+
+                                            </div>
+
+                                        </div>
+
+                                    </div>
+
+                                </div>
+                            `;
+
+                        }
+                    )
+                    .join("");
+
+        }
+
+
+        // ==========================================
+        // RENDER BOT
+        // ==========================================
+
+        function renderBotServers(servers) {
+
+            const manageable =
+                servers.filter(
+                    canManageServer
+                );
+
+
+            if (!manageable.length) {
+
+                botServersGrid.innerHTML = `
+                    <div class="bot-no-servers">
+
+                        <div class="bot-no-servers-icon">
+                            🖥
+                        </div>
+
+                        <strong>
+                            No hay servidores administrables
+                        </strong>
+
+                        <p>
+                            Necesitas ser propietario del servidor
+                            o tener permiso para administrar el servidor.
+                        </p>
+
+                    </div>
+                `;
+
+
+                return;
+
+            }
+
+
+            botServersGrid.innerHTML =
+                manageable
+                    .map(
+                        server => {
+
+                            const owner =
+                                server.owner === true;
+
+
+                            return `
+                                <div class="bot-server-card">
+
+                                    <div class="bot-server-left">
+
+                                        <div class="bot-server-icon">
+
+                                            ${getServerIcon(server)}
+
+                                        </div>
+
+
+                                        <div>
+
+                                            <div class="bot-server-name">
+
+                                                ${escapeHtml(
+                                                    server.name ||
+                                                    "Servidor"
+                                                )}
+
+                                            </div>
+
+
+                                            <div class="bot-server-description">
+
+                                                ${
+                                                    owner
+                                                        ? "Eres propietario"
+                                                        : "Tienes permisos de administración"
+                                                }
+
+                                            </div>
+
+
+                                            <div class="bot-server-status">
+
+                                                <span></span>
+
+                                                Disponible
+
+                                            </div>
+
+                                        </div>
+
+                                    </div>
+
+
+                                    <button
+                                        class="bot-server-button"
+                                        type="button"
+                                        data-server-id="${escapeHtml(server.id)}"
+                                        data-server-name="${escapeHtml(server.name || "Servidor")}"
+                                    >
+                                        Administrar
+                                    </button>
+
+                                </div>
+                            `;
+
+                        }
+                    )
+                    .join("");
+
+
+            /*
+             * Botones individuales.
+             */
+
+            document
+                .querySelectorAll(
+                    ".bot-server-button"
+                )
+                .forEach(
+                    button => {
+
+                        button.addEventListener(
+                            "click",
+                            () => {
+
+                                const serverId =
+                                    button.dataset.serverId;
+
+
+                                const serverName =
+                                    button.dataset.serverName;
+
+
+                                alert(
+                                    "La administración de \"" +
+                                    serverName +
+                                    "\" será conectada en la siguiente fase."
+                                );
+
+
+                                console.log(
+                                    "Servidor seleccionado:",
+                                    serverId
+                                );
+
+                            }
+                        );
+
+                    }
+                );
+
+        }
+
+
+        // ==========================================
+        // SIN SERVIDORES
+        // ==========================================
+
+        function renderNoServers(
+            title,
+            description
+        ) {
+
+            homeServerCount.textContent =
+                "0";
+
+
+            botServerCount.textContent =
+                "0";
+
+
+            serversGrid.innerHTML = `
+                <div class="server-empty">
+
+                    <div class="server-empty-icon">
+                        🖥
+                    </div>
+
+                    <strong>
+                        ${escapeHtml(title)}
+                    </strong>
+
+                    <p>
+                        ${escapeHtml(description)}
+                    </p>
+
+                </div>
+            `;
+
+
+            botServersGrid.innerHTML = `
+                <div class="bot-no-servers">
+
+                    <div class="bot-no-servers-icon">
+                        🖥
+                    </div>
+
+                    <strong>
+                        ${escapeHtml(title)}
+                    </strong>
+
+                    <p>
+                        ${escapeHtml(description)}
+                    </p>
+
+                </div>
+            `;
+
+        }
+
+
+        // ==========================================
+        // DISCORD — CONECTADO
         // ==========================================
 
         function setDiscordConnected() {
-
-            discordIcon.textContent =
-                "✅";
-
-
-            discordTitle.textContent =
-                "Discord conectado";
-
-
-            discordDescription.textContent =
-                "Tu cuenta de Discord está vinculada correctamente con tu cuenta SUNSTER'S.";
-
-
-            connectDiscordButton.textContent =
-                "✅ Discord conectado";
-
-
-            connectDiscordButton.disabled =
-                true;
-
 
             discordStat.textContent =
                 "Vinculado";
@@ -3397,75 +3353,77 @@
             );
 
 
-            showDiscordMessage(
-                "La vinculación se realizó correctamente.",
-                true
+            discordStatus.textContent =
+                "Vinculado";
+
+
+            discordStatus.classList.add(
+                "connected"
             );
 
+
+            connectDiscordButton.textContent =
+                "Discord vinculado";
+
+
+            connectDiscordButton.disabled =
+                true;
+
+
+            connectDiscordButton.style.opacity =
+                ".65";
+
+
+            discordMessage.textContent =
+                "Tu cuenta de Discord está conectada correctamente.";
+
         }
 
 
         // ==========================================
-        // COMPROBAR RESULTADO OAUTH
+        // DISCORD — NO CONECTADO
         // ==========================================
 
-        function checkDiscordResult() {
+        function setDiscordDisconnected() {
 
-            const params =
-                new URLSearchParams(
-                    window.location.search
-                );
+            discordStat.textContent =
+                "No vinculado";
 
 
-            const discordStatus =
-                params.get("discord");
+            discordStat.classList.remove(
+                "blue"
+            );
 
 
-            if (
-                discordStatus ===
+            discordStatus.textContent =
+                "No vinculado";
+
+
+            discordStatus.classList.remove(
                 "connected"
-            ) {
-
-                setDiscordConnected();
+            );
 
 
-                window.history.replaceState(
-                    {},
-                    document.title,
-                    window.location.pathname
-                );
-
-            }
+            connectDiscordButton.textContent =
+                "Vincular Discord";
 
 
-            if (
-                discordStatus ===
-                "error"
-            ) {
-
-                const message =
-                    params.get("message");
+            connectDiscordButton.disabled =
+                false;
 
 
-                showDiscordMessage(
-                    message ||
-                    "No se pudo conectar tu cuenta de Discord."
-                );
+            connectDiscordButton.style.opacity =
+                "1";
 
 
-                window.history.replaceState(
-                    {},
-                    document.title,
-                    window.location.pathname
-                );
-
-            }
+            discordMessage.textContent =
+                "Conecta tu cuenta para cargar tus servidores.";
 
         }
 
 
         // ==========================================
-        // CONECTAR DISCORD
+        // VINCULAR DISCORD
         // ==========================================
 
         connectDiscordButton.addEventListener(
@@ -3478,9 +3436,7 @@
 
                 if (!token) {
 
-                    showDiscordMessage(
-                        "Tu sesión SUNSTER'S ha expirado. Vuelve a iniciar sesión."
-                    );
+                    showError();
 
                     return;
 
@@ -3495,123 +3451,52 @@
                     "Conectando...";
 
 
-                showDiscordMessage(
-                    "Preparando conexión con Discord..."
-                );
+                discordMessage.textContent =
+                    "Preparando la conexión con Discord...";
 
 
                 try {
 
-                    /*
-                     * IMPORTANTE:
-                     *
-                     * El token se envía mediante
-                     * Authorization.
-                     *
-                     * Nunca se coloca en la URL.
-                     */
-
                     const response =
                         await fetch(
-                            API_URL +
-                            "/discord/login",
+                            API_URL + "/discord/login",
                             {
                                 method: "GET",
 
                                 headers: {
                                     "Authorization":
-                                        "Bearer " +
-                                        token
+                                        "Bearer " + token
                                 }
                             }
                         );
 
 
-                    /*
-                     * Si el Worker devuelve una
-                     * respuesta JSON con una URL,
-                     * navegamos hacia Discord.
-                     */
-
-                    let data = null;
-
-
-                    try {
-
-                        data =
-                            await response.json();
-
-                    } catch {
-
-                        data =
-                            null;
-
-                    }
+                    const data =
+                        await response.json();
 
 
                     if (
-                        data &&
-                        data.url
+                        !response.ok ||
+                        !data.url
                     ) {
-
-                        window.location.href =
-                            data.url;
-
-                        return;
-
-                    }
-
-
-                    /*
-                     * Si el Worker actual intenta
-                     * hacer un redirect directamente,
-                     * el navegador puede seguirlo
-                     * automáticamente.
-                     *
-                     * Si llegamos aquí significa que
-                     * todavía debemos actualizar el
-                     * endpoint del Worker.
-                     */
-
-                    if (
-                        response.redirected &&
-                        response.url
-                    ) {
-
-                        window.location.href =
-                            response.url;
-
-                        return;
-
-                    }
-
-
-                    if (!response.ok) {
 
                         throw new Error(
-                            data?.error ||
+                            data.error ||
                             "No se pudo iniciar la conexión con Discord."
                         );
 
                     }
 
 
-                    throw new Error(
-                        "El Worker todavía no está devolviendo la URL de Discord."
-                    );
+                    window.location.href =
+                        data.url;
 
 
                 } catch (error) {
 
                     console.error(
-                        "Error conectando Discord:",
+                        "Error iniciando Discord:",
                         error
-                    );
-
-
-                    showDiscordMessage(
-                        error.message ||
-                        "No se pudo conectar con Discord."
                     );
 
 
@@ -3620,9 +3505,62 @@
 
 
                     connectDiscordButton.textContent =
-                        "🔗 Conectar Discord";
+                        "Vincular Discord";
+
+
+                    discordMessage.textContent =
+                        error.message ||
+                        "No se pudo conectar con Discord.";
 
                 }
+
+            }
+        );
+
+
+        // ==========================================
+        // ACTUALIZAR DISCORD
+        // ==========================================
+
+        refreshDiscordButton.addEventListener(
+            "click",
+            async () => {
+
+                discordMessage.textContent =
+                    "Actualizando conexión...";
+
+
+                await loadDiscordServers();
+
+            }
+        );
+
+
+        // ==========================================
+        // ACTUALIZAR SERVIDORES
+        // ==========================================
+
+        refreshServersButton.addEventListener(
+            "click",
+            async () => {
+
+                refreshServersButton.disabled =
+                    true;
+
+
+                refreshServersButton.textContent =
+                    "⏳ Cargando...";
+
+
+                await loadDiscordServers();
+
+
+                refreshServersButton.disabled =
+                    false;
+
+
+                refreshServersButton.textContent =
+                    "🔄 Actualizar";
 
             }
         );
@@ -3642,8 +3580,13 @@
             "click",
             () => {
 
+                /*
+                 * La administración real del bot
+                 * se conectará después.
+                 */
+
                 alert(
-                    "La administración del Bot SUNSTER'S estará disponible cuando terminemos de conectar Discord."
+                    "La administración del Bot SUNSTER'S será conectada en la siguiente fase."
                 );
 
             }
@@ -3701,10 +3644,51 @@
 
 
         // ==========================================
+        // DETECTAR REGRESO DESDE DISCORD
+        // ==========================================
+
+        function handleDiscordReturn() {
+
+            const params =
+                new URLSearchParams(
+                    window.location.search
+                );
+
+
+            const discord =
+                params.get("discord");
+
+
+            if (discord === "connected") {
+
+                setDiscordConnected();
+
+
+                discordMessage.textContent =
+                    "¡Discord se vinculó correctamente! Cargando tus servidores...";
+
+
+                /*
+                 * Quitamos ?discord=connected
+                 * de la barra de direcciones.
+                 */
+
+                window.history.replaceState(
+                    {},
+                    document.title,
+                    window.location.pathname
+                );
+
+            }
+
+        }
+
+
+        // ==========================================
         // INICIO
         // ==========================================
 
-        checkDiscordResult();
+        handleDiscordReturn();
 
         validateSession();
 
