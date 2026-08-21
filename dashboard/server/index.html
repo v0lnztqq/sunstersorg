@@ -62,7 +62,8 @@
         }
 
         button,
-        input {
+        input,
+        select {
             font: inherit;
         }
 
@@ -489,7 +490,8 @@
             letter-spacing: 0.5px;
         }
 
-        .form-input {
+        .form-input,
+        .form-select {
             width: 100%;
 
             padding: 12px 13px;
@@ -514,7 +516,8 @@
             color: #5f7184;
         }
 
-        .form-input:focus {
+        .form-input:focus,
+        .form-select:focus {
             border-color:
                 rgba(40,169,255,0.55);
 
@@ -524,6 +527,49 @@
             box-shadow:
                 0 0 0 3px
                 rgba(40,169,255,0.08);
+        }
+
+        .form-select {
+            cursor: pointer;
+
+            appearance: none;
+
+            padding-right: 42px;
+
+            background-image:
+                linear-gradient(
+                    45deg,
+                    transparent 50%,
+                    #7f91a4 50%
+                ),
+                linear-gradient(
+                    135deg,
+                    #7f91a4 50%,
+                    transparent 50%
+                );
+
+            background-position:
+                calc(100% - 18px) 50%,
+                calc(100% - 13px) 50%;
+
+            background-size:
+                5px 5px,
+                5px 5px;
+
+            background-repeat:
+                no-repeat;
+        }
+
+        .form-select option {
+            background: #101c2a;
+
+            color: white;
+        }
+
+        .form-select:disabled {
+            opacity: 0.55;
+
+            cursor: not-allowed;
         }
 
         .form-help {
@@ -1193,22 +1239,23 @@
                                 class="form-label"
                                 for="logsChannelInput"
                             >
-                                ID del canal de registros
+                                Canal de registros
                             </label>
 
-                            <input
+                            <select
                                 id="logsChannelInput"
-                                class="form-input"
-                                type="text"
-                                inputmode="numeric"
-                                placeholder="Ej: 123456789012345678"
-                                autocomplete="off"
-                                spellcheck="false"
+                                class="form-select"
                             >
 
+                                <option value="">
+                                    Cargando canales...
+                                </option>
+
+                            </select>
+
                             <div class="form-help">
-                                Puedes dejarlo vacío para no configurar un canal.
-                                El canal debe pertenecer a este servidor y el bot debe poder verlo.
+                                Selecciona el canal donde SUNSTER'S Bot
+                                enviará los registros del servidor.
                             </div>
 
                         </div>
@@ -1729,10 +1776,335 @@
 
 
         /* ==================================================
+           CARGAR CANALES DEL SERVIDOR
+        ================================================== */
+
+        async function loadServerChannels(
+            selectedChannelId = ""
+        ) {
+
+            const guildId =
+                getGuildId();
+
+
+            if (!guildId) {
+                return false;
+            }
+
+
+            const session =
+                localStorage.getItem(
+                    SESSION_KEY
+                );
+
+
+            if (!session) {
+                return false;
+            }
+
+
+            logsChannelInput.disabled =
+                true;
+
+
+            logsChannelInput.innerHTML =
+                "";
+
+
+            const loadingOption =
+                document.createElement(
+                    "option"
+                );
+
+            loadingOption.value =
+                "";
+
+            loadingOption.textContent =
+                "Cargando canales...";
+
+            logsChannelInput.appendChild(
+                loadingOption
+            );
+
+
+            try {
+
+                const response =
+                    await fetch(
+                        API_URL +
+                        "/discord/server-channels?guild=" +
+                        encodeURIComponent(
+                            guildId
+                        ),
+                        {
+                            method: "GET",
+
+                            headers: {
+                                "Authorization":
+                                    "Bearer " +
+                                    session
+                            }
+                        }
+                    );
+
+
+                let data =
+                    null;
+
+
+                try {
+
+                    data =
+                        await response.json();
+
+                } catch {
+
+                    data =
+                        null;
+
+                }
+
+
+                if (
+                    handleErrorResponse(
+                        response,
+                        data
+                    )
+                ) {
+                    return false;
+                }
+
+
+                if (
+                    !response.ok ||
+                    !data?.ok
+                ) {
+
+                    throw new Error(
+                        data?.error ||
+                        "No se pudieron cargar los canales"
+                    );
+
+                }
+
+
+                const channels =
+                    Array.isArray(
+                        data.channels
+                    )
+                        ? data.channels
+                        : [];
+
+
+                logsChannelInput.innerHTML =
+                    "";
+
+
+                /* ==========================================
+                   OPCIÓN VACÍA
+                ========================================== */
+
+                const emptyOption =
+                    document.createElement(
+                        "option"
+                    );
+
+                emptyOption.value =
+                    "";
+
+                emptyOption.textContent =
+                    "— Sin canal seleccionado —";
+
+                logsChannelInput.appendChild(
+                    emptyOption
+                );
+
+
+                /* ==========================================
+                   SIN CANALES
+                ========================================== */
+
+                if (
+                    channels.length === 0
+                ) {
+
+                    logsChannelInput.disabled =
+                        true;
+
+                    emptyOption.textContent =
+                        "No hay canales de texto disponibles";
+
+                    return true;
+
+                }
+
+
+                /* ==========================================
+                   CANALES
+                ========================================== */
+
+                channels.forEach(
+                    function (channel) {
+
+                        const option =
+                            document.createElement(
+                                "option"
+                            );
+
+
+                        option.value =
+                            channel.id;
+
+
+                        let label =
+                            "# " +
+                            (
+                                channel.name ||
+                                "canal"
+                            );
+
+
+                        if (
+                            channel.parent_name
+                        ) {
+
+                            label =
+                                channel.parent_name +
+                                "  ›  " +
+                                label;
+
+                        }
+
+
+                        if (
+                            channel.type === 5
+                        ) {
+
+                            label =
+                                "📢 " +
+                                label;
+
+                        } else {
+
+                            label =
+                                "# " +
+                                (
+                                    channel.name ||
+                                    "canal"
+                                );
+
+                            if (
+                                channel.parent_name
+                            ) {
+
+                                label =
+                                    channel.parent_name +
+                                    "  ›  " +
+                                    label;
+
+                            }
+
+                        }
+
+
+                        option.textContent =
+                            label;
+
+
+                        logsChannelInput.appendChild(
+                            option
+                        );
+
+                    }
+                );
+
+
+                /* ==========================================
+                   SELECCIONAR GUARDADO
+                ========================================== */
+
+                const selectedExists =
+                    channels.some(
+                        function (channel) {
+                            return (
+                                channel.id ===
+                                selectedChannelId
+                            );
+                        }
+                    );
+
+
+                if (
+                    selectedExists
+                ) {
+
+                    logsChannelInput.value =
+                        selectedChannelId;
+
+                } else {
+
+                    logsChannelInput.value =
+                        "";
+
+                }
+
+
+                logsChannelInput.disabled =
+                    false;
+
+
+                return true;
+
+            } catch (err) {
+
+                console.error(
+                    "Error cargando canales:",
+                    err
+                );
+
+
+                logsChannelInput.innerHTML =
+                    "";
+
+
+                const errorOption =
+                    document.createElement(
+                        "option"
+                    );
+
+                errorOption.value =
+                    "";
+
+                errorOption.textContent =
+                    "No se pudieron cargar los canales";
+
+                logsChannelInput.appendChild(
+                    errorOption
+                );
+
+
+                logsChannelInput.disabled =
+                    true;
+
+
+                showSettingsMessage(
+                    "No se pudieron cargar los canales del servidor. Inténtalo nuevamente.",
+                    "error"
+                );
+
+
+                return false;
+
+            }
+
+        }
+
+
+        /* ==================================================
            RENDER CONFIGURACIÓN
         ================================================== */
 
-        function renderSettings(
+        async function renderSettings(
             settings
         ) {
 
@@ -1768,8 +2140,14 @@
             logsEnabledInput.checked =
                 logsEnabled;
 
-            logsChannelInput.value =
-                logsChannelId;
+
+            /* ------------------------------------------
+               CARGAR CANALES
+            ------------------------------------------ */
+
+            await loadServerChannels(
+                logsChannelId
+            );
 
 
             /* ------------------------------------------
@@ -1797,8 +2175,26 @@
 
             if (logsChannelId) {
 
-                logsChannelValue.textContent =
-                    logsChannelId;
+                const selectedOption =
+                    logsChannelInput.querySelector(
+                        'option[value="' +
+                        logsChannelId +
+                        '"]'
+                    );
+
+
+                if (selectedOption) {
+
+                    logsChannelValue.textContent =
+                        selectedOption.textContent;
+
+                } else {
+
+                    logsChannelValue.textContent =
+                        logsChannelId;
+
+                }
+
 
                 logsChannelValue.className =
                     "setting-value";
@@ -2172,7 +2568,7 @@
                    CONFIGURACIÓN
                 ========================================== */
 
-                renderSettings(
+                await renderSettings(
                     settingsData.settings
                 );
 
@@ -2260,7 +2656,7 @@
 
 
             const logsChannelId =
-                logsChannelInput.value.trim();
+                logsChannelInput.value;
 
 
             /* ==========================================
@@ -2301,18 +2697,16 @@
 
 
             /* ==========================================
-               VALIDAR CANAL
+               VALIDAR CANAL SELECCIONADO
             ========================================== */
 
             if (
-                logsChannelId &&
-                !/^\d{17,20}$/.test(
-                    logsChannelId
-                )
+                logsEnabled &&
+                !logsChannelId
             ) {
 
                 showSettingsMessage(
-                    "El ID del canal de registros no es válido.",
+                    "Selecciona un canal de registros antes de activar los registros.",
                     "error"
                 );
 
@@ -2331,6 +2725,9 @@
                 true;
 
             refreshSettings.disabled =
+                true;
+
+            logsChannelInput.disabled =
                 true;
 
             saveSettings.textContent =
@@ -2437,7 +2834,15 @@
                         case "INVALID_LOGS_CHANNEL_ID":
 
                             message =
-                                "El ID del canal de registros no es válido.";
+                                "El canal seleccionado no es válido.";
+
+                            break;
+
+
+                        case "LOGS_CHANNEL_REQUIRED":
+
+                            message =
+                                "Debes seleccionar un canal de registros para activar los registros.";
 
                             break;
 
@@ -2445,7 +2850,7 @@
                         case "LOGS_CHANNEL_NOT_FOUND":
 
                             message =
-                                "El canal no existe o SUNSTER'S Bot no puede verlo.";
+                                "El canal seleccionado no existe o SUNSTER'S Bot no puede verlo.";
 
                             break;
 
@@ -2453,7 +2858,7 @@
                         case "LOGS_CHANNEL_WRONG_GUILD":
 
                             message =
-                                "El canal indicado no pertenece a este servidor.";
+                                "El canal seleccionado no pertenece a este servidor.";
 
                             break;
 
@@ -2502,7 +2907,7 @@
                     data.settings
                 ) {
 
-                    renderSettings(
+                    await renderSettings(
                         data.settings
                     );
 
@@ -2536,6 +2941,20 @@
 
                 refreshSettings.disabled =
                     false;
+
+                /*
+                 * Si los canales ya fueron cargados,
+                 * volvemos a habilitar el selector.
+                 */
+                if (
+                    logsChannelInput.options.length > 1
+                ) {
+
+                    logsChannelInput.disabled =
+                        false;
+
+                }
+
 
                 saveSettings.textContent =
                     "💾 Guardar cambios";
@@ -2629,19 +3048,38 @@
         );
 
 
+        /* ==================================================
+           CAMBIO DE CANAL
+        ================================================== */
+
         logsChannelInput.addEventListener(
-            "keydown",
-            function (event) {
+            "change",
+            function () {
+
+                const selectedOption =
+                    logsChannelInput.options[
+                        logsChannelInput.selectedIndex
+                    ];
+
 
                 if (
-                    (event.ctrlKey ||
-                     event.metaKey) &&
-                    event.key === "Enter"
+                    selectedOption &&
+                    selectedOption.value
                 ) {
 
-                    event.preventDefault();
+                    logsChannelValue.textContent =
+                        selectedOption.textContent;
 
-                    saveServerSettings();
+                    logsChannelValue.className =
+                        "setting-value";
+
+                } else {
+
+                    logsChannelValue.textContent =
+                        "No configurado";
+
+                    logsChannelValue.className =
+                        "setting-value muted";
 
                 }
 
