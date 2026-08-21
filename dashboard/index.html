@@ -77,14 +77,10 @@
 
         * {
 
-            margin:
-                0;
+            margin: 0;
+            padding: 0;
 
-            padding:
-                0;
-
-            box-sizing:
-                border-box;
+            box-sizing: border-box;
 
             font-family:
                 'Outfit',
@@ -132,16 +128,7 @@
 
         button {
 
-            font:
-                inherit;
-
-        }
-
-
-        a {
-
-            color:
-                inherit;
+            font: inherit;
 
         }
 
@@ -229,22 +216,16 @@
             color:
                 var(--text);
 
-            border-bottom:
-                1px solid rgba(255,255,255,.05);
-
-            cursor:
-                pointer;
-
         }
 
 
         .brand-mark {
 
             width:
-                39px;
+                36px;
 
             height:
-                39px;
+                36px;
 
             display:
                 grid;
@@ -252,26 +233,17 @@
             place-items:
                 center;
 
-            border:
-                1px solid rgba(40,169,255,.4);
-
             border-radius:
-                12px;
+                11px;
 
             color:
-                var(--blue);
+                white;
 
             background:
-                rgba(40,169,255,.07);
+                var(--blue);
 
             font-weight:
                 800;
-
-            box-shadow:
-                0 0 25px rgba(40,169,255,.08);
-
-            flex-shrink:
-                0;
 
         }
 
@@ -279,13 +251,13 @@
         .brand-name {
 
             font-size:
-                1.12rem;
+                1.1rem;
 
             font-weight:
                 800;
 
             letter-spacing:
-                .4px;
+                -.4px;
 
         }
 
@@ -300,20 +272,20 @@
 
         .nav-title {
 
-            margin:
-                25px 10px 10px;
+            padding:
+                0 10px 10px;
 
             color:
                 var(--muted-2);
 
             font-size:
-                .67rem;
+                .68rem;
 
             font-weight:
                 700;
 
             letter-spacing:
-                1.7px;
+                1.5px;
 
             text-transform:
                 uppercase;
@@ -324,7 +296,10 @@
         .sidebar-nav {
 
             display:
-                grid;
+                flex;
+
+            flex-direction:
+                column;
 
             gap:
                 5px;
@@ -358,11 +333,11 @@
             border-radius:
                 12px;
 
-            background:
-                transparent;
-
             color:
                 var(--muted);
+
+            background:
+                transparent;
 
             cursor:
                 pointer;
@@ -371,7 +346,7 @@
                 left;
 
             transition:
-                .25s ease;
+                .2s ease;
 
         }
 
@@ -382,10 +357,7 @@
                 var(--text);
 
             background:
-                rgba(40,169,255,.05);
-
-            border-color:
-                rgba(40,169,255,.08);
+                rgba(40,169,255,.06);
 
         }
 
@@ -396,13 +368,10 @@
                 var(--blue-light);
 
             background:
-                rgba(40,169,255,.09);
+                rgba(40,169,255,.11);
 
             border-color:
-                rgba(40,169,255,.16);
-
-            box-shadow:
-                inset 3px 0 0 var(--blue);
+                rgba(40,169,255,.10);
 
         }
 
@@ -410,10 +379,7 @@
         .nav-icon {
 
             width:
-                28px;
-
-            height:
-                28px;
+                22px;
 
             display:
                 grid;
@@ -421,24 +387,11 @@
             place-items:
                 center;
 
-            border-radius:
-                8px;
-
-            background:
-                rgba(255,255,255,.025);
-
             font-size:
-                .9rem;
-
-            flex-shrink:
-                0;
+                1rem;
 
         }
 
-
-        /* ================================
-           SIDEBAR BOTTOM
-        ================================ */
 
         .sidebar-bottom {
 
@@ -446,15 +399,14 @@
                 auto;
 
             padding-top:
-                16px;
+                15px;
 
             border-top:
-                1px solid rgba(255,255,255,.05);
+                1px solid var(--border);
 
         }
 
 
-        .back-home-button,
         .logout-button {
 
             width:
@@ -476,7 +428,7 @@
                 0 12px;
 
             border:
-                1px solid rgba(255,255,255,.06);
+                1px solid transparent;
 
             border-radius:
                 12px;
@@ -485,41 +437,16 @@
                 var(--muted);
 
             background:
-                rgba(255,255,255,.02);
+                transparent;
 
             cursor:
                 pointer;
 
+            text-align:
+                left;
+
             transition:
-                .25s ease;
-
-            text-decoration:
-                none;
-
-        }
-
-
-        .back-home-button {
-
-            margin-bottom:
-                8px;
-
-        }
-
-
-        .back-home-button:hover {
-
-            color:
-                var(--blue-light);
-
-            border-color:
-                rgba(40,169,255,.24);
-
-            background:
-                rgba(40,169,255,.07);
-
-            transform:
-                translateX(2px);
+                .2s ease;
 
         }
 
@@ -527,13 +454,10 @@
         .logout-button:hover {
 
             color:
-                white;
-
-            border-color:
-                rgba(40,169,255,.22);
+                #ff7d7d;
 
             background:
-                rgba(40,169,255,.06);
+                rgba(255,80,80,.06);
 
         }
 
@@ -575,20 +499,6 @@
 
             margin-bottom:
                 30px;
-
-        }
-
-
-        .topbar-left {
-
-            display:
-                flex;
-
-            align-items:
-                flex-start;
-
-            gap:
-                14px;
 
         }
 
@@ -652,9 +562,6 @@
 
             background:
                 rgba(255,255,255,.025);
-
-            flex-shrink:
-                0;
 
         }
 
@@ -790,6 +697,10 @@
         }
 
 
+        /* ================================
+           HOME
+        ================================ */
+
         .welcome {
 
             position:
@@ -881,9 +792,6 @@
 
             letter-spacing:
                 -1px;
-
-            word-break:
-                break-word;
 
         }
 
@@ -993,7 +901,7 @@
                 22px;
 
             padding:
-                25px;
+                26px;
 
             margin-bottom:
                 18px;
@@ -1004,10 +912,10 @@
         .large-avatar {
 
             width:
-                82px;
+                92px;
 
             height:
-                82px;
+                92px;
 
             display:
                 grid;
@@ -1015,24 +923,20 @@
             place-items:
                 center;
 
-            border:
-                1px solid rgba(40,169,255,.32);
-
             border-radius:
-                22px;
+                24px;
 
             color:
                 var(--blue-light);
 
             background:
-                linear-gradient(
-                    145deg,
-                    rgba(40,169,255,.16),
-                    rgba(40,169,255,.035)
-                );
+                rgba(40,169,255,.10);
+
+            border:
+                1px solid var(--border);
 
             font-size:
-                1.8rem;
+                2rem;
 
             font-weight:
                 800;
@@ -1043,10 +947,7 @@
         .account-card h3 {
 
             font-size:
-                1.4rem;
-
-            word-break:
-                break-word;
+                1.35rem;
 
         }
 
@@ -1059,9 +960,6 @@
             color:
                 var(--muted);
 
-            font-size:
-                .86rem;
-
         }
 
 
@@ -1071,7 +969,7 @@
                 grid;
 
             grid-template-columns:
-                1fr 1fr;
+                repeat(2, 1fr);
 
             gap:
                 15px;
@@ -1103,17 +1001,11 @@
             margin-top:
                 8px;
 
-            color:
-                var(--text);
-
             font-size:
                 .95rem;
 
             font-weight:
-                700;
-
-            word-break:
-                break-word;
+                600;
 
         }
 
@@ -1130,7 +1022,7 @@
                 7px;
 
             color:
-                #8fe4ff;
+                var(--blue-light);
 
         }
 
@@ -1246,6 +1138,620 @@
 
 
         /* ================================
+           BOT SUNSTER'S
+        ================================ */
+
+        .bot-header {
+
+            position:
+                relative;
+
+            overflow:
+                hidden;
+
+            display:
+                flex;
+
+            align-items:
+                center;
+
+            justify-content:
+                space-between;
+
+            gap:
+                20px;
+
+            padding:
+                30px;
+
+            margin-bottom:
+                18px;
+
+            background:
+                linear-gradient(
+                    135deg,
+                    rgba(13,25,38,.96),
+                    rgba(9,27,43,.92)
+                );
+
+            border:
+                1px solid var(--border);
+
+            border-radius:
+                var(--radius);
+
+        }
+
+
+        .bot-header::after {
+
+            content:
+                "";
+
+            position:
+                absolute;
+
+            width:
+                260px;
+
+            height:
+                260px;
+
+            right:
+                -100px;
+
+            top:
+                -130px;
+
+            border-radius:
+                50%;
+
+            background:
+                radial-gradient(
+                    circle,
+                    rgba(40,169,255,.17),
+                    transparent 70%
+                );
+
+            pointer-events:
+                none;
+
+        }
+
+
+        .bot-info {
+
+            position:
+                relative;
+
+            z-index:
+                1;
+
+            display:
+                flex;
+
+            align-items:
+                center;
+
+            gap:
+                20px;
+
+        }
+
+
+        .bot-avatar {
+
+            width:
+                80px;
+
+            height:
+                80px;
+
+            flex-shrink:
+                0;
+
+            display:
+                grid;
+
+            place-items:
+                center;
+
+            border-radius:
+                22px;
+
+            background:
+                var(--blue);
+
+            box-shadow:
+                0 12px 35px rgba(40,169,255,.18);
+
+            font-size:
+                2rem;
+
+        }
+
+
+        .bot-info h2 {
+
+            font-size:
+                1.65rem;
+
+            letter-spacing:
+                -.6px;
+
+        }
+
+
+        .bot-info p {
+
+            margin-top:
+                5px;
+
+            color:
+                var(--muted);
+
+            font-size:
+                .9rem;
+
+        }
+
+
+        .bot-status {
+
+            display:
+                inline-flex;
+
+            align-items:
+                center;
+
+            gap:
+                7px;
+
+            margin-top:
+                10px;
+
+            color:
+                #55e89a;
+
+            font-size:
+                .78rem;
+
+            font-weight:
+                600;
+
+        }
+
+
+        .bot-status-dot {
+
+            width:
+                8px;
+
+            height:
+                8px;
+
+            border-radius:
+                50%;
+
+            background:
+                #55e89a;
+
+            box-shadow:
+                0 0 12px rgba(85,232,154,.6);
+
+        }
+
+
+        .bot-button {
+
+            position:
+                relative;
+
+            z-index:
+                1;
+
+            min-height:
+                44px;
+
+            padding:
+                0 19px;
+
+            border:
+                1px solid rgba(40,169,255,.35);
+
+            border-radius:
+                12px;
+
+            color:
+                white;
+
+            background:
+                var(--blue);
+
+            cursor:
+                pointer;
+
+            font-size:
+                .84rem;
+
+            font-weight:
+                700;
+
+            transition:
+                .2s ease;
+
+        }
+
+
+        .bot-button:hover {
+
+            transform:
+                translateY(-1px);
+
+            box-shadow:
+                0 10px 25px rgba(40,169,255,.18);
+
+        }
+
+
+        .bot-stats {
+
+            display:
+                grid;
+
+            grid-template-columns:
+                repeat(3, 1fr);
+
+            gap:
+                15px;
+
+            margin-bottom:
+                25px;
+
+        }
+
+
+        .bot-stat {
+
+            padding:
+                22px;
+
+        }
+
+
+        .bot-stat-label {
+
+            color:
+                var(--muted);
+
+            font-size:
+                .76rem;
+
+        }
+
+
+        .bot-stat-value {
+
+            margin-top:
+                8px;
+
+            font-size:
+                1.5rem;
+
+            font-weight:
+                800;
+
+        }
+
+
+        .bot-section-heading {
+
+            margin-bottom:
+                14px;
+
+        }
+
+
+        .bot-section-heading h2 {
+
+            font-size:
+                1.25rem;
+
+        }
+
+
+        .bot-section-heading p {
+
+            margin-top:
+                5px;
+
+            color:
+                var(--muted);
+
+            font-size:
+                .86rem;
+
+        }
+
+
+        .bot-servers {
+
+            display:
+                grid;
+
+            grid-template-columns:
+                repeat(2, 1fr);
+
+            gap:
+                15px;
+
+        }
+
+
+        .bot-server-card {
+
+            display:
+                flex;
+
+            align-items:
+                center;
+
+            justify-content:
+                space-between;
+
+            gap:
+                15px;
+
+            padding:
+                18px;
+
+            background:
+                var(--surface);
+
+            border:
+                1px solid var(--border);
+
+            border-radius:
+                15px;
+
+        }
+
+
+        .bot-server-left {
+
+            display:
+                flex;
+
+            align-items:
+                center;
+
+            gap:
+                13px;
+
+            min-width:
+                0;
+
+        }
+
+
+        .bot-server-icon {
+
+            width:
+                50px;
+
+            height:
+                50px;
+
+            flex-shrink:
+                0;
+
+            display:
+                grid;
+
+            place-items:
+                center;
+
+            border-radius:
+                14px;
+
+            background:
+                rgba(40,169,255,.08);
+
+            border:
+                1px solid var(--border);
+
+            font-size:
+                1.2rem;
+
+        }
+
+
+        .bot-server-name {
+
+            font-size:
+                .92rem;
+
+            font-weight:
+                700;
+
+            overflow:
+                hidden;
+
+            text-overflow:
+                ellipsis;
+
+            white-space:
+                nowrap;
+
+        }
+
+
+        .bot-server-description {
+
+            margin-top:
+                4px;
+
+            color:
+                var(--muted-2);
+
+            font-size:
+                .72rem;
+
+        }
+
+
+        .bot-server-status {
+
+            display:
+                flex;
+
+            align-items:
+                center;
+
+            gap:
+                6px;
+
+            margin-top:
+                6px;
+
+            color:
+                #55e89a;
+
+            font-size:
+                .7rem;
+
+        }
+
+
+        .bot-server-status span {
+
+            width:
+                6px;
+
+            height:
+                6px;
+
+            border-radius:
+                50%;
+
+            background:
+                #55e89a;
+
+        }
+
+
+        .bot-server-button {
+
+            flex-shrink:
+                0;
+
+            min-height:
+                38px;
+
+            padding:
+                0 13px;
+
+            border:
+                1px solid var(--border);
+
+            border-radius:
+                10px;
+
+            color:
+                var(--blue-light);
+
+            background:
+                rgba(40,169,255,.04);
+
+            cursor:
+                pointer;
+
+            font-size:
+                .76rem;
+
+            font-weight:
+                600;
+
+            transition:
+                .2s ease;
+
+        }
+
+
+        .bot-server-button:hover {
+
+            border-color:
+                var(--border-hover);
+
+            background:
+                rgba(40,169,255,.08);
+
+        }
+
+
+        .bot-no-servers {
+
+            grid-column:
+                1 / -1;
+
+            padding:
+                30px;
+
+            text-align:
+                center;
+
+            border:
+                1px dashed var(--border);
+
+            border-radius:
+                15px;
+
+            color:
+                var(--muted);
+
+            background:
+                rgba(40,169,255,.025);
+
+        }
+
+
+        .bot-no-servers-icon {
+
+            font-size:
+                1.7rem;
+
+            margin-bottom:
+                8px;
+
+        }
+
+
+        .bot-no-servers strong {
+
+            display:
+                block;
+
+            color:
+                var(--text);
+
+            font-size:
+                .95rem;
+
+        }
+
+
+        .bot-no-servers p {
+
+            margin-top:
+                5px;
+
+            font-size:
+                .78rem;
+
+        }
+
+
+        /* ================================
            ERROR
         ================================ */
 
@@ -1324,9 +1830,6 @@
             align-items:
                 center;
 
-            justify-content:
-                center;
-
             padding:
                 0 18px;
 
@@ -1347,23 +1850,6 @@
 
             font-weight:
                 700;
-
-            transition:
-                .25s ease;
-
-        }
-
-
-        .back-button:hover {
-
-            border-color:
-                var(--border-hover);
-
-            background:
-                rgba(40,169,255,.10);
-
-            transform:
-                translateY(-1px);
 
         }
 
@@ -1404,9 +1890,6 @@
             font-size:
                 1.1rem;
 
-            flex-shrink:
-                0;
-
         }
 
 
@@ -1419,9 +1902,6 @@
 
                 transition:
                     .3s ease;
-
-                box-shadow:
-                    15px 0 50px rgba(0,0,0,.3);
 
             }
 
@@ -1464,15 +1944,16 @@
             }
 
 
-            .topbar-left {
+            .stats,
+            .bot-stats {
 
-                min-width:
-                    0;
+                grid-template-columns:
+                    1fr;
 
             }
 
 
-            .stats {
+            .bot-servers {
 
                 grid-template-columns:
                     1fr;
@@ -1484,29 +1965,10 @@
 
         @media (max-width: 600px) {
 
-            .main {
-
-                padding:
-                    16px;
-
-            }
-
-
             .topbar {
 
                 flex-direction:
                     column;
-
-                gap:
-                    14px;
-
-            }
-
-
-            .topbar-left {
-
-                width:
-                    100%;
 
             }
 
@@ -1546,26 +2008,62 @@
             }
 
 
-            .welcome {
+            .bot-header {
+
+                flex-direction:
+                    column;
+
+                align-items:
+                    flex-start;
 
                 padding:
-                    24px;
+                    23px;
 
             }
 
 
-            .welcome h2 {
+            .bot-info {
 
-                font-size:
-                    1.65rem;
+                align-items:
+                    flex-start;
 
             }
 
 
-            .empty-panel {
+            .bot-avatar {
 
-                padding:
-                    28px 20px;
+                width:
+                    65px;
+
+                height:
+                    65px;
+
+                border-radius:
+                    18px;
+
+            }
+
+
+            .bot-button {
+
+                width:
+                    100%;
+
+            }
+
+
+            .bot-server-card {
+
+                align-items:
+                    flex-start;
+
+            }
+
+
+            .bot-server-button {
+
+                margin-top:
+                    5px;
 
             }
 
@@ -1598,12 +2096,9 @@
             id="sidebar"
         >
 
-            <!-- LOGO -->
-
             <a
-                href="https://v0lnztqq.github.io/sunstersorg/"
+                href="../"
                 class="brand"
-                aria-label="Volver a SUNSTER'S"
             >
 
                 <div class="brand-mark">
@@ -1622,13 +2117,10 @@
             </div>
 
 
-            <nav
-                class="sidebar-nav"
-                aria-label="Navegación del Dashboard"
-            >
+            <nav class="sidebar-nav">
+
 
                 <button
-                    type="button"
                     class="nav-item active"
                     data-panel="home"
                 >
@@ -1643,7 +2135,6 @@
 
 
                 <button
-                    type="button"
                     class="nav-item"
                     data-panel="account"
                 >
@@ -1658,7 +2149,6 @@
 
 
                 <button
-                    type="button"
                     class="nav-item"
                     data-panel="discord"
                 >
@@ -1673,7 +2163,6 @@
 
 
                 <button
-                    type="button"
                     class="nav-item"
                     data-panel="servers"
                 >
@@ -1688,7 +2177,6 @@
 
 
                 <button
-                    type="button"
                     class="nav-item"
                     data-panel="bot"
                 >
@@ -1703,7 +2191,6 @@
 
 
                 <button
-                    type="button"
                     class="nav-item"
                     data-panel="settings"
                 >
@@ -1716,35 +2203,13 @@
 
                 </button>
 
+
             </nav>
 
 
-            <!-- ACCIONES -->
-
             <div class="sidebar-bottom">
 
-
-                <!-- VOLVER A LA PÁGINA PRINCIPAL -->
-
-                <a
-                    href="https://v0lnztqq.github.io/sunstersorg/"
-                    class="back-home-button"
-                    aria-label="Volver a la página principal de SUNSTER'S"
-                >
-
-                    <span class="nav-icon">
-                        ←
-                    </span>
-
-                    Volver a SUNSTER'S
-
-                </a>
-
-
-                <!-- CERRAR SESIÓN -->
-
                 <button
-                    type="button"
                     class="logout-button"
                     id="logoutButton"
                 >
@@ -1771,31 +2236,23 @@
 
             <div class="topbar">
 
-                <div class="topbar-left">
+                <div>
 
                     <button
-                        type="button"
                         class="mobile-toggle"
                         id="mobileToggle"
-                        aria-label="Abrir menú"
-                        aria-expanded="false"
                     >
                         ☰
                     </button>
 
+                    <h1 class="page-title">
+                        Dashboard
+                        <span>SUNSTER'S</span>
+                    </h1>
 
-                    <div>
-
-                        <h1 class="page-title">
-                            Dashboard
-                            <span>SUNSTER'S</span>
-                        </h1>
-
-                        <p class="page-subtitle">
-                            Tu centro de control de la plataforma.
-                        </p>
-
-                    </div>
+                    <p class="page-subtitle">
+                        Tu centro de control de la plataforma.
+                    </p>
 
                 </div>
 
@@ -1900,10 +2357,7 @@
                             Servidores
                         </div>
 
-                        <div
-                            class="stat-value"
-                            id="serversStat"
-                        >
+                        <div class="stat-value">
                             0
                         </div>
 
@@ -2088,7 +2542,7 @@
 
 
             <!-- ================================
-                 BOT
+                 BOT SUNSTER'S
             ================================ -->
 
             <section
@@ -2096,27 +2550,137 @@
                 id="panel-bot"
             >
 
-                <div class="glass empty-panel">
 
-                    <div>
+                <!-- BOT HEADER -->
 
-                        <div class="empty-icon">
+                <div class="bot-header">
+
+                    <div class="bot-info">
+
+                        <div class="bot-avatar">
                             🤖
                         </div>
 
-                        <h3>
-                            Bot SUNSTER'S
-                        </h3>
+                        <div>
+
+                            <h2>
+                                SUNSTER'S Bot
+                            </h2>
+
+                            <p>
+                                El bot oficial de SUNSTER'S para tu comunidad.
+                            </p>
+
+                            <div class="bot-status">
+
+                                <span class="bot-status-dot"></span>
+
+                                Estado del bot: preparado
+
+                            </div>
+
+                        </div>
+
+                    </div>
+
+
+                    <button
+                        class="bot-button"
+                        type="button"
+                        id="manageBotButton"
+                    >
+                        Administrar bot
+                    </button>
+
+                </div>
+
+
+                <!-- ESTADÍSTICAS -->
+
+                <div class="bot-stats">
+
+
+                    <div class="glass bot-stat">
+
+                        <div class="bot-stat-label">
+                            Servidores
+                        </div>
+
+                        <div class="bot-stat-value">
+                            0
+                        </div>
+
+                    </div>
+
+
+                    <div class="glass bot-stat">
+
+                        <div class="bot-stat-label">
+                            Usuarios
+                        </div>
+
+                        <div class="bot-stat-value">
+                            —
+                        </div>
+
+                    </div>
+
+
+                    <div class="glass bot-stat">
+
+                        <div class="bot-stat-label">
+                            Estado
+                        </div>
+
+                        <div class="bot-stat-value blue">
+                            Preparado
+                        </div>
+
+                    </div>
+
+
+                </div>
+
+
+                <!-- SERVIDORES -->
+
+                <div class="bot-section-heading">
+
+                    <h2>
+                        Mis servidores
+                    </h2>
+
+                    <p>
+                        Aquí aparecerán los servidores de Discord
+                        que puedas administrar con SUNSTER'S Bot.
+                    </p>
+
+                </div>
+
+
+                <div class="bot-servers">
+
+
+                    <div class="bot-no-servers">
+
+                        <div class="bot-no-servers-icon">
+                            🖥
+                        </div>
+
+                        <strong>
+                            Todavía no hay servidores conectados
+                        </strong>
 
                         <p>
-                            Desde aquí administraremos el bot de
-                            SUNSTER'S, sus servidores, configuraciones
-                            y sistemas.
+                            Cuando vinculemos Discord, aquí aparecerán
+                            tus servidores disponibles para administrar.
                         </p>
 
                     </div>
 
+
                 </div>
+
 
             </section>
 
@@ -2184,7 +2748,7 @@
             </p>
 
             <a
-                href="https://v0lnztqq.github.io/sunstersorg/"
+                href="../"
                 class="back-button"
             >
                 Volver a SUNSTER'S
@@ -2198,17 +2762,6 @@
     <script>
 
         // ==========================================
-        // RUTAS
-        // ==========================================
-
-        const SUNSTERS_URL =
-            "https://v0lnztqq.github.io/sunstersorg/";
-
-        const DASHBOARD_URL =
-            "https://v0lnztqq.github.io/sunstersorg/dashboard/";
-
-
-        // ==========================================
         // API
         // ==========================================
 
@@ -2216,12 +2769,9 @@
             "https://sunsters-api.escalonamaria499.workers.dev";
 
 
-        // ==========================================
-        // SESIÓN
-        // ==========================================
-
         const SESSION_KEY =
             "sunstersSession";
+
 
         const USER_KEY =
             "sunstersUser";
@@ -2234,42 +2784,64 @@
         const app =
             document.getElementById("app");
 
+
         const errorScreen =
             document.getElementById("errorScreen");
+
 
         const sidebar =
             document.getElementById("sidebar");
 
+
         const mobileToggle =
             document.getElementById("mobileToggle");
+
 
         const logoutButton =
             document.getElementById("logoutButton");
 
+
         const topUserAvatar =
-            document.getElementById("topUserAvatar");
+            document.getElementById(
+                "topUserAvatar"
+            );
+
 
         const topUserName =
-            document.getElementById("topUserName");
+            document.getElementById(
+                "topUserName"
+            );
+
 
         const welcomeName =
-            document.getElementById("welcomeName");
+            document.getElementById(
+                "welcomeName"
+            );
+
 
         const accountAvatar =
-            document.getElementById("accountAvatar");
+            document.getElementById(
+                "accountAvatar"
+            );
+
 
         const accountUsername =
-            document.getElementById("accountUsername");
+            document.getElementById(
+                "accountUsername"
+            );
+
 
         const accountUsernameInfo =
             document.getElementById(
                 "accountUsernameInfo"
             );
 
+
         const accountEmailInfo =
             document.getElementById(
                 "accountEmailInfo"
             );
+
 
         const accountIdInfo =
             document.getElementById(
@@ -2278,7 +2850,7 @@
 
 
         // ==========================================
-        // SESIÓN LOCAL
+        // SESIÓN
         // ==========================================
 
         function getToken() {
@@ -2300,24 +2872,10 @@
                     );
 
                 if (!raw) {
-
                     return null;
-
                 }
 
-                const user =
-                    JSON.parse(raw);
-
-                if (
-                    !user ||
-                    typeof user !== "object"
-                ) {
-
-                    return null;
-
-                }
-
-                return user;
+                return JSON.parse(raw);
 
             } catch {
 
@@ -2345,30 +2903,18 @@
         // MOSTRAR USUARIO
         // ==========================================
 
-        function renderUser(user) {
-
-            if (
-                !user ||
-                typeof user !== "object"
-            ) {
-
-                return;
-
-            }
-
+        function renderUser(
+            user
+        ) {
 
             const username =
-                String(
-                    user.username ||
-                    "Usuario"
-                );
+                user.username ||
+                "Usuario";
 
 
             const email =
-                String(
-                    user.email ||
-                    "No disponible"
-                );
+                user.email ||
+                "No disponible";
 
 
             const id =
@@ -2379,8 +2925,7 @@
             const initial =
                 username
                     .charAt(0)
-                    .toUpperCase() ||
-                "S";
+                    .toUpperCase();
 
 
             topUserAvatar.textContent =
@@ -2418,35 +2963,7 @@
 
 
         // ==========================================
-        // MOSTRAR APP / ERROR
-        // ==========================================
-
-        function showApp() {
-
-            errorScreen.classList.remove(
-                "active"
-            );
-
-            app.style.display =
-                "flex";
-
-        }
-
-
-        function showError() {
-
-            app.style.display =
-                "none";
-
-            errorScreen.classList.add(
-                "active"
-            );
-
-        }
-
-
-        // ==========================================
-        // VALIDAR SESIÓN
+        // VALIDAR /ME
         // ==========================================
 
         async function validateSession() {
@@ -2470,8 +2987,7 @@
                     await fetch(
                         API_URL + "/me",
                         {
-                            method:
-                                "GET",
+                            method: "GET",
 
                             headers: {
                                 "Authorization":
@@ -2482,15 +2998,11 @@
 
 
                 const data =
-                    await response.json()
-                        .catch(
-                            () => null
-                        );
+                    await response.json();
 
 
                 if (
                     !response.ok ||
-                    !data ||
                     !data.user
                 ) {
 
@@ -2529,6 +3041,13 @@
                 );
 
 
+                /*
+                 * Si existe un usuario local,
+                 * dejamos que el dashboard se
+                 * muestre, pero los datos reales
+                 * no se consideran confirmados.
+                 */
+
                 const localUser =
                     getLocalUser();
 
@@ -2556,6 +3075,34 @@
 
 
         // ==========================================
+        // MOSTRAR APP
+        // ==========================================
+
+        function showApp() {
+
+            errorScreen.classList.remove(
+                "active"
+            );
+
+            app.style.display =
+                "flex";
+
+        }
+
+
+        function showError() {
+
+            app.style.display =
+                "none";
+
+            errorScreen.classList.add(
+                "active"
+            );
+
+        }
+
+
+        // ==========================================
         // NAVEGACIÓN
         // ==========================================
 
@@ -2571,46 +3118,6 @@
             );
 
 
-        function openPanel(target) {
-
-            navItems.forEach(
-                nav => {
-
-                    nav.classList.toggle(
-                        "active",
-                        nav.dataset.panel === target
-                    );
-
-                }
-            );
-
-
-            panels.forEach(
-                panel => {
-
-                    panel.classList.toggle(
-                        "active",
-                        panel.id ===
-                        "panel-" + target
-                    );
-
-                }
-            );
-
-
-            sidebar.classList.remove(
-                "open"
-            );
-
-
-            mobileToggle.setAttribute(
-                "aria-expanded",
-                "false"
-            );
-
-        }
-
-
         navItems.forEach(
             item => {
 
@@ -2621,14 +3128,51 @@
                         const target =
                             item.dataset.panel;
 
-                        if (!target) {
 
-                            return;
+                        navItems.forEach(
+                            nav => {
+
+                                nav.classList.remove(
+                                    "active"
+                                );
+
+                            }
+                        );
+
+
+                        item.classList.add(
+                            "active"
+                        );
+
+
+                        panels.forEach(
+                            panel => {
+
+                                panel.classList.remove(
+                                    "active"
+                                );
+
+                            }
+                        );
+
+
+                        const targetPanel =
+                            document.getElementById(
+                                "panel-" + target
+                            );
+
+
+                        if (targetPanel) {
+
+                            targetPanel.classList.add(
+                                "active"
+                            );
 
                         }
 
-                        openPanel(
-                            target
+
+                        sidebar.classList.remove(
+                            "open"
                         );
 
                     }
@@ -2646,15 +3190,37 @@
             "click",
             () => {
 
-                const isOpen =
-                    sidebar.classList.toggle(
-                        "open"
-                    );
+                sidebar.classList.toggle(
+                    "open"
+                );
+
+            }
+        );
 
 
-                mobileToggle.setAttribute(
-                    "aria-expanded",
-                    String(isOpen)
+        // ==========================================
+        // BOT SUNSTER'S
+        // ==========================================
+
+        const manageBotButton =
+            document.getElementById(
+                "manageBotButton"
+            );
+
+
+        manageBotButton.addEventListener(
+            "click",
+            () => {
+
+                /*
+                 * Todavía no conectamos Discord.
+                 * Este botón quedará preparado para
+                 * abrir el panel real de administración
+                 * del bot en una siguiente fase.
+                 */
+
+                alert(
+                    "La administración del Bot SUNSTER'S estará disponible cuando conectemos Discord."
                 );
 
             }
@@ -2673,9 +3239,6 @@
                     getToken();
 
 
-                clearSession();
-
-
                 if (token) {
 
                     try {
@@ -2683,8 +3246,7 @@
                         await fetch(
                             API_URL + "/logout",
                             {
-                                method:
-                                    "POST",
+                                method: "POST",
 
                                 headers: {
                                     "Authorization":
@@ -2705,8 +3267,11 @@
                 }
 
 
+                clearSession();
+
+
                 window.location.href =
-                    SUNSTERS_URL;
+                    "../";
 
             }
         );
@@ -2722,4 +3287,3 @@
 
 </body>
 </html>
-```
