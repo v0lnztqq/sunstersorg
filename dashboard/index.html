@@ -1205,8 +1205,17 @@
 
             margin-top: 6px;
 
-            color: #55e89a;
             font-size: .7rem;
+        }
+
+
+        .bot-server-status.installed {
+            color: #55e89a;
+        }
+
+
+        .bot-server-status.not-installed {
+            color: var(--muted);
         }
 
 
@@ -1214,8 +1223,20 @@
             width: 6px;
             height: 6px;
 
+            flex-shrink: 0;
+
             border-radius: 50%;
+        }
+
+
+        .bot-server-status.installed span {
             background: #55e89a;
+            box-shadow: 0 0 8px rgba(85,232,154,.5);
+        }
+
+
+        .bot-server-status.not-installed span {
+            background: var(--muted);
         }
 
 
@@ -1547,7 +1568,6 @@
         style="display:none;"
     >
 
-
         <!-- SIDEBAR -->
 
         <aside
@@ -1652,7 +1672,6 @@
         <!-- CONTENIDO -->
 
         <main class="main">
-
 
             <div class="topbar">
 
@@ -2367,6 +2386,14 @@
             );
 
 
+        /*
+         * IDs de servidores donde el bot
+         * está instalado.
+         */
+        let installedBotServerIds =
+            new Set();
+
+
         // ==========================================
         // SESIÓN
         // ==========================================
@@ -2547,11 +2574,6 @@
                 showApp();
 
 
-                /*
-                 * Una vez validada la sesión,
-                 * obtenemos los servidores reales.
-                 */
-
                 await loadDiscordServers();
 
 
@@ -2578,10 +2600,6 @@
 
                     showApp();
 
-                    /*
-                     * Intentamos igualmente obtener
-                     * los servidores.
-                     */
 
                     loadDiscordServers();
 
@@ -2777,12 +2795,6 @@
 
         function canManageServer(server) {
 
-            /*
-             * 0x20 = MANAGE_GUILD
-             *
-             * También permitimos al propietario.
-             */
-
             if (server.owner === true) {
                 return true;
             }
@@ -2803,6 +2815,100 @@
 
 
         // ==========================================
+        // CARGAR SERVIDORES DEL BOT
+        // ==========================================
+
+        async function loadBotServers() {
+
+            const token =
+                getToken();
+
+
+            if (!token) {
+                return new Set();
+            }
+
+
+            try {
+
+                const response =
+                    await fetch(
+                        API_URL + "/discord/bot-servers",
+                        {
+                            method: "GET",
+
+                            headers: {
+                                "Authorization":
+                                    "Bearer " + token
+                            }
+                        }
+                    );
+
+
+                let data = null;
+
+
+                try {
+
+                    data =
+                        await response.json();
+
+                } catch {
+
+                    data = null;
+
+                }
+
+
+                if (
+                    response.status === 401
+                ) {
+
+                    console.warn(
+                        "La sesión del bot expiró o no es válida."
+                    );
+
+                    return new Set();
+
+                }
+
+
+                if (
+                    !response.ok ||
+                    !data ||
+                    !Array.isArray(data.servers)
+                ) {
+
+                    throw new Error(
+                        data?.error ||
+                        "No se pudieron comprobar los servidores del bot."
+                    );
+
+                }
+
+
+                return new Set(
+                    data.servers
+                        .filter(Boolean)
+                        .map(String)
+                );
+
+            } catch (error) {
+
+                console.error(
+                    "Error comprobando servidores del bot:",
+                    error
+                );
+
+
+                return new Set();
+
+            }
+
+        }
+
+
+        // ==========================================
         // CARGAR SERVIDORES DE DISCORD
         // ==========================================
 
@@ -2816,10 +2922,6 @@
                 return;
             }
 
-
-            /*
-             * Estado de carga.
-             */
 
             serversGrid.innerHTML = `
                 <div class="loading">
@@ -2840,7 +2942,7 @@
                     </div>
 
                     <strong>
-                        Cargando servidores...
+                        Comprobando SUNSTER'S Bot...
                     </strong>
 
                     <p>
@@ -2882,14 +2984,14 @@
                 }
 
 
-                /*
-                 * Discord no está vinculado.
-                 */
-
                 if (
                     response.status === 400 ||
                     response.status === 404
                 ) {
+
+                    installedBotServerIds =
+                        new Set();
+
 
                     setDiscordDisconnected();
 
@@ -2905,11 +3007,11 @@
                 }
 
 
-                /*
-                 * Sesión inválida.
-                 */
-
                 if (response.status === 401) {
+
+                    installedBotServerIds =
+                        new Set();
+
 
                     setDiscordDisconnected();
 
@@ -2946,22 +3048,12 @@
                 setDiscordConnected();
 
 
-                /*
-                 * Actualizar estadísticas.
-                 */
-
                 homeServerCount.textContent =
                     servers.length;
 
 
-                botServerCount.textContent =
-                    servers.filter(
-                        canManageServer
-                    ).length;
-
-
                 /*
-                 * Renderizar Mis servidores.
+                 * Mis servidores.
                  */
 
                 renderServers(
@@ -2970,8 +3062,16 @@
 
 
                 /*
-                 * Renderizar servidores
-                 * administrables por el bot.
+                 * Comprobar dónde está instalado
+                 * realmente SUNSTER'S Bot.
+                 */
+
+                installedBotServerIds =
+                    await loadBotServers();
+
+
+                /*
+                 * Renderizar la sección del bot.
                  */
 
                 renderBotServers(
@@ -2985,6 +3085,10 @@
                     "Error cargando servidores:",
                     error
                 );
+
+
+                installedBotServerIds =
+                    new Set();
 
 
                 serversGrid.innerHTML = `
@@ -3009,6 +3113,10 @@
                 `;
 
 
+                botServerCount.textContent =
+                    "0";
+
+
                 botServersGrid.innerHTML = `
                     <div class="bot-no-servers">
 
@@ -3017,7 +3125,7 @@
                         </div>
 
                         <strong>
-                            No pudimos cargar los servidores
+                            No pudimos comprobar el bot
                         </strong>
 
                         <p>
@@ -3138,6 +3246,10 @@
 
             if (!manageable.length) {
 
+                botServerCount.textContent =
+                    "0";
+
+
                 botServersGrid.innerHTML = `
                     <div class="bot-no-servers">
 
@@ -3163,6 +3275,24 @@
             }
 
 
+            /*
+             * Servidores administrables
+             * donde está instalado el bot.
+             */
+
+            const installedManageable =
+                manageable.filter(
+                    server =>
+                        installedBotServerIds.has(
+                            String(server.id)
+                        )
+                );
+
+
+            botServerCount.textContent =
+                installedManageable.length;
+
+
             botServersGrid.innerHTML =
                 manageable
                     .map(
@@ -3170,6 +3300,12 @@
 
                             const owner =
                                 server.owner === true;
+
+
+                            const installed =
+                                installedBotServerIds.has(
+                                    String(server.id)
+                                );
 
 
                             return `
@@ -3207,27 +3343,58 @@
                                             </div>
 
 
-                                            <div class="bot-server-status">
+                                            ${
+                                                installed
+                                                    ? `
+                                                        <div class="bot-server-status installed">
 
-                                                <span></span>
+                                                            <span></span>
 
-                                                Disponible
+                                                            🟢 SUNSTER'S Bot instalado
 
-                                            </div>
+                                                        </div>
+                                                      `
+                                                    : `
+                                                        <div class="bot-server-status not-installed">
+
+                                                            <span></span>
+
+                                                            ⚪ SUNSTER'S Bot no está instalado
+
+                                                        </div>
+                                                      `
+                                            }
 
                                         </div>
 
                                     </div>
 
 
-                                    <button
-                                        class="bot-server-button"
-                                        type="button"
-                                        data-server-id="${escapeHtml(server.id)}"
-                                        data-server-name="${escapeHtml(server.name || "Servidor")}"
-                                    >
-                                        Administrar
-                                    </button>
+                                    ${
+                                        installed
+                                            ? `
+                                                <button
+                                                    class="bot-server-button"
+                                                    type="button"
+                                                    data-server-id="${escapeHtml(server.id)}"
+                                                    data-server-name="${escapeHtml(server.name || "Servidor")}"
+                                                    data-action="manage"
+                                                >
+                                                    Administrar
+                                                </button>
+                                              `
+                                            : `
+                                                <button
+                                                    class="bot-server-button"
+                                                    type="button"
+                                                    data-server-id="${escapeHtml(server.id)}"
+                                                    data-server-name="${escapeHtml(server.name || "Servidor")}"
+                                                    data-action="add"
+                                                >
+                                                    Añadir bot
+                                                </button>
+                                              `
+                                    }
 
                                 </div>
                             `;
@@ -3238,7 +3405,7 @@
 
 
             /*
-             * Botones individuales.
+             * Eventos de botones.
              */
 
             document
@@ -3260,17 +3427,64 @@
                                     button.dataset.serverName;
 
 
-                                alert(
-                                    "La administración de \"" +
-                                    serverName +
-                                    "\" será conectada en la siguiente fase."
-                                );
+                                const action =
+                                    button.dataset.action;
 
 
-                                console.log(
-                                    "Servidor seleccionado:",
-                                    serverId
-                                );
+                                /*
+                                 * ADMINISTRAR
+                                 */
+
+                                if (
+                                    action === "manage"
+                                ) {
+
+                                    alert(
+                                        "La administración de \"" +
+                                        serverName +
+                                        "\" será conectada en la siguiente fase."
+                                    );
+
+
+                                    console.log(
+                                        "Servidor seleccionado para administrar:",
+                                        serverId
+                                    );
+
+
+                                    return;
+
+                                }
+
+
+                                /*
+                                 * AÑADIR BOT
+                                 */
+
+                                if (
+                                    action === "add"
+                                ) {
+
+                                    const inviteURL =
+                                        "https://discord.com/oauth2/authorize" +
+                                        "?client_id=1538647178074005575" +
+                                        "&scope=bot%20applications.commands";
+
+
+                                    window.open(
+                                        inviteURL,
+                                        "_blank",
+                                        "noopener,noreferrer"
+                                    );
+
+
+                                    console.log(
+                                        "Añadiendo SUNSTER'S Bot:",
+                                        serverId,
+                                        serverName
+                                    );
+
+                                }
 
                             }
                         );
@@ -3296,6 +3510,10 @@
 
             botServerCount.textContent =
                 "0";
+
+
+            installedBotServerIds =
+                new Set();
 
 
             serversGrid.innerHTML = `
@@ -3580,11 +3798,6 @@
             "click",
             () => {
 
-                /*
-                 * La administración real del bot
-                 * se conectará después.
-                 */
-
                 alert(
                     "La administración del Bot SUNSTER'S será conectada en la siguiente fase."
                 );
@@ -3667,11 +3880,6 @@
                 discordMessage.textContent =
                     "¡Discord se vinculó correctamente! Cargando tus servidores...";
 
-
-                /*
-                 * Quitamos ?discord=connected
-                 * de la barra de direcciones.
-                 */
 
                 window.history.replaceState(
                     {},
