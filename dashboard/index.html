@@ -2249,6 +2249,15 @@
             "sunstersSession";
 
 
+        /*
+         * IMPORTANTE:
+         *
+         * USER_KEY ya no se utiliza para autenticar.
+         *
+         * Puede seguir existiendo en localStorage por compatibilidad
+         * con otras partes del proyecto, pero el Dashboard solamente
+         * considera válida una sesión cuando /me devuelve data.user.
+         */
         const USER_KEY =
             "sunstersUser";
 
@@ -2376,28 +2385,12 @@
         }
 
 
-        function getLocalUser() {
-
-            try {
-
-                const raw =
-                    localStorage.getItem(
-                        USER_KEY
-                    );
-
-                if (!raw) {
-                    return null;
-                }
-
-                return JSON.parse(raw);
-
-            } catch {
-
-                return null;
-
-            }
-
-        }
+        /*
+         * Ya NO existe getLocalUser().
+         *
+         * El usuario nunca se considera autenticado
+         * únicamente porque exista información en localStorage.
+         */
 
 
         function clearSession() {
@@ -2484,7 +2477,12 @@
                 getToken();
 
 
+            /*
+             * Sin token no existe sesión.
+             */
             if (!token) {
+
+                clearSession();
 
                 showError();
 
@@ -2509,14 +2507,32 @@
                     );
 
 
-                const data =
-                    await response.json();
+                let data = null;
 
 
+                try {
+
+                    data =
+                        await response.json();
+
+                } catch {
+
+                    data = null;
+
+                }
+
+
+                /*
+                 * Si /me responde 401, el token ya no es válido.
+                 */
                 if (
-                    !response.ok ||
-                    !data.user
+                    response.status === 401
                 ) {
+
+                    console.warn(
+                        "La sesión SUNSTER'S ya no es válida."
+                    );
+
 
                     clearSession();
 
@@ -2527,16 +2543,53 @@
                 }
 
 
+                /*
+                 * Cualquier otra respuesta que no contenga
+                 * un usuario válido tampoco permite acceder.
+                 */
+                if (
+                    !response.ok ||
+                    !data ||
+                    !data.user
+                ) {
+
+                    console.error(
+                        "Respuesta inválida de /me:",
+                        data
+                    );
+
+
+                    clearSession();
+
+                    showError();
+
+                    return false;
+
+                }
+
+
+                /*
+                 * SOLO aquí se considera autenticado
+                 * al usuario.
+                 *
+                 * La información viene directamente
+                 * desde /me.
+                 */
+                renderUser(
+                    data.user
+                );
+
+
+                /*
+                 * Guardamos una copia para otros componentes
+                 * del proyecto, pero esta copia NO sirve
+                 * para autenticar.
+                 */
                 localStorage.setItem(
                     USER_KEY,
                     JSON.stringify(
                         data.user
                     )
-                );
-
-
-                renderUser(
-                    data.user
                 );
 
 
@@ -2551,31 +2604,22 @@
 
             } catch (error) {
 
+                /*
+                 * MUY IMPORTANTE:
+                 *
+                 * Si /me no puede comprobarse por un error
+                 * de red, tampoco permitimos entrar usando
+                 * localStorage.
+                 *
+                 * Sin confirmación de /me = sin acceso.
+                 */
                 console.error(
-                    "Error validando sesión:",
+                    "No se pudo validar la sesión:",
                     error
                 );
 
 
-                const localUser =
-                    getLocalUser();
-
-
-                if (localUser) {
-
-                    renderUser(
-                        localUser
-                    );
-
-                    showApp();
-
-
-                    loadDiscordServers();
-
-                    return true;
-
-                }
-
+                clearSession();
 
                 showError();
 
@@ -3359,10 +3403,6 @@
 
         // ==========================================
         // BOTONES DE SERVIDORES
-        //
-        // Usamos delegación de eventos para que
-        // los botones sigan funcionando aunque
-        // el contenido se vuelva a renderizar.
         // ==========================================
 
         botServersGrid.addEventListener(
@@ -3417,19 +3457,6 @@
                         serverName
                     );
 
-
-                    /*
-                     * IMPORTANTE:
-                     *
-                     * Estamos en:
-                     * /sunstersorg/dashboard/
-                     *
-                     * El panel del servidor está en:
-                     * /sunstersorg/dashboard/server/
-                     *
-                     * Por eso usamos una ruta absoluta
-                     * desde GitHub Pages.
-                     */
 
                     const serverURL =
                         "/sunstersorg/dashboard/server/?guild=" +
@@ -3682,6 +3709,19 @@
 
                     const data =
                         await response.json();
+
+
+                    if (
+                        response.status === 401
+                    ) {
+
+                        clearSession();
+
+                        showError();
+
+                        return;
+
+                    }
 
 
                     if (
