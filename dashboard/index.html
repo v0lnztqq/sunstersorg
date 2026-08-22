@@ -2037,6 +2037,7 @@
                     <button
                         class="mobile-toggle"
                         id="mobileToggle"
+                        type="button"
                     >
                         ☰
                     </button>
@@ -2572,8 +2573,6 @@
                 </div>
 
 
-                <!-- SELECTOR DE SERVIDOR -->
-
                 <div class="glass settings-server-selector">
 
                     <label
@@ -2604,14 +2603,10 @@
                 </div>
 
 
-                <!-- CONTENIDO -->
-
                 <div
                     class="settings-content"
                     id="settingsContent"
                 >
-
-                    <!-- CONFIGURACIÓN GENERAL -->
 
                     <div class="glass settings-card">
 
@@ -2701,8 +2696,6 @@
                     </div>
 
 
-                    <!-- MENSAJES -->
-
                     <div class="glass settings-card">
 
                         <div class="settings-card-header">
@@ -2784,8 +2777,6 @@
 
                     </div>
 
-
-                    <!-- MIEMBROS -->
 
                     <div class="glass settings-card">
 
@@ -2869,8 +2860,6 @@
                     </div>
 
 
-                    <!-- MODERACIÓN -->
-
                     <div class="glass settings-card">
 
                         <div class="settings-card-header">
@@ -2952,8 +2941,6 @@
 
                     </div>
 
-
-                    <!-- CAMBIOS -->
 
                     <div class="glass settings-card">
 
@@ -3037,8 +3024,6 @@
                     </div>
 
 
-                    <!-- GUARDAR -->
-
                     <div class="settings-save-area">
 
                         <div
@@ -3061,8 +3046,6 @@
 
                 </div>
 
-
-                <!-- ESTADO SIN SERVIDOR -->
 
                 <div
                     class="settings-empty"
@@ -3090,10 +3073,6 @@
 
     </div>
 
-
-    <!-- ================================
-         ERROR DE SESIÓN
-    ================================ -->
 
     <div
         class="error-screen"
@@ -3281,7 +3260,13 @@
             );
 
 
-        const settingLogsChannel =
+        /*
+         * IMPORTANTE:
+         * Se usa un nombre distinto para evitar
+         * cualquier referencia antigua a
+         * "settingsLogsChannel".
+         */
+        const settingsLogsChannelSelect =
             document.getElementById(
                 "settingLogsChannel"
             );
@@ -3347,6 +3332,53 @@
             );
 
 
+        // ==========================================
+        // VALIDACIÓN DE ELEMENTOS
+        // ==========================================
+
+        const requiredElements = {
+
+            settingsServerSelect,
+            settingsContent,
+            settingsEmpty,
+            settingLogsEnabled,
+            settingsLogsChannelSelect,
+            settingMessageDelete,
+            settingMessageEdit,
+            settingMemberAdd,
+            settingMemberRemove,
+            settingBan,
+            settingUnban,
+            settingNickname,
+            settingRole,
+            saveSettingsButton,
+            settingsSaveStatus
+
+        };
+
+
+        const missingElements =
+            Object.entries(requiredElements)
+                .filter(
+                    ([, element]) =>
+                        !element
+                )
+                .map(
+                    ([name]) =>
+                        name
+                );
+
+
+        if (missingElements.length) {
+
+            console.error(
+                "Faltan elementos del Dashboard:",
+                missingElements
+            );
+
+        }
+
+
         /*
          * IDs de servidores donde el bot
          * está instalado.
@@ -3356,8 +3388,7 @@
 
 
         /*
-         * Guardamos los servidores obtenidos
-         * desde Discord.
+         * Servidores obtenidos desde Discord.
          */
         let discordServersCache =
             [];
@@ -3399,6 +3430,27 @@
             localStorage.removeItem(
                 USER_KEY
             );
+
+        }
+
+
+        // ==========================================
+        // JSON SEGURO
+        // ==========================================
+
+        async function readJsonResponse(
+            response
+        ) {
+
+            try {
+
+                return await response.json();
+
+            } catch {
+
+                return null;
+
+            }
 
         }
 
@@ -3501,19 +3553,10 @@
                     );
 
 
-                let data = null;
-
-
-                try {
-
-                    data =
-                        await response.json();
-
-                } catch {
-
-                    data = null;
-
-                }
+                const data =
+                    await readJsonResponse(
+                        response
+                    );
 
 
                 if (
@@ -3843,19 +3886,10 @@
                     );
 
 
-                let data = null;
-
-
-                try {
-
-                    data =
-                        await response.json();
-
-                } catch {
-
-                    data = null;
-
-                }
+                const data =
+                    await readJsonResponse(
+                        response
+                    );
 
 
                 if (
@@ -3963,19 +3997,10 @@
                     );
 
 
-                let data = null;
-
-
-                try {
-
-                    data =
-                        await response.json();
-
-                } catch {
-
-                    data = null;
-
-                }
+                const data =
+                    await readJsonResponse(
+                        response
+                    );
 
 
                 if (
@@ -4008,7 +4033,9 @@
                 }
 
 
-                if (response.status === 401) {
+                if (
+                    response.status === 401
+                ) {
 
                     installedBotServerIds =
                         new Set();
@@ -4452,8 +4479,6 @@
                 }
 
 
-                // ADMINISTRAR
-
                 if (
                     action === "manage"
                 ) {
@@ -4473,8 +4498,6 @@
 
                 }
 
-
-                // AÑADIR BOT
 
                 if (
                     action === "add"
@@ -4700,7 +4723,9 @@
 
 
                     const data =
-                        await response.json();
+                        await readJsonResponse(
+                            response
+                        );
 
 
                     if (
@@ -4718,11 +4743,12 @@
 
                     if (
                         !response.ok ||
+                        !data ||
                         !data.url
                     ) {
 
                         throw new Error(
-                            data.error ||
+                            data?.error ||
                             "No se pudo iniciar la conexión con Discord."
                         );
 
@@ -4950,6 +4976,22 @@
             );
 
 
+            settingsEmpty.innerHTML = `
+                <div class="settings-empty-icon">
+                    ⚙️
+                </div>
+
+                <strong>
+                    Selecciona un servidor
+                </strong>
+
+                <p>
+                    Selecciona uno de tus servidores administrables
+                    para cargar la configuración del Bot SUNSTER'S.
+                </p>
+            `;
+
+
             settingsEmpty.style.display =
                 "block";
 
@@ -4987,6 +5029,15 @@
             if (!token) {
 
                 showError();
+
+                return;
+
+            }
+
+
+            if (!guildId) {
+
+                resetSettingsPanel();
 
                 return;
 
@@ -5057,38 +5108,16 @@
                 );
 
 
-                let settingsData =
-                    null;
+                const settingsData =
+                    await readJsonResponse(
+                        settingsResponse
+                    );
 
 
-                let channelsData =
-                    null;
-
-
-                try {
-
-                    settingsData =
-                        await settingsResponse.json();
-
-                } catch {
-
-                    settingsData =
-                        null;
-
-                }
-
-
-                try {
-
-                    channelsData =
-                        await channelsResponse.json();
-
-                } catch {
-
-                    channelsData =
-                        null;
-
-                }
+                const channelsData =
+                    await readJsonResponse(
+                        channelsResponse
+                    );
 
 
                 if (
@@ -5118,25 +5147,21 @@
 
 
                 /*
-                 * El Worker puede devolver:
-                 *
-                 * { ok: true, settings: {...} }
-                 *
-                 * o directamente:
-                 *
-                 * { ok: true, guild_id: "...", ... }
-                 *
-                 * Por eso soportamos ambos formatos.
+                 * Compatibilidad con varias formas
+                 * de respuesta del Worker.
                  */
 
                 const settings =
                     settingsData?.settings ||
+                    settingsData?.data?.settings ||
+                    settingsData?.data ||
                     settingsData;
 
 
                 if (
                     !settings ||
-                    typeof settings !== "object"
+                    typeof settings !== "object" ||
+                    Array.isArray(settings)
                 ) {
 
                     throw new Error(
@@ -5150,17 +5175,38 @@
                     settings;
 
 
+                /*
+                 * El Worker puede devolver:
+                 *
+                 * { channels: [...] }
+                 *
+                 * { data: { channels: [...] } }
+                 *
+                 * o directamente [...]
+                 */
+
+                const receivedChannels =
+                    Array.isArray(
+                        channelsData?.channels
+                    )
+                        ? channelsData.channels
+                        : Array.isArray(
+                            channelsData?.data?.channels
+                        )
+                            ? channelsData.data.channels
+                            : Array.isArray(
+                                channelsData
+                            )
+                                ? channelsData
+                                : [];
+
+
                 if (
-                    channelsResponse.ok &&
-                    channelsData
+                    channelsResponse.ok
                 ) {
 
                     currentServerChannels =
-                        Array.isArray(
-                            channelsData.channels
-                        )
-                            ? channelsData.channels
-                            : [];
+                        receivedChannels;
 
                 } else {
 
@@ -5246,23 +5292,43 @@
             selectedChannelId
         ) {
 
-            settingsLogsChannel.innerHTML = `
+            /*
+             * Verificación extra para evitar
+             * errores si el elemento no existe.
+             */
+            if (
+                !settingsLogsChannelSelect
+            ) {
+
+                console.error(
+                    "No existe #settingLogsChannel en el DOM."
+                );
+
+                return;
+
+            }
+
+
+            settingsLogsChannelSelect.innerHTML = `
                 <option value="">
                     Selecciona un canal...
                 </option>
             `;
 
 
-            if (!channels.length) {
+            if (
+                !Array.isArray(channels) ||
+                !channels.length
+            ) {
 
-                settingsLogsChannel.innerHTML += `
+                settingsLogsChannelSelect.innerHTML += `
                     <option value="" disabled>
                         No hay canales disponibles
                     </option>
                 `;
 
 
-                settingsLogsChannel.value =
+                settingsLogsChannelSelect.value =
                     "";
 
 
@@ -5271,44 +5337,54 @@
             }
 
 
-            channels.forEach(
-                channel => {
+            channels
+                .filter(Boolean)
+                .forEach(
+                    channel => {
 
-                    const option =
-                        document.createElement(
-                            "option"
+                        if (!channel.id) {
+                            return;
+                        }
+
+
+                        const option =
+                            document.createElement(
+                                "option"
+                            );
+
+
+                        option.value =
+                            String(
+                                channel.id
+                            );
+
+
+                        const channelName =
+                            channel.name ||
+                            "Canal sin nombre";
+
+
+                        option.textContent =
+                            "# " +
+                            channelName;
+
+
+                        settingsLogsChannelSelect.appendChild(
+                            option
                         );
 
-
-                    option.value =
-                        String(
-                            channel.id
-                        );
+                    }
+                );
 
 
-                    const channelName =
-                        channel.name ||
-                        "Canal sin nombre";
-
-
-                    option.textContent =
-                        "# " +
-                        channelName;
-
-
-                    settingsLogsChannel.appendChild(
-                        option
-                    );
-
-                }
-            );
-
-
-            if (selectedChannelId) {
+            if (
+                selectedChannelId
+            ) {
 
                 const exists =
                     channels.some(
                         channel =>
+                            channel &&
                             String(channel.id) ===
                             String(selectedChannelId)
                     );
@@ -5316,7 +5392,7 @@
 
                 if (exists) {
 
-                    settingsLogsChannel.value =
+                    settingsLogsChannelSelect.value =
                         String(
                             selectedChannelId
                         );
@@ -5443,12 +5519,12 @@
             );
 
 
-            settingLogsChannel.disabled =
+            settingsLogsChannelSelect.disabled =
                 !enabled;
 
 
             const channelRow =
-                settingLogsChannel.closest(
+                settingsLogsChannelSelect.closest(
                     ".settings-row"
                 );
 
@@ -5488,7 +5564,7 @@
         // ==========================================
 
         [
-            settingLogsChannel,
+            settingsLogsChannelSelect,
             settingMessageDelete,
             settingMessageEdit,
             settingMemberAdd,
@@ -5648,7 +5724,7 @@
 
 
                         logs_channel_id:
-                            settingLogsChannel.value ||
+                            settingsLogsChannelSelect.value ||
                             null,
 
 
@@ -5713,21 +5789,10 @@
                         );
 
 
-                    let data =
-                        null;
-
-
-                    try {
-
-                        data =
-                            await response.json();
-
-                    } catch {
-
-                        data =
-                            null;
-
-                    }
+                    const data =
+                        await readJsonResponse(
+                            response
+                        );
 
 
                     if (
@@ -5749,22 +5814,17 @@
 
                         throw new Error(
                             data?.error ||
+                            data?.message ||
                             "No se pudo guardar la configuración."
                         );
 
                     }
 
 
-                    /*
-                     * Actualizamos la copia local.
-                     *
-                     * Si la API devuelve settings usamos
-                     * esa información; de lo contrario
-                     * usamos lo que acabamos de guardar.
-                     */
-
                     currentServerSettings =
                         data?.settings ||
+                        data?.data?.settings ||
+                        data?.data ||
                         {
                             ...previousSettings,
                             ...body
@@ -5926,7 +5986,9 @@
                 params.get("discord");
 
 
-            if (discord === "connected") {
+            if (
+                discord === "connected"
+            ) {
 
                 setDiscordConnected();
 
