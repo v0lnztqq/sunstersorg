@@ -3024,6 +3024,122 @@
                     </div>
 
 
+                    <!-- ================================
+                         CANALES
+                    ================================ -->
+
+                    <div class="glass settings-card">
+
+                        <div class="settings-card-header">
+
+                            <div class="settings-card-title">
+
+                                <h3>
+                                    📁 Canales
+                                </h3>
+
+                                <p>
+                                    Decide qué acciones relacionadas
+                                    con canales serán registradas.
+                                </p>
+
+                            </div>
+
+                        </div>
+
+
+                        <div class="settings-row">
+
+                            <div class="settings-row-text">
+
+                                <div class="settings-row-title">
+                                    📁 Canales creados
+                                </div>
+
+                                <div class="settings-row-description">
+                                    Registra cuando se crea un nuevo canal
+                                    en el servidor.
+                                </div>
+
+                            </div>
+
+
+                            <label class="toggle">
+
+                                <input
+                                    type="checkbox"
+                                    id="settingChannelCreate"
+                                >
+
+                                <span class="toggle-slider"></span>
+
+                            </label>
+
+                        </div>
+
+
+                        <div class="settings-row">
+
+                            <div class="settings-row-text">
+
+                                <div class="settings-row-title">
+                                    🗑️ Canales eliminados
+                                </div>
+
+                                <div class="settings-row-description">
+                                    Registra cuando un canal es eliminado
+                                    del servidor.
+                                </div>
+
+                            </div>
+
+
+                            <label class="toggle">
+
+                                <input
+                                    type="checkbox"
+                                    id="settingChannelDelete"
+                                >
+
+                                <span class="toggle-slider"></span>
+
+                            </label>
+
+                        </div>
+
+
+                        <div class="settings-row">
+
+                            <div class="settings-row-text">
+
+                                <div class="settings-row-title">
+                                    ✏️ Canales modificados
+                                </div>
+
+                                <div class="settings-row-description">
+                                    Registra cambios en el nombre, categoría,
+                                    tema, NSFW, slowmode y otras propiedades.
+                                </div>
+
+                            </div>
+
+
+                            <label class="toggle">
+
+                                <input
+                                    type="checkbox"
+                                    id="settingChannelUpdate"
+                                >
+
+                                <span class="toggle-slider"></span>
+
+                            </label>
+
+                        </div>
+
+                    </div>
+
+
                     <div class="settings-save-area">
 
                         <div
@@ -3314,6 +3430,24 @@
             );
 
 
+        const settingChannelCreate =
+            document.getElementById(
+                "settingChannelCreate"
+            );
+
+
+        const settingChannelDelete =
+            document.getElementById(
+                "settingChannelDelete"
+            );
+
+
+        const settingChannelUpdate =
+            document.getElementById(
+                "settingChannelUpdate"
+            );
+
+
         const saveSettingsButton =
             document.getElementById(
                 "saveSettingsButton"
@@ -3345,6 +3479,9 @@
             settingUnban,
             settingNickname,
             settingRole,
+            settingChannelCreate,
+            settingChannelDelete,
+            settingChannelUpdate,
             saveSettingsButton,
             settingsSaveStatus
 
@@ -5461,6 +5598,7 @@
                             "Ocurrió un error al consultar el servidor."
                         )}
                     </p>
+
                 `;
 
 
@@ -5669,6 +5807,24 @@
                 );
 
 
+            settingChannelCreate.checked =
+                toBoolean(
+                    settings.log_channel_create
+                );
+
+
+            settingChannelDelete.checked =
+                toBoolean(
+                    settings.log_channel_delete
+                );
+
+
+            settingChannelUpdate.checked =
+                toBoolean(
+                    settings.log_channel_update
+                );
+
+
             updateLogControlsState();
 
         }
@@ -5693,7 +5849,10 @@
                 settingBan,
                 settingUnban,
                 settingNickname,
-                settingRole
+                settingRole,
+                settingChannelCreate,
+                settingChannelDelete,
+                settingChannelUpdate
 
             ];
 
@@ -5781,7 +5940,10 @@
             settingBan,
             settingUnban,
             settingNickname,
-            settingRole
+            settingRole,
+            settingChannelCreate,
+            settingChannelDelete,
+            settingChannelUpdate
 
         ].forEach(
             element => {
@@ -5975,7 +6137,19 @@
 
 
                         log_role:
-                            settingRole.checked
+                            settingRole.checked,
+
+
+                        log_channel_create:
+                            settingChannelCreate.checked,
+
+
+                        log_channel_delete:
+                            settingChannelDelete.checked,
+
+
+                        log_channel_update:
+                            settingChannelUpdate.checked
 
                     };
 
