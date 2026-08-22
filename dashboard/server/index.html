@@ -581,8 +581,79 @@
         }
 
         /* ==================================================
-           TOGGLE
+           LOGS
         ================================================== */
+
+        .logs-section {
+            grid-column: 1 / -1;
+
+            margin-top: 6px;
+
+            padding: 18px;
+
+            border-radius: 14px;
+
+            background:
+                rgba(255,255,255,0.018);
+
+            border:
+                1px solid
+                rgba(255,255,255,0.06);
+        }
+
+        .logs-section-header {
+            margin-bottom: 15px;
+        }
+
+        .logs-section-title {
+            font-size: 16px;
+
+            font-weight: 700;
+
+            margin-bottom: 4px;
+        }
+
+        .logs-section-description {
+            color: #718398;
+
+            font-size: 12px;
+
+            line-height: 1.5;
+        }
+
+        .logs-master {
+            margin-bottom: 14px;
+        }
+
+        .logs-options {
+            display: grid;
+
+            grid-template-columns:
+                repeat(
+                    auto-fit,
+                    minmax(260px, 1fr)
+                );
+
+            gap: 10px;
+        }
+
+        .logs-category {
+            grid-column: 1 / -1;
+
+            margin-top: 8px;
+
+            padding-top: 10px;
+
+            color: #7f91a4;
+
+            font-size: 11px;
+
+            font-weight: 700;
+
+            text-transform: uppercase;
+
+            letter-spacing: 0.7px;
+        }
 
         .toggle-wrapper {
             display: flex;
@@ -603,6 +674,17 @@
             border:
                 1px solid
                 rgba(255,255,255,0.06);
+
+            transition: 0.2s ease;
+        }
+
+        .toggle-wrapper:hover {
+            border-color:
+                rgba(40,169,255,0.20);
+        }
+
+        .toggle-wrapper.is-disabled {
+            opacity: 0.55;
         }
 
         .toggle-info {
@@ -623,6 +705,8 @@
             color: #6f8194;
 
             font-size: 11px;
+
+            line-height: 1.4;
         }
 
         .switch {
@@ -692,6 +776,10 @@
 
             background:
                 #28a9ff;
+        }
+
+        .switch input:disabled + .slider {
+            cursor: not-allowed;
         }
 
         /* ==================================================
@@ -985,6 +1073,11 @@
                 font-size: 21px;
             }
 
+            .logs-options {
+                grid-template-columns:
+                    1fr;
+            }
+
         }
 
     </style>
@@ -1193,7 +1286,7 @@
                         </div>
 
 
-                        <!-- REGISTROS -->
+                        <!-- REGISTROS PRINCIPALES -->
 
                         <div class="form-group">
 
@@ -1201,7 +1294,10 @@
                                 Registros
                             </span>
 
-                            <div class="toggle-wrapper">
+                            <div
+                                id="logsMasterWrapper"
+                                class="toggle-wrapper"
+                            >
 
                                 <div class="toggle-info">
 
@@ -1210,7 +1306,7 @@
                                     </div>
 
                                     <div class="toggle-description">
-                                        Permite que el bot registre eventos.
+                                        Activa o desactiva todos los registros del servidor.
                                     </div>
 
                                 </div>
@@ -1256,6 +1352,360 @@
                             <div class="form-help">
                                 Selecciona el canal donde SUNSTER'S Bot
                                 enviará los registros del servidor.
+                            </div>
+
+                        </div>
+
+
+                        <!-- ==================================================
+                             REGISTROS INDIVIDUALES
+                        ================================================== -->
+
+                        <div class="logs-section">
+
+                            <div class="logs-section-header">
+
+                                <div class="logs-section-title">
+                                    📋 Registros individuales
+                                </div>
+
+                                <div class="logs-section-description">
+                                    Decide exactamente qué eventos quieres que SUNSTER'S Bot registre.
+                                    Estos controles quedan desactivados cuando los registros generales están apagados.
+                                </div>
+
+                            </div>
+
+
+                            <div class="logs-options">
+
+                                <div class="logs-category">
+                                    💬 Mensajes
+                                </div>
+
+
+                                <div class="toggle-wrapper">
+
+                                    <div class="toggle-info">
+
+                                        <div class="toggle-title">
+                                            Mensajes eliminados
+                                        </div>
+
+                                        <div class="toggle-description">
+                                            Registra cuando un mensaje es eliminado.
+                                        </div>
+
+                                    </div>
+
+                                    <label class="switch">
+
+                                        <input
+                                            id="logMessageDelete"
+                                            type="checkbox"
+                                        >
+
+                                        <span class="slider"></span>
+
+                                    </label>
+
+                                </div>
+
+
+                                <div class="toggle-wrapper">
+
+                                    <div class="toggle-info">
+
+                                        <div class="toggle-title">
+                                            Mensajes editados
+                                        </div>
+
+                                        <div class="toggle-description">
+                                            Registra cambios realizados en mensajes.
+                                        </div>
+
+                                    </div>
+
+                                    <label class="switch">
+
+                                        <input
+                                            id="logMessageEdit"
+                                            type="checkbox"
+                                        >
+
+                                        <span class="slider"></span>
+
+                                    </label>
+
+                                </div>
+
+
+                                <div class="logs-category">
+                                    👥 Miembros
+                                </div>
+
+
+                                <div class="toggle-wrapper">
+
+                                    <div class="toggle-info">
+
+                                        <div class="toggle-title">
+                                            Miembros entrantes
+                                        </div>
+
+                                        <div class="toggle-description">
+                                            Registra cuando un usuario entra al servidor.
+                                        </div>
+
+                                    </div>
+
+                                    <label class="switch">
+
+                                        <input
+                                            id="logMemberAdd"
+                                            type="checkbox"
+                                        >
+
+                                        <span class="slider"></span>
+
+                                    </label>
+
+                                </div>
+
+
+                                <div class="toggle-wrapper">
+
+                                    <div class="toggle-info">
+
+                                        <div class="toggle-title">
+                                            Miembros salientes
+                                        </div>
+
+                                        <div class="toggle-description">
+                                            Registra cuando un usuario abandona el servidor.
+                                        </div>
+
+                                    </div>
+
+                                    <label class="switch">
+
+                                        <input
+                                            id="logMemberRemove"
+                                            type="checkbox"
+                                        >
+
+                                        <span class="slider"></span>
+
+                                    </label>
+
+                                </div>
+
+
+                                <div class="toggle-wrapper">
+
+                                    <div class="toggle-info">
+
+                                        <div class="toggle-title">
+                                            Baneos
+                                        </div>
+
+                                        <div class="toggle-description">
+                                            Registra cuando un usuario es baneado.
+                                        </div>
+
+                                    </div>
+
+                                    <label class="switch">
+
+                                        <input
+                                            id="logBan"
+                                            type="checkbox"
+                                        >
+
+                                        <span class="slider"></span>
+
+                                    </label>
+
+                                </div>
+
+
+                                <div class="toggle-wrapper">
+
+                                    <div class="toggle-info">
+
+                                        <div class="toggle-title">
+                                            Desbaneos
+                                        </div>
+
+                                        <div class="toggle-description">
+                                            Registra cuando un usuario es desbaneado.
+                                        </div>
+
+                                    </div>
+
+                                    <label class="switch">
+
+                                        <input
+                                            id="logUnban"
+                                            type="checkbox"
+                                        >
+
+                                        <span class="slider"></span>
+
+                                    </label>
+
+                                </div>
+
+
+                                <div class="logs-category">
+                                    📝 Cambios de usuario
+                                </div>
+
+
+                                <div class="toggle-wrapper">
+
+                                    <div class="toggle-info">
+
+                                        <div class="toggle-title">
+                                            Cambios de apodo
+                                        </div>
+
+                                        <div class="toggle-description">
+                                            Registra cambios de nickname de los miembros.
+                                        </div>
+
+                                    </div>
+
+                                    <label class="switch">
+
+                                        <input
+                                            id="logNickname"
+                                            type="checkbox"
+                                        >
+
+                                        <span class="slider"></span>
+
+                                    </label>
+
+                                </div>
+
+
+                                <div class="toggle-wrapper">
+
+                                    <div class="toggle-info">
+
+                                        <div class="toggle-title">
+                                            Cambios de roles
+                                        </div>
+
+                                        <div class="toggle-description">
+                                            Registra cuando se añaden o quitan roles.
+                                        </div>
+
+                                    </div>
+
+                                    <label class="switch">
+
+                                        <input
+                                            id="logRole"
+                                            type="checkbox"
+                                        >
+
+                                        <span class="slider"></span>
+
+                                    </label>
+
+                                </div>
+
+
+                                <div class="logs-category">
+                                    📁 Canales
+                                </div>
+
+
+                                <div class="toggle-wrapper">
+
+                                    <div class="toggle-info">
+
+                                        <div class="toggle-title">
+                                            Canales creados
+                                        </div>
+
+                                        <div class="toggle-description">
+                                            Registra cuando se crea un nuevo canal.
+                                        </div>
+
+                                    </div>
+
+                                    <label class="switch">
+
+                                        <input
+                                            id="logChannelCreate"
+                                            type="checkbox"
+                                        >
+
+                                        <span class="slider"></span>
+
+                                    </label>
+
+                                </div>
+
+
+                                <div class="toggle-wrapper">
+
+                                    <div class="toggle-info">
+
+                                        <div class="toggle-title">
+                                            Canales eliminados
+                                        </div>
+
+                                        <div class="toggle-description">
+                                            Registra cuando se elimina un canal.
+                                        </div>
+
+                                    </div>
+
+                                    <label class="switch">
+
+                                        <input
+                                            id="logChannelDelete"
+                                            type="checkbox"
+                                        >
+
+                                        <span class="slider"></span>
+
+                                    </label>
+
+                                </div>
+
+
+                                <div class="toggle-wrapper">
+
+                                    <div class="toggle-info">
+
+                                        <div class="toggle-title">
+                                            Canales modificados
+                                        </div>
+
+                                        <div class="toggle-description">
+                                            Registra cambios en nombre, categoría, tema, NSFW, slowmode y otras propiedades.
+                                        </div>
+
+                                    </div>
+
+                                    <label class="switch">
+
+                                        <input
+                                            id="logChannelUpdate"
+                                            type="checkbox"
+                                        >
+
+                                        <span class="slider"></span>
+
+                                    </label>
+
+                                </div>
+
                             </div>
 
                         </div>
@@ -1503,10 +1953,91 @@
                 "logsEnabledInput"
             );
 
+        const logsMasterWrapper =
+            document.getElementById(
+                "logsMasterWrapper"
+            );
+
         const logsChannelInput =
             document.getElementById(
                 "logsChannelInput"
             );
+
+
+        /* ==================================================
+           REGISTROS INDIVIDUALES
+        ================================================== */
+
+        const logMessageDelete =
+            document.getElementById(
+                "logMessageDelete"
+            );
+
+        const logMessageEdit =
+            document.getElementById(
+                "logMessageEdit"
+            );
+
+        const logMemberAdd =
+            document.getElementById(
+                "logMemberAdd"
+            );
+
+        const logMemberRemove =
+            document.getElementById(
+                "logMemberRemove"
+            );
+
+        const logBan =
+            document.getElementById(
+                "logBan"
+            );
+
+        const logUnban =
+            document.getElementById(
+                "logUnban"
+            );
+
+        const logNickname =
+            document.getElementById(
+                "logNickname"
+            );
+
+        const logRole =
+            document.getElementById(
+                "logRole"
+            );
+
+        const logChannelCreate =
+            document.getElementById(
+                "logChannelCreate"
+            );
+
+        const logChannelDelete =
+            document.getElementById(
+                "logChannelDelete"
+            );
+
+        const logChannelUpdate =
+            document.getElementById(
+                "logChannelUpdate"
+            );
+
+
+        const individualLogInputs = [
+            logMessageDelete,
+            logMessageEdit,
+            logMemberAdd,
+            logMemberRemove,
+            logBan,
+            logUnban,
+            logNickname,
+            logRole,
+            logChannelCreate,
+            logChannelDelete,
+            logChannelUpdate
+        ];
+
 
         const prefixValue =
             document.getElementById(
@@ -1652,6 +2183,38 @@
 
 
         /* ==================================================
+           NORMALIZAR BOOLEANOS
+        ================================================== */
+
+        function toBoolean(
+            value,
+            fallback = false
+        ) {
+
+            if (
+                value === true ||
+                value === 1 ||
+                value === "1" ||
+                value === "true"
+            ) {
+                return true;
+            }
+
+            if (
+                value === false ||
+                value === 0 ||
+                value === "0" ||
+                value === "false"
+            ) {
+                return false;
+            }
+
+            return fallback;
+
+        }
+
+
+        /* ==================================================
            ICONO DEL SERVIDOR
         ================================================== */
 
@@ -1741,6 +2304,54 @@
                     "flex";
 
             }
+
+        }
+
+
+        /* ==================================================
+           ESTADO DE REGISTROS INDIVIDUALES
+        ================================================== */
+
+        function updateIndividualLogsState() {
+
+            const enabled =
+                logsEnabledInput.checked;
+
+
+            individualLogInputs.forEach(
+                function (input) {
+
+                    if (!input) {
+                        return;
+                    }
+
+                    input.disabled =
+                        !enabled;
+
+
+                    const wrapper =
+                        input.closest(
+                            ".toggle-wrapper"
+                        );
+
+
+                    if (wrapper) {
+
+                        wrapper.classList.toggle(
+                            "is-disabled",
+                            !enabled
+                        );
+
+                    }
+
+                }
+            );
+
+
+            logsMasterWrapper.classList.toggle(
+                "is-disabled",
+                false
+            );
 
         }
 
@@ -1900,10 +2511,6 @@
                     "";
 
 
-                /* ==========================================
-                   OPCIÓN VACÍA
-                ========================================== */
-
                 const emptyOption =
                     document.createElement(
                         "option"
@@ -1920,10 +2527,6 @@
                 );
 
 
-                /* ==========================================
-                   SIN CANALES
-                ========================================== */
-
                 if (
                     channels.length === 0
                 ) {
@@ -1938,10 +2541,6 @@
 
                 }
 
-
-                /* ==========================================
-                   CANALES
-                ========================================== */
 
                 channels.forEach(
                     function (channel) {
@@ -2018,10 +2617,6 @@
                     }
                 );
 
-
-                /* ==========================================
-                   SELECCIONAR GUARDADO
-                ========================================== */
 
                 const selectedExists =
                     channels.some(
@@ -2120,9 +2715,10 @@
 
 
             const logsEnabled =
-                safeSettings.logs_enabled === true ||
-                safeSettings.logs_enabled === 1 ||
-                safeSettings.logs_enabled === "1";
+                toBoolean(
+                    safeSettings.logs_enabled,
+                    false
+                );
 
 
             const logsChannelId =
@@ -2139,6 +2735,80 @@
 
             logsEnabledInput.checked =
                 logsEnabled;
+
+
+            /* ------------------------------------------
+               REGISTROS INDIVIDUALES
+            ------------------------------------------ */
+
+            logMessageDelete.checked =
+                toBoolean(
+                    safeSettings.log_message_delete,
+                    true
+                );
+
+            logMessageEdit.checked =
+                toBoolean(
+                    safeSettings.log_message_edit,
+                    true
+                );
+
+            logMemberAdd.checked =
+                toBoolean(
+                    safeSettings.log_member_add,
+                    true
+                );
+
+            logMemberRemove.checked =
+                toBoolean(
+                    safeSettings.log_member_remove,
+                    true
+                );
+
+            logBan.checked =
+                toBoolean(
+                    safeSettings.log_ban,
+                    true
+                );
+
+            logUnban.checked =
+                toBoolean(
+                    safeSettings.log_unban,
+                    true
+                );
+
+            logNickname.checked =
+                toBoolean(
+                    safeSettings.log_nickname,
+                    true
+                );
+
+            logRole.checked =
+                toBoolean(
+                    safeSettings.log_role,
+                    true
+                );
+
+            logChannelCreate.checked =
+                toBoolean(
+                    safeSettings.log_channel_create,
+                    true
+                );
+
+            logChannelDelete.checked =
+                toBoolean(
+                    safeSettings.log_channel_delete,
+                    true
+                );
+
+            logChannelUpdate.checked =
+                toBoolean(
+                    safeSettings.log_channel_update,
+                    true
+                );
+
+
+            updateIndividualLogsState();
 
 
             /* ------------------------------------------
@@ -2176,10 +2846,15 @@
             if (logsChannelId) {
 
                 const selectedOption =
-                    logsChannelInput.querySelector(
-                        'option[value="' +
-                        logsChannelId +
-                        '"]'
+                    Array.from(
+                        logsChannelInput.options
+                    ).find(
+                        function (option) {
+                            return (
+                                option.value ===
+                                logsChannelId
+                            );
+                        }
                     );
 
 
@@ -2730,6 +3405,15 @@
             logsChannelInput.disabled =
                 true;
 
+            individualLogInputs.forEach(
+                function (input) {
+
+                    input.disabled =
+                        true;
+
+                }
+            );
+
             saveSettings.textContent =
                 "⏳ Guardando...";
 
@@ -2759,6 +3443,7 @@
 
                             body:
                                 JSON.stringify({
+
                                     prefix:
                                         prefix,
 
@@ -2767,7 +3452,41 @@
 
                                     logs_channel_id:
                                         logsChannelId ||
-                                        null
+                                        null,
+
+                                    log_message_delete:
+                                        logMessageDelete.checked,
+
+                                    log_message_edit:
+                                        logMessageEdit.checked,
+
+                                    log_member_add:
+                                        logMemberAdd.checked,
+
+                                    log_member_remove:
+                                        logMemberRemove.checked,
+
+                                    log_ban:
+                                        logBan.checked,
+
+                                    log_unban:
+                                        logUnban.checked,
+
+                                    log_nickname:
+                                        logNickname.checked,
+
+                                    log_role:
+                                        logRole.checked,
+
+                                    log_channel_create:
+                                        logChannelCreate.checked,
+
+                                    log_channel_delete:
+                                        logChannelDelete.checked,
+
+                                    log_channel_update:
+                                        logChannelUpdate.checked
+
                                 })
                         }
                     );
@@ -2801,7 +3520,6 @@
                     )
                 ) {
                     return;
-
                 }
 
 
@@ -2942,10 +3660,7 @@
                 refreshSettings.disabled =
                     false;
 
-                /*
-                 * Si los canales ya fueron cargados,
-                 * volvemos a habilitar el selector.
-                 */
+
                 if (
                     logsChannelInput.options.length > 1
                 ) {
@@ -2956,12 +3671,29 @@
                 }
 
 
+                updateIndividualLogsState();
+
+
                 saveSettings.textContent =
                     "💾 Guardar cambios";
 
             }
 
         }
+
+
+        /* ==================================================
+           EVENTO REGISTROS PRINCIPALES
+        ================================================== */
+
+        logsEnabledInput.addEventListener(
+            "change",
+            function () {
+
+                updateIndividualLogsState();
+
+            }
+        );
 
 
         /* ==================================================
@@ -3090,6 +3822,8 @@
         /* ==================================================
            INICIO
         ================================================== */
+
+        updateIndividualLogsState();
 
         loadServer();
 
