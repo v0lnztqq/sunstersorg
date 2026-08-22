@@ -81,8 +81,16 @@
         }
 
 
-        button {
+        button,
+        input,
+        select {
             font: inherit;
+        }
+
+
+        button:disabled {
+            cursor: not-allowed;
+            opacity: .55;
         }
 
 
@@ -1307,6 +1315,342 @@
 
 
         /* ================================
+           SETTINGS
+        ================================ */
+
+        .settings-header {
+            margin-bottom: 20px;
+        }
+
+
+        .settings-header h2 {
+            font-size: 1.55rem;
+        }
+
+
+        .settings-header p {
+            margin-top: 6px;
+            color: var(--muted);
+            font-size: .86rem;
+            line-height: 1.6;
+        }
+
+
+        .settings-server-selector {
+            padding: 22px;
+            margin-bottom: 18px;
+        }
+
+
+        .settings-label {
+            display: block;
+            margin-bottom: 8px;
+            color: var(--muted);
+            font-size: .76rem;
+            font-weight: 600;
+        }
+
+
+        .settings-select {
+            width: 100%;
+            min-height: 46px;
+
+            padding: 0 13px;
+
+            border: 1px solid var(--border);
+            border-radius: 12px;
+
+            outline: none;
+
+            color: var(--text);
+            background: rgba(4,7,11,.72);
+
+            cursor: pointer;
+
+            font-size: .84rem;
+
+            transition: .2s ease;
+        }
+
+
+        .settings-select:focus {
+            border-color: var(--border-hover);
+            box-shadow: 0 0 0 3px rgba(40,169,255,.06);
+        }
+
+
+        .settings-select option {
+            color: white;
+            background: #071019;
+        }
+
+
+        .settings-server-help {
+            margin-top: 8px;
+            color: var(--muted-2);
+            font-size: .7rem;
+            line-height: 1.5;
+        }
+
+
+        .settings-content {
+            display: none;
+        }
+
+
+        .settings-content.visible {
+            display: block;
+        }
+
+
+        .settings-card {
+            padding: 24px;
+            margin-bottom: 18px;
+        }
+
+
+        .settings-card-header {
+            display: flex;
+            align-items: flex-start;
+            justify-content: space-between;
+            gap: 20px;
+            margin-bottom: 20px;
+        }
+
+
+        .settings-card-title h3 {
+            font-size: 1.08rem;
+        }
+
+
+        .settings-card-title p {
+            margin-top: 5px;
+            color: var(--muted);
+            font-size: .78rem;
+            line-height: 1.5;
+        }
+
+
+        .settings-section-title {
+            margin-bottom: 13px;
+            color: var(--blue-light);
+            font-size: .72rem;
+            font-weight: 700;
+            letter-spacing: 1.3px;
+            text-transform: uppercase;
+        }
+
+
+        .settings-row {
+            min-height: 65px;
+
+            display: flex;
+            align-items: center;
+            justify-content: space-between;
+
+            gap: 18px;
+
+            padding: 14px 0;
+
+            border-bottom: 1px solid rgba(40,169,255,.08);
+        }
+
+
+        .settings-row:first-of-type {
+            padding-top: 0;
+        }
+
+
+        .settings-row:last-child {
+            padding-bottom: 0;
+            border-bottom: 0;
+        }
+
+
+        .settings-row-text {
+            min-width: 0;
+        }
+
+
+        .settings-row-title {
+            font-size: .86rem;
+            font-weight: 600;
+        }
+
+
+        .settings-row-description {
+            margin-top: 4px;
+            color: var(--muted-2);
+            font-size: .7rem;
+            line-height: 1.45;
+        }
+
+
+        .settings-row.disabled {
+            opacity: .42;
+        }
+
+
+        /* TOGGLE */
+
+        .toggle {
+            position: relative;
+
+            width: 48px;
+            height: 27px;
+
+            flex-shrink: 0;
+        }
+
+
+        .toggle input {
+            position: absolute;
+            width: 0;
+            height: 0;
+            opacity: 0;
+        }
+
+
+        .toggle-slider {
+            position: absolute;
+            inset: 0;
+
+            border: 1px solid rgba(255,255,255,.08);
+            border-radius: 999px;
+
+            background: rgba(255,255,255,.08);
+
+            cursor: pointer;
+
+            transition: .2s ease;
+        }
+
+
+        .toggle-slider::before {
+            content: "";
+
+            position: absolute;
+
+            width: 19px;
+            height: 19px;
+
+            top: 3px;
+            left: 3px;
+
+            border-radius: 50%;
+
+            background: #aab7c5;
+
+            transition: .2s ease;
+        }
+
+
+        .toggle input:checked + .toggle-slider {
+            background: rgba(40,169,255,.28);
+            border-color: rgba(40,169,255,.45);
+        }
+
+
+        .toggle input:checked + .toggle-slider::before {
+            transform: translateX(21px);
+            background: var(--blue);
+            box-shadow: 0 0 12px rgba(40,169,255,.45);
+        }
+
+
+        .toggle input:disabled + .toggle-slider {
+            cursor: not-allowed;
+        }
+
+
+        .settings-save-area {
+            display: flex;
+            align-items: center;
+            justify-content: space-between;
+            gap: 15px;
+
+            padding: 18px 20px;
+
+            border: 1px solid var(--border);
+            border-radius: 15px;
+
+            background: rgba(40,169,255,.035);
+        }
+
+
+        .settings-save-status {
+            color: var(--muted);
+            font-size: .76rem;
+            line-height: 1.4;
+        }
+
+
+        .settings-save-status.success {
+            color: #55e89a;
+        }
+
+
+        .settings-save-status.error {
+            color: #ff7d7d;
+        }
+
+
+        .settings-loading {
+            padding: 50px 25px;
+
+            text-align: center;
+
+            border: 1px solid var(--border);
+            border-radius: 15px;
+
+            color: var(--muted);
+
+            background: rgba(40,169,255,.025);
+        }
+
+
+        .settings-loading .loading-spinner {
+            margin-bottom: 12px;
+        }
+
+
+        .settings-empty {
+            padding: 45px 25px;
+
+            text-align: center;
+
+            border: 1px dashed var(--border);
+            border-radius: 15px;
+
+            color: var(--muted);
+
+            background: rgba(40,169,255,.025);
+        }
+
+
+        .settings-empty-icon {
+            margin-bottom: 10px;
+            font-size: 1.8rem;
+        }
+
+
+        .settings-empty strong {
+            display: block;
+            color: var(--text);
+            font-size: .95rem;
+        }
+
+
+        .settings-empty p {
+            max-width: 550px;
+            margin: 7px auto 0;
+
+            font-size: .78rem;
+            line-height: 1.6;
+        }
+
+
+        /* ================================
            EMPTY
         ================================ */
 
@@ -1554,6 +1898,22 @@
                 margin-top: 5px;
             }
 
+
+            .settings-save-area {
+                align-items: stretch;
+                flex-direction: column;
+            }
+
+
+            .settings-save-area .primary-button {
+                width: 100%;
+            }
+
+
+            .settings-card-header {
+                flex-direction: column;
+            }
+
         }
 
     </style>
@@ -1719,6 +2079,10 @@
             </div>
 
 
+            <!-- ================================
+                 INICIO
+            ================================ -->
+
             <section
                 class="panel active"
                 id="panel-home"
@@ -1801,6 +2165,10 @@
 
             </section>
 
+
+            <!-- ================================
+                 CUENTA
+            ================================ -->
 
             <section
                 class="panel"
@@ -1899,6 +2267,10 @@
             </section>
 
 
+            <!-- ================================
+                 DISCORD
+            ================================ -->
+
             <section
                 class="panel"
                 id="panel-discord"
@@ -1983,6 +2355,10 @@
             </section>
 
 
+            <!-- ================================
+                 SERVIDORES
+            ================================ -->
+
             <section
                 class="panel"
                 id="panel-servers"
@@ -2035,6 +2411,10 @@
 
             </section>
 
+
+            <!-- ================================
+                 BOT
+            ================================ -->
 
             <section
                 class="panel"
@@ -2169,39 +2549,551 @@
             </section>
 
 
+            <!-- ================================
+                 CONFIGURACIÓN
+            ================================ -->
+
             <section
                 class="panel"
                 id="panel-settings"
             >
 
-                <div class="glass empty-panel">
+                <div class="settings-header">
 
-                    <div>
+                    <h2>
+                        Configuración del servidor
+                    </h2>
 
-                        <div class="empty-icon">
-                            ⚙
+                    <p>
+                        Configura el comportamiento del Bot SUNSTER'S
+                        para cada servidor de Discord que administras.
+                    </p>
+
+                </div>
+
+
+                <!-- SELECTOR DE SERVIDOR -->
+
+                <div class="glass settings-server-selector">
+
+                    <label
+                        class="settings-label"
+                        for="settingsServerSelect"
+                    >
+                        Servidor
+                    </label>
+
+
+                    <select
+                        class="settings-select"
+                        id="settingsServerSelect"
+                    >
+
+                        <option value="">
+                            Selecciona un servidor...
+                        </option>
+
+                    </select>
+
+
+                    <div class="settings-server-help">
+                        Solo aparecen servidores donde tienes permisos de
+                        administración y donde SUNSTER'S Bot está instalado.
+                    </div>
+
+                </div>
+
+
+                <!-- CONTENIDO -->
+
+                <div
+                    class="settings-content"
+                    id="settingsContent"
+                >
+
+                    <!-- CONFIGURACIÓN GENERAL -->
+
+                    <div class="glass settings-card">
+
+                        <div class="settings-card-header">
+
+                            <div class="settings-card-title">
+
+                                <h3>
+                                    ⚙️ Sistema de logs
+                                </h3>
+
+                                <p>
+                                    Controla si SUNSTER'S Bot registra
+                                    las acciones del servidor.
+                                </p>
+
+                            </div>
+
                         </div>
 
-                        <h3>
-                            Configuración
-                        </h3>
 
-                        <p>
-                            Aquí podrás administrar las preferencias
-                            de tu cuenta SUNSTER'S.
-                        </p>
+                        <div class="settings-section-title">
+                            Configuración general
+                        </div>
+
+
+                        <div class="settings-row">
+
+                            <div class="settings-row-text">
+
+                                <div class="settings-row-title">
+                                    Activar sistema de logs
+                                </div>
+
+                                <div class="settings-row-description">
+                                    Activa o desactiva todos los registros
+                                    del servidor.
+                                </div>
+
+                            </div>
+
+
+                            <label class="toggle">
+
+                                <input
+                                    type="checkbox"
+                                    id="settingLogsEnabled"
+                                >
+
+                                <span class="toggle-slider"></span>
+
+                            </label>
+
+                        </div>
+
+
+                        <div class="settings-row">
+
+                            <div class="settings-row-text">
+
+                                <div class="settings-row-title">
+                                    Canal de logs
+                                </div>
+
+                                <div class="settings-row-description">
+                                    Canal donde SUNSTER'S Bot enviará
+                                    los registros.
+                                </div>
+
+                            </div>
+
+
+                            <select
+                                class="settings-select"
+                                id="settingLogsChannel"
+                                style="max-width:260px;"
+                            >
+
+                                <option value="">
+                                    Selecciona un canal...
+                                </option>
+
+                            </select>
+
+                        </div>
+
+                    </div>
+
+
+                    <!-- MENSAJES -->
+
+                    <div class="glass settings-card">
+
+                        <div class="settings-card-header">
+
+                            <div class="settings-card-title">
+
+                                <h3>
+                                    💬 Mensajes
+                                </h3>
+
+                                <p>
+                                    Decide qué acciones relacionadas
+                                    con mensajes serán registradas.
+                                </p>
+
+                            </div>
+
+                        </div>
+
+
+                        <div class="settings-row">
+
+                            <div class="settings-row-text">
+
+                                <div class="settings-row-title">
+                                    🗑️ Mensajes eliminados
+                                </div>
+
+                                <div class="settings-row-description">
+                                    Registra cuando un mensaje es eliminado
+                                    en el servidor.
+                                </div>
+
+                            </div>
+
+
+                            <label class="toggle">
+
+                                <input
+                                    type="checkbox"
+                                    id="settingMessageDelete"
+                                >
+
+                                <span class="toggle-slider"></span>
+
+                            </label>
+
+                        </div>
+
+
+                        <div class="settings-row">
+
+                            <div class="settings-row-text">
+
+                                <div class="settings-row-title">
+                                    ✏️ Mensajes editados
+                                </div>
+
+                                <div class="settings-row-description">
+                                    Registra cuando un mensaje existente
+                                    es editado.
+                                </div>
+
+                            </div>
+
+
+                            <label class="toggle">
+
+                                <input
+                                    type="checkbox"
+                                    id="settingMessageEdit"
+                                >
+
+                                <span class="toggle-slider"></span>
+
+                            </label>
+
+                        </div>
+
+                    </div>
+
+
+                    <!-- MIEMBROS -->
+
+                    <div class="glass settings-card">
+
+                        <div class="settings-card-header">
+
+                            <div class="settings-card-title">
+
+                                <h3>
+                                    👥 Miembros
+                                </h3>
+
+                                <p>
+                                    Registra las entradas y salidas
+                                    de usuarios del servidor.
+                                </p>
+
+                            </div>
+
+                        </div>
+
+
+                        <div class="settings-row">
+
+                            <div class="settings-row-text">
+
+                                <div class="settings-row-title">
+                                    👋 Miembros que entran
+                                </div>
+
+                                <div class="settings-row-description">
+                                    Registra cuando un nuevo miembro
+                                    entra al servidor.
+                                </div>
+
+                            </div>
+
+
+                            <label class="toggle">
+
+                                <input
+                                    type="checkbox"
+                                    id="settingMemberAdd"
+                                >
+
+                                <span class="toggle-slider"></span>
+
+                            </label>
+
+                        </div>
+
+
+                        <div class="settings-row">
+
+                            <div class="settings-row-text">
+
+                                <div class="settings-row-title">
+                                    🚪 Miembros que salen
+                                </div>
+
+                                <div class="settings-row-description">
+                                    Registra cuando un miembro abandona
+                                    el servidor.
+                                </div>
+
+                            </div>
+
+
+                            <label class="toggle">
+
+                                <input
+                                    type="checkbox"
+                                    id="settingMemberRemove"
+                                >
+
+                                <span class="toggle-slider"></span>
+
+                            </label>
+
+                        </div>
+
+                    </div>
+
+
+                    <!-- MODERACIÓN -->
+
+                    <div class="glass settings-card">
+
+                        <div class="settings-card-header">
+
+                            <div class="settings-card-title">
+
+                                <h3>
+                                    🛡️ Moderación
+                                </h3>
+
+                                <p>
+                                    Registra las acciones de moderación
+                                    realizadas en el servidor.
+                                </p>
+
+                            </div>
+
+                        </div>
+
+
+                        <div class="settings-row">
+
+                            <div class="settings-row-text">
+
+                                <div class="settings-row-title">
+                                    🔨 Baneos
+                                </div>
+
+                                <div class="settings-row-description">
+                                    Registra cuando un usuario es baneado
+                                    y quién realizó la acción.
+                                </div>
+
+                            </div>
+
+
+                            <label class="toggle">
+
+                                <input
+                                    type="checkbox"
+                                    id="settingBan"
+                                >
+
+                                <span class="toggle-slider"></span>
+
+                            </label>
+
+                        </div>
+
+
+                        <div class="settings-row">
+
+                            <div class="settings-row-text">
+
+                                <div class="settings-row-title">
+                                    🔓 Desbaneos
+                                </div>
+
+                                <div class="settings-row-description">
+                                    Registra cuando un usuario es desbaneado
+                                    y quién realizó la acción.
+                                </div>
+
+                            </div>
+
+
+                            <label class="toggle">
+
+                                <input
+                                    type="checkbox"
+                                    id="settingUnban"
+                                >
+
+                                <span class="toggle-slider"></span>
+
+                            </label>
+
+                        </div>
+
+                    </div>
+
+
+                    <!-- CAMBIOS -->
+
+                    <div class="glass settings-card">
+
+                        <div class="settings-card-header">
+
+                            <div class="settings-card-title">
+
+                                <h3>
+                                    📝 Cambios
+                                </h3>
+
+                                <p>
+                                    Registra modificaciones realizadas
+                                    sobre miembros y sus roles.
+                                </p>
+
+                            </div>
+
+                        </div>
+
+
+                        <div class="settings-row">
+
+                            <div class="settings-row-text">
+
+                                <div class="settings-row-title">
+                                    📝 Cambios de apodo
+                                </div>
+
+                                <div class="settings-row-description">
+                                    Registra cuando un usuario cambia
+                                    su apodo.
+                                </div>
+
+                            </div>
+
+
+                            <label class="toggle">
+
+                                <input
+                                    type="checkbox"
+                                    id="settingNickname"
+                                >
+
+                                <span class="toggle-slider"></span>
+
+                            </label>
+
+                        </div>
+
+
+                        <div class="settings-row">
+
+                            <div class="settings-row-text">
+
+                                <div class="settings-row-title">
+                                    🏷️ Cambios de roles
+                                </div>
+
+                                <div class="settings-row-description">
+                                    Registra cuando se añaden o eliminan
+                                    roles de un miembro.
+                                </div>
+
+                            </div>
+
+
+                            <label class="toggle">
+
+                                <input
+                                    type="checkbox"
+                                    id="settingRole"
+                                >
+
+                                <span class="toggle-slider"></span>
+
+                            </label>
+
+                        </div>
+
+                    </div>
+
+
+                    <!-- GUARDAR -->
+
+                    <div class="settings-save-area">
+
+                        <div
+                            class="settings-save-status"
+                            id="settingsSaveStatus"
+                        >
+                            Los cambios todavía no se han guardado.
+                        </div>
+
+
+                        <button
+                            class="primary-button"
+                            id="saveSettingsButton"
+                            type="button"
+                        >
+                            💾 Guardar configuración
+                        </button>
 
                     </div>
 
                 </div>
 
-            </section>
 
+                <!-- ESTADO SIN SERVIDOR -->
+
+                <div
+                    class="settings-empty"
+                    id="settingsEmpty"
+                >
+
+                    <div class="settings-empty-icon">
+                        ⚙️
+                    </div>
+
+                    <strong>
+                        Selecciona un servidor
+                    </strong>
+
+                    <p>
+                        Selecciona uno de tus servidores administrables
+                        para cargar la configuración del Bot SUNSTER'S.
+                    </p>
+
+                </div>
+
+            </section>
 
         </main>
 
     </div>
 
+
+    <!-- ================================
+         ERROR DE SESIÓN
+    ================================ -->
 
     <div
         class="error-screen"
@@ -2249,15 +3141,6 @@
             "sunstersSession";
 
 
-        /*
-         * IMPORTANTE:
-         *
-         * USER_KEY ya no se utiliza para autenticar.
-         *
-         * Puede seguir existiendo en localStorage por compatibilidad
-         * con otras partes del proyecto, pero el Dashboard solamente
-         * considera válida una sesión cuando /me devuelve data.user.
-         */
         const USER_KEY =
             "sunstersUser";
 
@@ -2364,12 +3247,134 @@
             );
 
 
+        const manageBotButton =
+            document.getElementById(
+                "manageBotButton"
+            );
+
+
+        // ==========================================
+        // ELEMENTOS DE CONFIGURACIÓN
+        // ==========================================
+
+        const settingsServerSelect =
+            document.getElementById(
+                "settingsServerSelect"
+            );
+
+
+        const settingsContent =
+            document.getElementById(
+                "settingsContent"
+            );
+
+
+        const settingsEmpty =
+            document.getElementById(
+                "settingsEmpty"
+            );
+
+
+        const settingLogsEnabled =
+            document.getElementById(
+                "settingLogsEnabled"
+            );
+
+
+        const settingLogsChannel =
+            document.getElementById(
+                "settingLogsChannel"
+            );
+
+
+        const settingMessageDelete =
+            document.getElementById(
+                "settingMessageDelete"
+            );
+
+
+        const settingMessageEdit =
+            document.getElementById(
+                "settingMessageEdit"
+            );
+
+
+        const settingMemberAdd =
+            document.getElementById(
+                "settingMemberAdd"
+            );
+
+
+        const settingMemberRemove =
+            document.getElementById(
+                "settingMemberRemove"
+            );
+
+
+        const settingBan =
+            document.getElementById(
+                "settingBan"
+            );
+
+
+        const settingUnban =
+            document.getElementById(
+                "settingUnban"
+            );
+
+
+        const settingNickname =
+            document.getElementById(
+                "settingNickname"
+            );
+
+
+        const settingRole =
+            document.getElementById(
+                "settingRole"
+            );
+
+
+        const saveSettingsButton =
+            document.getElementById(
+                "saveSettingsButton"
+            );
+
+
+        const settingsSaveStatus =
+            document.getElementById(
+                "settingsSaveStatus"
+            );
+
+
         /*
          * IDs de servidores donde el bot
          * está instalado.
          */
         let installedBotServerIds =
             new Set();
+
+
+        /*
+         * Guardamos los servidores obtenidos
+         * desde Discord.
+         */
+        let discordServersCache =
+            [];
+
+
+        /*
+         * Configuración actualmente cargada.
+         */
+        let currentServerSettings =
+            null;
+
+
+        /*
+         * Canales actualmente cargados.
+         */
+        let currentServerChannels =
+            [];
 
 
         // ==========================================
@@ -2383,14 +3388,6 @@
             );
 
         }
-
-
-        /*
-         * Ya NO existe getLocalUser().
-         *
-         * El usuario nunca se considera autenticado
-         * únicamente porque exista información en localStorage.
-         */
 
 
         function clearSession() {
@@ -2477,9 +3474,6 @@
                 getToken();
 
 
-            /*
-             * Sin token no existe sesión.
-             */
             if (!token) {
 
                 clearSession();
@@ -2522,17 +3516,9 @@
                 }
 
 
-                /*
-                 * Si /me responde 401, el token ya no es válido.
-                 */
                 if (
                     response.status === 401
                 ) {
-
-                    console.warn(
-                        "La sesión SUNSTER'S ya no es válida."
-                    );
-
 
                     clearSession();
 
@@ -2543,10 +3529,6 @@
                 }
 
 
-                /*
-                 * Cualquier otra respuesta que no contenga
-                 * un usuario válido tampoco permite acceder.
-                 */
                 if (
                     !response.ok ||
                     !data ||
@@ -2568,23 +3550,11 @@
                 }
 
 
-                /*
-                 * SOLO aquí se considera autenticado
-                 * al usuario.
-                 *
-                 * La información viene directamente
-                 * desde /me.
-                 */
                 renderUser(
                     data.user
                 );
 
 
-                /*
-                 * Guardamos una copia para otros componentes
-                 * del proyecto, pero esta copia NO sirve
-                 * para autenticar.
-                 */
                 localStorage.setItem(
                     USER_KEY,
                     JSON.stringify(
@@ -2604,15 +3574,6 @@
 
             } catch (error) {
 
-                /*
-                 * MUY IMPORTANTE:
-                 *
-                 * Si /me no puede comprobarse por un error
-                 * de red, tampoco permitimos entrar usando
-                 * localStorage.
-                 *
-                 * Sin confirmación de /me = sin acceso.
-                 */
                 console.error(
                     "No se pudo validar la sesión:",
                     error
@@ -2803,6 +3764,22 @@
 
 
         // ==========================================
+        // BOOLEAN SEGURO
+        // ==========================================
+
+        function toBoolean(value) {
+
+            return (
+                value === true ||
+                value === 1 ||
+                value === "1" ||
+                value === "true"
+            );
+
+        }
+
+
+        // ==========================================
         // PERMISOS DE DISCORD
         // ==========================================
 
@@ -2813,16 +3790,24 @@
             }
 
 
-            const permissions =
-                BigInt(
-                    server.permissions || "0"
+            try {
+
+                const permissions =
+                    BigInt(
+                        server.permissions || "0"
+                    );
+
+
+                return (
+                    (permissions & 0x20n) ===
+                    0x20n
                 );
 
+            } catch {
 
-            return (
-                (permissions & 0x20n) ===
-                0x20n
-            );
+                return false;
+
+            }
 
         }
 
@@ -2876,10 +3861,6 @@
                 if (
                     response.status === 401
                 ) {
-
-                    console.warn(
-                        "La sesión del bot expiró o no es válida."
-                    );
 
                     return new Set();
 
@@ -3006,6 +3987,10 @@
                         new Set();
 
 
+                    discordServersCache =
+                        [];
+
+
                     setDiscordDisconnected();
 
 
@@ -3013,6 +3998,9 @@
                         "Discord no está vinculado",
                         "Vincula tu cuenta de Discord desde el apartado Discord para poder cargar tus servidores."
                     );
+
+
+                    renderSettingsServerSelector();
 
 
                     return;
@@ -3026,6 +4014,10 @@
                         new Set();
 
 
+                    discordServersCache =
+                        [];
+
+
                     setDiscordDisconnected();
 
 
@@ -3033,6 +4025,9 @@
                         "La conexión con Discord expiró",
                         "Vuelve a vincular tu cuenta de Discord para continuar."
                     );
+
+
+                    renderSettingsServerSelector();
 
 
                     return;
@@ -3058,6 +4053,10 @@
                     data.servers;
 
 
+                discordServersCache =
+                    servers;
+
+
                 setDiscordConnected();
 
 
@@ -3079,6 +4078,9 @@
                 );
 
 
+                renderSettingsServerSelector();
+
+
             } catch (error) {
 
                 console.error(
@@ -3089,6 +4091,10 @@
 
                 installedBotServerIds =
                     new Set();
+
+
+                discordServersCache =
+                    [];
 
 
                 serversGrid.innerHTML = `
@@ -3134,6 +4140,9 @@
 
                     </div>
                 `;
+
+
+                renderSettingsServerSelector();
 
             }
 
@@ -3443,32 +4452,17 @@
                 }
 
 
-                // ==========================================
                 // ADMINISTRAR
-                // ==========================================
 
                 if (
                     action === "manage"
                 ) {
-
-                    console.log(
-                        "Servidor seleccionado para administrar:",
-                        serverId,
-                        serverName
-                    );
-
 
                     const serverURL =
                         "/sunstersorg/dashboard/server/?guild=" +
                         encodeURIComponent(
                             serverId
                         );
-
-
-                    console.log(
-                        "Abriendo panel:",
-                        serverURL
-                    );
 
 
                     window.location.href =
@@ -3480,9 +4474,7 @@
                 }
 
 
-                // ==========================================
                 // AÑADIR BOT
-                // ==========================================
 
                 if (
                     action === "add"
@@ -3816,22 +4808,1053 @@
 
 
         // ==========================================
-        // BOT SUNSTER'S
+        // CONFIGURACIÓN — SERVIDORES
         // ==========================================
 
-        const manageBotButton =
-            document.getElementById(
-                "manageBotButton"
+        function getSettingsServers() {
+
+            return discordServersCache.filter(
+                server =>
+                    canManageServer(server) &&
+                    installedBotServerIds.has(
+                        String(server.id)
+                    )
             );
 
+        }
+
+
+        function renderSettingsServerSelector() {
+
+            const servers =
+                getSettingsServers();
+
+
+            const currentValue =
+                settingsServerSelect.value;
+
+
+            settingsServerSelect.innerHTML = `
+                <option value="">
+                    Selecciona un servidor...
+                </option>
+            `;
+
+
+            if (!servers.length) {
+
+                settingsServerSelect.innerHTML += `
+                    <option value="" disabled>
+                        No hay servidores disponibles
+                    </option>
+                `;
+
+
+                settingsServerSelect.value =
+                    "";
+
+
+                resetSettingsPanel();
+
+
+                return;
+
+            }
+
+
+            servers.forEach(
+                server => {
+
+                    const option =
+                        document.createElement(
+                            "option"
+                        );
+
+
+                    option.value =
+                        String(server.id);
+
+
+                    option.textContent =
+                        server.name ||
+                        "Servidor sin nombre";
+
+
+                    settingsServerSelect.appendChild(
+                        option
+                    );
+
+                }
+            );
+
+
+            if (
+                currentValue &&
+                servers.some(
+                    server =>
+                        String(server.id) ===
+                        currentValue
+                )
+            ) {
+
+                settingsServerSelect.value =
+                    currentValue;
+
+            } else {
+
+                settingsServerSelect.value =
+                    "";
+
+            }
+
+        }
+
+
+        // ==========================================
+        // SELECCIONAR SERVIDOR
+        // ==========================================
+
+        settingsServerSelect.addEventListener(
+            "change",
+            async () => {
+
+                const guildId =
+                    settingsServerSelect.value;
+
+
+                if (!guildId) {
+
+                    resetSettingsPanel();
+
+                    return;
+
+                }
+
+
+                await loadServerSettings(
+                    guildId
+                );
+
+            }
+        );
+
+
+        // ==========================================
+        // RESET CONFIGURACIÓN
+        // ==========================================
+
+        function resetSettingsPanel() {
+
+            settingsContent.classList.remove(
+                "visible"
+            );
+
+
+            settingsEmpty.style.display =
+                "block";
+
+
+            currentServerSettings =
+                null;
+
+
+            currentServerChannels =
+                [];
+
+
+            settingsSaveStatus.textContent =
+                "Los cambios todavía no se han guardado.";
+
+
+            settingsSaveStatus.className =
+                "settings-save-status";
+
+        }
+
+
+        // ==========================================
+        // CARGAR CONFIGURACIÓN DEL SERVIDOR
+        // ==========================================
+
+        async function loadServerSettings(
+            guildId
+        ) {
+
+            const token =
+                getToken();
+
+
+            if (!token) {
+
+                showError();
+
+                return;
+
+            }
+
+
+            settingsContent.classList.remove(
+                "visible"
+            );
+
+
+            settingsEmpty.innerHTML = `
+                <div class="settings-loading">
+
+                    <div class="loading-spinner"></div>
+
+                    Cargando configuración del servidor...
+
+                </div>
+            `;
+
+
+            settingsEmpty.style.display =
+                "block";
+
+
+            try {
+
+                const [
+                    settingsResponse,
+                    channelsResponse
+                ] = await Promise.all(
+                    [
+                        fetch(
+                            API_URL +
+                            "/discord/server-settings?guild=" +
+                            encodeURIComponent(
+                                guildId
+                            ),
+                            {
+                                method: "GET",
+
+                                headers: {
+                                    "Authorization":
+                                        "Bearer " +
+                                        token
+                                }
+                            }
+                        ),
+
+                        fetch(
+                            API_URL +
+                            "/discord/server-channels?guild=" +
+                            encodeURIComponent(
+                                guildId
+                            ),
+                            {
+                                method: "GET",
+
+                                headers: {
+                                    "Authorization":
+                                        "Bearer " +
+                                        token
+                                }
+                            }
+                        )
+                    ]
+                );
+
+
+                let settingsData =
+                    null;
+
+
+                let channelsData =
+                    null;
+
+
+                try {
+
+                    settingsData =
+                        await settingsResponse.json();
+
+                } catch {
+
+                    settingsData =
+                        null;
+
+                }
+
+
+                try {
+
+                    channelsData =
+                        await channelsResponse.json();
+
+                } catch {
+
+                    channelsData =
+                        null;
+
+                }
+
+
+                if (
+                    settingsResponse.status === 401 ||
+                    channelsResponse.status === 401
+                ) {
+
+                    clearSession();
+
+                    showError();
+
+                    return;
+
+                }
+
+
+                if (
+                    !settingsResponse.ok
+                ) {
+
+                    throw new Error(
+                        settingsData?.error ||
+                        "No se pudo cargar la configuración del servidor."
+                    );
+
+                }
+
+
+                /*
+                 * El Worker puede devolver:
+                 *
+                 * { ok: true, settings: {...} }
+                 *
+                 * o directamente:
+                 *
+                 * { ok: true, guild_id: "...", ... }
+                 *
+                 * Por eso soportamos ambos formatos.
+                 */
+
+                const settings =
+                    settingsData?.settings ||
+                    settingsData;
+
+
+                if (
+                    !settings ||
+                    typeof settings !== "object"
+                ) {
+
+                    throw new Error(
+                        "La API devolvió una configuración inválida."
+                    );
+
+                }
+
+
+                currentServerSettings =
+                    settings;
+
+
+                if (
+                    channelsResponse.ok &&
+                    channelsData
+                ) {
+
+                    currentServerChannels =
+                        Array.isArray(
+                            channelsData.channels
+                        )
+                            ? channelsData.channels
+                            : [];
+
+                } else {
+
+                    currentServerChannels =
+                        [];
+
+                }
+
+
+                renderSettingsChannels(
+                    currentServerChannels,
+                    settings.logs_channel_id
+                );
+
+
+                renderSettingsValues(
+                    settings
+                );
+
+
+                settingsEmpty.style.display =
+                    "none";
+
+
+                settingsContent.classList.add(
+                    "visible"
+                );
+
+
+                settingsSaveStatus.textContent =
+                    "Configuración cargada correctamente.";
+
+
+                settingsSaveStatus.className =
+                    "settings-save-status success";
+
+
+            } catch (error) {
+
+                console.error(
+                    "Error cargando configuración:",
+                    error
+                );
+
+
+                settingsContent.classList.remove(
+                    "visible"
+                );
+
+
+                settingsEmpty.innerHTML = `
+                    <div class="settings-empty-icon">
+                        ⚠️
+                    </div>
+
+                    <strong>
+                        No pudimos cargar la configuración
+                    </strong>
+
+                    <p>
+                        ${escapeHtml(
+                            error.message ||
+                            "Ocurrió un error al consultar el servidor."
+                        )}
+                    </p>
+                `;
+
+
+                settingsEmpty.style.display =
+                    "block";
+
+            }
+
+        }
+
+
+        // ==========================================
+        // RENDER CANALES
+        // ==========================================
+
+        function renderSettingsChannels(
+            channels,
+            selectedChannelId
+        ) {
+
+            settingsLogsChannel.innerHTML = `
+                <option value="">
+                    Selecciona un canal...
+                </option>
+            `;
+
+
+            if (!channels.length) {
+
+                settingsLogsChannel.innerHTML += `
+                    <option value="" disabled>
+                        No hay canales disponibles
+                    </option>
+                `;
+
+
+                settingsLogsChannel.value =
+                    "";
+
+
+                return;
+
+            }
+
+
+            channels.forEach(
+                channel => {
+
+                    const option =
+                        document.createElement(
+                            "option"
+                        );
+
+
+                    option.value =
+                        String(
+                            channel.id
+                        );
+
+
+                    const channelName =
+                        channel.name ||
+                        "Canal sin nombre";
+
+
+                    option.textContent =
+                        "# " +
+                        channelName;
+
+
+                    settingsLogsChannel.appendChild(
+                        option
+                    );
+
+                }
+            );
+
+
+            if (selectedChannelId) {
+
+                const exists =
+                    channels.some(
+                        channel =>
+                            String(channel.id) ===
+                            String(selectedChannelId)
+                    );
+
+
+                if (exists) {
+
+                    settingsLogsChannel.value =
+                        String(
+                            selectedChannelId
+                        );
+
+                }
+
+            }
+
+        }
+
+
+        // ==========================================
+        // RENDER VALORES
+        // ==========================================
+
+        function renderSettingsValues(
+            settings
+        ) {
+
+            settingLogsEnabled.checked =
+                toBoolean(
+                    settings.logs_enabled
+                );
+
+
+            settingMessageDelete.checked =
+                toBoolean(
+                    settings.log_message_delete
+                );
+
+
+            settingMessageEdit.checked =
+                toBoolean(
+                    settings.log_message_edit
+                );
+
+
+            settingMemberAdd.checked =
+                toBoolean(
+                    settings.log_member_add
+                );
+
+
+            settingMemberRemove.checked =
+                toBoolean(
+                    settings.log_member_remove
+                );
+
+
+            settingBan.checked =
+                toBoolean(
+                    settings.log_ban
+                );
+
+
+            settingUnban.checked =
+                toBoolean(
+                    settings.log_unban
+                );
+
+
+            settingNickname.checked =
+                toBoolean(
+                    settings.log_nickname
+                );
+
+
+            settingRole.checked =
+                toBoolean(
+                    settings.log_role
+                );
+
+
+            updateLogControlsState();
+
+        }
+
+
+        // ==========================================
+        // ACTIVAR/DESACTIVAR CONTROLES
+        // ==========================================
+
+        function updateLogControlsState() {
+
+            const enabled =
+                settingLogsEnabled.checked;
+
+
+            const controls = [
+                settingMessageDelete,
+                settingMessageEdit,
+                settingMemberAdd,
+                settingMemberRemove,
+                settingBan,
+                settingUnban,
+                settingNickname,
+                settingRole
+            ];
+
+
+            controls.forEach(
+                control => {
+
+                    control.disabled =
+                        !enabled;
+
+
+                    const row =
+                        control.closest(
+                            ".settings-row"
+                        );
+
+
+                    if (row) {
+
+                        row.classList.toggle(
+                            "disabled",
+                            !enabled
+                        );
+
+                    }
+
+                }
+            );
+
+
+            settingLogsChannel.disabled =
+                !enabled;
+
+
+            const channelRow =
+                settingLogsChannel.closest(
+                    ".settings-row"
+                );
+
+
+            if (channelRow) {
+
+                channelRow.classList.toggle(
+                    "disabled",
+                    !enabled
+                );
+
+            }
+
+        }
+
+
+        settingLogsEnabled.addEventListener(
+            "change",
+            () => {
+
+                updateLogControlsState();
+
+
+                settingsSaveStatus.textContent =
+                    "Hay cambios sin guardar.";
+
+
+                settingsSaveStatus.className =
+                    "settings-save-status";
+
+            }
+        );
+
+
+        // ==========================================
+        // DETECTAR CAMBIOS
+        // ==========================================
+
+        [
+            settingLogsChannel,
+            settingMessageDelete,
+            settingMessageEdit,
+            settingMemberAdd,
+            settingMemberRemove,
+            settingBan,
+            settingUnban,
+            settingNickname,
+            settingRole
+        ].forEach(
+            element => {
+
+                element.addEventListener(
+                    "change",
+                    () => {
+
+                        settingsSaveStatus.textContent =
+                            "Hay cambios sin guardar.";
+
+
+                        settingsSaveStatus.className =
+                            "settings-save-status";
+
+                    }
+                );
+
+            }
+        );
+
+
+        // ==========================================
+        // GUARDAR CONFIGURACIÓN
+        // ==========================================
+
+        saveSettingsButton.addEventListener(
+            "click",
+            async () => {
+
+                const token =
+                    getToken();
+
+
+                const guildId =
+                    settingsServerSelect.value;
+
+
+                if (!token) {
+
+                    showError();
+
+                    return;
+
+                }
+
+
+                if (!guildId) {
+
+                    settingsSaveStatus.textContent =
+                        "Selecciona un servidor primero.";
+
+
+                    settingsSaveStatus.className =
+                        "settings-save-status error";
+
+
+                    return;
+
+                }
+
+
+                const selectedServer =
+                    discordServersCache.find(
+                        server =>
+                            String(server.id) ===
+                            String(guildId)
+                    );
+
+
+                if (
+                    !selectedServer ||
+                    !canManageServer(selectedServer)
+                ) {
+
+                    settingsSaveStatus.textContent =
+                        "No tienes permisos para administrar este servidor.";
+
+
+                    settingsSaveStatus.className =
+                        "settings-save-status error";
+
+
+                    return;
+
+                }
+
+
+                if (
+                    !installedBotServerIds.has(
+                        String(guildId)
+                    )
+                ) {
+
+                    settingsSaveStatus.textContent =
+                        "SUNSTER'S Bot no está instalado en este servidor.";
+
+
+                    settingsSaveStatus.className =
+                        "settings-save-status error";
+
+
+                    return;
+
+                }
+
+
+                saveSettingsButton.disabled =
+                    true;
+
+
+                saveSettingsButton.textContent =
+                    "⏳ Guardando...";
+
+
+                settingsSaveStatus.textContent =
+                    "Guardando configuración...";
+
+
+                settingsSaveStatus.className =
+                    "settings-save-status";
+
+
+                try {
+
+                    const previousSettings =
+                        currentServerSettings ||
+                        {};
+
+
+                    const body = {
+
+                        guild_id:
+                            guildId,
+
+
+                        guild_name:
+                            selectedServer.name ||
+                            previousSettings.guild_name ||
+                            "Servidor",
+
+
+                        prefix:
+                            previousSettings.prefix ||
+                            "?",
+
+
+                        logs_enabled:
+                            settingLogsEnabled.checked,
+
+
+                        logs_channel_id:
+                            settingLogsChannel.value ||
+                            null,
+
+
+                        log_message_delete:
+                            settingMessageDelete.checked,
+
+
+                        log_message_edit:
+                            settingMessageEdit.checked,
+
+
+                        log_member_add:
+                            settingMemberAdd.checked,
+
+
+                        log_member_remove:
+                            settingMemberRemove.checked,
+
+
+                        log_ban:
+                            settingBan.checked,
+
+
+                        log_unban:
+                            settingUnban.checked,
+
+
+                        log_nickname:
+                            settingNickname.checked,
+
+
+                        log_role:
+                            settingRole.checked
+
+                    };
+
+
+                    const response =
+                        await fetch(
+                            API_URL +
+                            "/discord/server-settings",
+                            {
+                                method: "POST",
+
+                                headers: {
+
+                                    "Authorization":
+                                        "Bearer " +
+                                        token,
+
+                                    "Content-Type":
+                                        "application/json"
+
+                                },
+
+                                body:
+                                    JSON.stringify(
+                                        body
+                                    )
+
+                            }
+                        );
+
+
+                    let data =
+                        null;
+
+
+                    try {
+
+                        data =
+                            await response.json();
+
+                    } catch {
+
+                        data =
+                            null;
+
+                    }
+
+
+                    if (
+                        response.status === 401
+                    ) {
+
+                        clearSession();
+
+                        showError();
+
+                        return;
+
+                    }
+
+
+                    if (
+                        !response.ok
+                    ) {
+
+                        throw new Error(
+                            data?.error ||
+                            "No se pudo guardar la configuración."
+                        );
+
+                    }
+
+
+                    /*
+                     * Actualizamos la copia local.
+                     *
+                     * Si la API devuelve settings usamos
+                     * esa información; de lo contrario
+                     * usamos lo que acabamos de guardar.
+                     */
+
+                    currentServerSettings =
+                        data?.settings ||
+                        {
+                            ...previousSettings,
+                            ...body
+                        };
+
+
+                    settingsSaveStatus.textContent =
+                        "✓ Configuración guardada correctamente.";
+
+
+                    settingsSaveStatus.className =
+                        "settings-save-status success";
+
+
+                } catch (error) {
+
+                    console.error(
+                        "Error guardando configuración:",
+                        error
+                    );
+
+
+                    settingsSaveStatus.textContent =
+                        error.message ||
+                        "No se pudo guardar la configuración.";
+
+
+                    settingsSaveStatus.className =
+                        "settings-save-status error";
+
+
+                } finally {
+
+                    saveSettingsButton.disabled =
+                        false;
+
+
+                    saveSettingsButton.textContent =
+                        "💾 Guardar configuración";
+
+                }
+
+            }
+        );
+
+
+        // ==========================================
+        // BOT SUNSTER'S
+        // ==========================================
 
         manageBotButton.addEventListener(
             "click",
             () => {
 
-                alert(
-                    "La administración del Bot SUNSTER'S será conectada en la siguiente fase."
-                );
+                const settingsNav =
+                    document.querySelector(
+                        '.nav-item[data-panel="settings"]'
+                    );
+
+
+                if (settingsNav) {
+
+                    settingsNav.click();
+
+                }
+
+
+                const availableServers =
+                    getSettingsServers();
+
+
+                if (
+                    availableServers.length
+                ) {
+
+                    const firstServer =
+                        availableServers[0];
+
+
+                    settingsServerSelect.value =
+                        String(
+                            firstServer.id
+                        );
+
+
+                    loadServerSettings(
+                        firstServer.id
+                    );
+
+                }
 
             }
         );
@@ -3928,6 +5951,8 @@
         // ==========================================
 
         handleDiscordReturn();
+
+        resetSettingsPanel();
 
         validateSession();
 
