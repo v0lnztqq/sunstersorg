@@ -3260,12 +3260,6 @@
             );
 
 
-        /*
-         * IMPORTANTE:
-         * Se usa un nombre distinto para evitar
-         * cualquier referencia antigua a
-         * "settingsLogsChannel".
-         */
         const settingsLogsChannelSelect =
             document.getElementById(
                 "settingLogsChannel"
@@ -3369,7 +3363,9 @@
                 );
 
 
-        if (missingElements.length) {
+        if (
+            missingElements.length
+        ) {
 
             console.error(
                 "Faltan elementos del Dashboard:",
@@ -3379,31 +3375,22 @@
         }
 
 
-        /*
-         * IDs de servidores donde el bot
-         * está instalado.
-         */
+        // ==========================================
+        // CACHE
+        // ==========================================
+
         let installedBotServerIds =
             new Set();
 
 
-        /*
-         * Servidores obtenidos desde Discord.
-         */
         let discordServersCache =
             [];
 
 
-        /*
-         * Configuración actualmente cargada.
-         */
         let currentServerSettings =
             null;
 
 
-        /*
-         * Canales actualmente cargados.
-         */
         let currentServerChannels =
             [];
 
@@ -3456,10 +3443,67 @@
 
 
         // ==========================================
+        // ERROR DE API
+        // ==========================================
+
+        function getApiErrorMessage(
+            response,
+            data,
+            fallback
+        ) {
+
+            if (
+                response?.status === 429
+            ) {
+
+                return (
+                    "Discord está limitando temporalmente las solicitudes. " +
+                    "Espera unos segundos y vuelve a intentarlo."
+                );
+
+            }
+
+
+            if (
+                response?.status === 403
+            ) {
+
+                return (
+                    data?.error ||
+                    "No tienes permisos suficientes para administrar este servidor."
+                );
+
+            }
+
+
+            if (
+                response?.status === 401
+            ) {
+
+                return (
+                    data?.error ||
+                    "La autorización de Discord expiró. Vuelve a vincular tu cuenta."
+                );
+
+            }
+
+
+            return (
+                data?.error ||
+                data?.message ||
+                fallback
+            );
+
+        }
+
+
+        // ==========================================
         // MOSTRAR USUARIO
         // ==========================================
 
-        function renderUser(user) {
+        function renderUser(
+            user
+        ) {
 
             const username =
                 user.username ||
@@ -3543,11 +3587,13 @@
                     await fetch(
                         API_URL + "/me",
                         {
-                            method: "GET",
+                            method:
+                                "GET",
 
                             headers: {
                                 "Authorization":
-                                    "Bearer " + token
+                                    "Bearer " +
+                                    token
                             }
                         }
                     );
@@ -3615,7 +3661,9 @@
                 return true;
 
 
-            } catch (error) {
+            } catch (
+                error
+            ) {
 
                 console.error(
                     "No se pudo validar la sesión:",
@@ -3718,11 +3766,14 @@
 
                         const targetPanel =
                             document.getElementById(
-                                "panel-" + target
+                                "panel-" +
+                                target
                             );
 
 
-                        if (targetPanel) {
+                        if (
+                            targetPanel
+                        ) {
 
                             targetPanel.classList.add(
                                 "active"
@@ -3759,17 +3810,24 @@
 
 
         // ==========================================
-        // ICONO DEL SERVIDOR
+        // ICONO SERVIDOR
         // ==========================================
 
-        function getServerIcon(server) {
+        function getServerIcon(
+            server
+        ) {
 
-            if (!server.icon) {
+            if (
+                !server.icon
+            ) {
 
                 return `
                     <span>
                         ${escapeHtml(
-                            (server.name || "S")
+                            (
+                                server.name ||
+                                "S"
+                            )
                                 .charAt(0)
                                 .toUpperCase()
                         )}
@@ -3791,26 +3849,45 @@
 
 
         // ==========================================
-        // ESCAPAR TEXTO
+        // ESCAPAR HTML
         // ==========================================
 
-        function escapeHtml(value) {
+        function escapeHtml(
+            value
+        ) {
 
             return String(value)
-                .replaceAll("&", "&amp;")
-                .replaceAll("<", "&lt;")
-                .replaceAll(">", "&gt;")
-                .replaceAll('"', "&quot;")
-                .replaceAll("'", "&#039;");
+                .replaceAll(
+                    "&",
+                    "&amp;"
+                )
+                .replaceAll(
+                    "<",
+                    "&lt;"
+                )
+                .replaceAll(
+                    ">",
+                    "&gt;"
+                )
+                .replaceAll(
+                    '"',
+                    "&quot;"
+                )
+                .replaceAll(
+                    "'",
+                    "&#039;"
+                );
 
         }
 
 
         // ==========================================
-        // BOOLEAN SEGURO
+        // BOOLEAN
         // ==========================================
 
-        function toBoolean(value) {
+        function toBoolean(
+            value
+        ) {
 
             return (
                 value === true ||
@@ -3823,12 +3900,17 @@
 
 
         // ==========================================
-        // PERMISOS DE DISCORD
+        // PERMISOS
         // ==========================================
 
-        function canManageServer(server) {
+        function canManageServer(
+            server
+        ) {
 
-            if (server.owner === true) {
+            if (
+                server.owner === true
+            ) {
+
                 return true;
             }
 
@@ -3837,12 +3919,16 @@
 
                 const permissions =
                     BigInt(
-                        server.permissions || "0"
+                        server.permissions ||
+                        "0"
                     );
 
 
                 return (
-                    (permissions & 0x20n) ===
+                    (
+                        permissions &
+                        0x20n
+                    ) ===
                     0x20n
                 );
 
@@ -3856,7 +3942,7 @@
 
 
         // ==========================================
-        // CARGAR SERVIDORES DEL BOT
+        // SERVIDORES DEL BOT
         // ==========================================
 
         async function loadBotServers() {
@@ -3866,7 +3952,9 @@
 
 
             if (!token) {
+
                 return new Set();
+
             }
 
 
@@ -3874,13 +3962,16 @@
 
                 const response =
                     await fetch(
-                        API_URL + "/discord/bot-servers",
+                        API_URL +
+                        "/discord/bot-servers",
                         {
-                            method: "GET",
+                            method:
+                                "GET",
 
                             headers: {
                                 "Authorization":
-                                    "Bearer " + token
+                                    "Bearer " +
+                                    token
                             }
                         }
                     );
@@ -3904,12 +3995,17 @@
                 if (
                     !response.ok ||
                     !data ||
-                    !Array.isArray(data.servers)
+                    !Array.isArray(
+                        data.servers
+                    )
                 ) {
 
                     throw new Error(
-                        data?.error ||
-                        "No se pudieron comprobar los servidores del bot."
+                        getApiErrorMessage(
+                            response,
+                            data,
+                            "No se pudieron comprobar los servidores del bot."
+                        )
                     );
 
                 }
@@ -3921,7 +4017,9 @@
                         .map(String)
                 );
 
-            } catch (error) {
+            } catch (
+                error
+            ) {
 
                 console.error(
                     "Error comprobando servidores del bot:",
@@ -3937,7 +4035,7 @@
 
 
         // ==========================================
-        // CARGAR SERVIDORES DE DISCORD
+        // SERVIDORES DE DISCORD
         // ==========================================
 
         async function loadDiscordServers() {
@@ -3947,7 +4045,9 @@
 
 
             if (!token) {
+
                 return;
+
             }
 
 
@@ -3985,13 +4085,16 @@
 
                 const response =
                     await fetch(
-                        API_URL + "/discord/servers",
+                        API_URL +
+                        "/discord/servers",
                         {
-                            method: "GET",
+                            method:
+                                "GET",
 
                             headers: {
                                 "Authorization":
-                                    "Bearer " + token
+                                    "Bearer " +
+                                    token
                             }
                         }
                     );
@@ -4065,12 +4168,17 @@
                 if (
                     !response.ok ||
                     !data ||
-                    !Array.isArray(data.servers)
+                    !Array.isArray(
+                        data.servers
+                    )
                 ) {
 
                     throw new Error(
-                        data?.error ||
-                        "No se pudieron obtener los servidores."
+                        getApiErrorMessage(
+                            response,
+                            data,
+                            "No se pudieron obtener los servidores."
+                        )
                     );
 
                 }
@@ -4108,7 +4216,9 @@
                 renderSettingsServerSelector();
 
 
-            } catch (error) {
+            } catch (
+                error
+            ) {
 
                 console.error(
                     "Error cargando servidores:",
@@ -4180,9 +4290,13 @@
         // RENDER SERVIDORES
         // ==========================================
 
-        function renderServers(servers) {
+        function renderServers(
+            servers
+        ) {
 
-            if (!servers.length) {
+            if (
+                !servers.length
+            ) {
 
                 renderNoServers(
                     "No encontramos servidores",
@@ -4201,7 +4315,8 @@
                         server => {
 
                             const owner =
-                                server.owner === true;
+                                server.owner ===
+                                true;
 
 
                             return `
@@ -4211,7 +4326,9 @@
 
                                         <div class="server-icon">
 
-                                            ${getServerIcon(server)}
+                                            ${getServerIcon(
+                                                server
+                                            )}
 
                                         </div>
 
@@ -4272,7 +4389,9 @@
         // RENDER BOT
         // ==========================================
 
-        function renderBotServers(servers) {
+        function renderBotServers(
+            servers
+        ) {
 
             const manageable =
                 servers.filter(
@@ -4280,7 +4399,9 @@
                 );
 
 
-            if (!manageable.length) {
+            if (
+                !manageable.length
+            ) {
 
                 botServerCount.textContent =
                     "0";
@@ -4315,7 +4436,9 @@
                 manageable.filter(
                     server =>
                         installedBotServerIds.has(
-                            String(server.id)
+                            String(
+                                server.id
+                            )
                         )
                 );
 
@@ -4330,12 +4453,15 @@
                         server => {
 
                             const owner =
-                                server.owner === true;
+                                server.owner ===
+                                true;
 
 
                             const installed =
                                 installedBotServerIds.has(
-                                    String(server.id)
+                                    String(
+                                        server.id
+                                    )
                                 );
 
 
@@ -4346,7 +4472,9 @@
 
                                         <div class="bot-server-icon">
 
-                                            ${getServerIcon(server)}
+                                            ${getServerIcon(
+                                                server
+                                            )}
 
                                         </div>
 
@@ -4438,7 +4566,7 @@
 
 
         // ==========================================
-        // BOTONES DE SERVIDORES
+        // BOTONES SERVIDORES
         // ==========================================
 
         botServersGrid.addEventListener(
@@ -4452,7 +4580,9 @@
 
 
                 if (!button) {
+
                     return;
+
                 }
 
 
@@ -4480,7 +4610,8 @@
 
 
                 if (
-                    action === "manage"
+                    action ===
+                    "manage"
                 ) {
 
                     const serverURL =
@@ -4500,7 +4631,8 @@
 
 
                 if (
-                    action === "add"
+                    action ===
+                    "add"
                 ) {
 
                     const inviteURL =
@@ -4557,11 +4689,15 @@
                     </div>
 
                     <strong>
-                        ${escapeHtml(title)}
+                        ${escapeHtml(
+                            title
+                        )}
                     </strong>
 
                     <p>
-                        ${escapeHtml(description)}
+                        ${escapeHtml(
+                            description
+                        )}
                     </p>
 
                 </div>
@@ -4576,11 +4712,15 @@
                     </div>
 
                     <strong>
-                        ${escapeHtml(title)}
+                        ${escapeHtml(
+                            title
+                        )}
                     </strong>
 
                     <p>
-                        ${escapeHtml(description)}
+                        ${escapeHtml(
+                            description
+                        )}
                     </p>
 
                 </div>
@@ -4590,7 +4730,7 @@
 
 
         // ==========================================
-        // DISCORD — CONECTADO
+        // DISCORD CONECTADO
         // ==========================================
 
         function setDiscordConnected() {
@@ -4632,7 +4772,7 @@
 
 
         // ==========================================
-        // DISCORD — NO CONECTADO
+        // DISCORD NO CONECTADO
         // ==========================================
 
         function setDiscordDisconnected() {
@@ -4710,13 +4850,16 @@
 
                     const response =
                         await fetch(
-                            API_URL + "/discord/login",
+                            API_URL +
+                            "/discord/login",
                             {
-                                method: "GET",
+                                method:
+                                    "GET",
 
                                 headers: {
                                     "Authorization":
-                                        "Bearer " + token
+                                        "Bearer " +
+                                        token
                                 }
                             }
                         );
@@ -4729,7 +4872,8 @@
 
 
                     if (
-                        response.status === 401
+                        response.status ===
+                        401
                     ) {
 
                         clearSession();
@@ -4748,8 +4892,11 @@
                     ) {
 
                         throw new Error(
-                            data?.error ||
-                            "No se pudo iniciar la conexión con Discord."
+                            getApiErrorMessage(
+                                response,
+                                data,
+                                "No se pudo iniciar la conexión con Discord."
+                            )
                         );
 
                     }
@@ -4759,7 +4906,9 @@
                         data.url;
 
 
-                } catch (error) {
+                } catch (
+                    error
+                ) {
 
                     console.error(
                         "Error iniciando Discord:",
@@ -4841,9 +4990,13 @@
 
             return discordServersCache.filter(
                 server =>
-                    canManageServer(server) &&
+                    canManageServer(
+                        server
+                    ) &&
                     installedBotServerIds.has(
-                        String(server.id)
+                        String(
+                            server.id
+                        )
                     )
             );
 
@@ -4898,7 +5051,9 @@
 
 
                     option.value =
-                        String(server.id);
+                        String(
+                            server.id
+                        );
 
 
                     option.textContent =
@@ -4918,7 +5073,9 @@
                 currentValue &&
                 servers.some(
                     server =>
-                        String(server.id) ===
+                        String(
+                            server.id
+                        ) ===
                         currentValue
                 )
             ) {
@@ -4966,7 +5123,7 @@
 
 
         // ==========================================
-        // RESET CONFIGURACIÓN
+        // RESET
         // ==========================================
 
         function resetSettingsPanel() {
@@ -5015,7 +5172,7 @@
 
 
         // ==========================================
-        // CARGAR CONFIGURACIÓN DEL SERVIDOR
+        // CARGAR CONFIGURACIÓN
         // ==========================================
 
         async function loadServerSettings(
@@ -5066,46 +5223,28 @@
 
             try {
 
-                const [
-                    settingsResponse,
-                    channelsResponse
-                ] = await Promise.all(
-                    [
-                        fetch(
-                            API_URL +
-                            "/discord/server-settings?guild=" +
-                            encodeURIComponent(
-                                guildId
-                            ),
-                            {
-                                method: "GET",
+                // ==================================================
+                // PASO 1 — CONFIGURACIÓN
+                // ==================================================
 
-                                headers: {
-                                    "Authorization":
-                                        "Bearer " +
-                                        token
-                                }
-                            }
+                const settingsResponse =
+                    await fetch(
+                        API_URL +
+                        "/discord/server-settings?guild=" +
+                        encodeURIComponent(
+                            guildId
                         ),
+                        {
+                            method:
+                                "GET",
 
-                        fetch(
-                            API_URL +
-                            "/discord/server-channels?guild=" +
-                            encodeURIComponent(
-                                guildId
-                            ),
-                            {
-                                method: "GET",
-
-                                headers: {
-                                    "Authorization":
-                                        "Bearer " +
-                                        token
-                                }
+                            headers: {
+                                "Authorization":
+                                    "Bearer " +
+                                    token
                             }
-                        )
-                    ]
-                );
+                        }
+                    );
 
 
                 const settingsData =
@@ -5114,15 +5253,9 @@
                     );
 
 
-                const channelsData =
-                    await readJsonResponse(
-                        channelsResponse
-                    );
-
-
                 if (
-                    settingsResponse.status === 401 ||
-                    channelsResponse.status === 401
+                    settingsResponse.status ===
+                    401
                 ) {
 
                     clearSession();
@@ -5139,17 +5272,15 @@
                 ) {
 
                     throw new Error(
-                        settingsData?.error ||
-                        "No se pudo cargar la configuración del servidor."
+                        getApiErrorMessage(
+                            settingsResponse,
+                            settingsData,
+                            "No se pudo cargar la configuración del servidor."
+                        )
                     );
 
                 }
 
-
-                /*
-                 * Compatibilidad con varias formas
-                 * de respuesta del Worker.
-                 */
 
                 const settings =
                     settingsData?.settings ||
@@ -5175,46 +5306,102 @@
                     settings;
 
 
-                /*
-                 * El Worker puede devolver:
-                 *
-                 * { channels: [...] }
-                 *
-                 * { data: { channels: [...] } }
-                 *
-                 * o directamente [...]
-                 */
+                // ==================================================
+                // PASO 2 — CANALES
+                // ==================================================
+
+                settingsEmpty.innerHTML = `
+                    <div class="settings-loading">
+
+                        <div class="loading-spinner"></div>
+
+                        Cargando canales del servidor...
+
+                    </div>
+                `;
+
+
+                const channelsResponse =
+                    await fetch(
+                        API_URL +
+                        "/discord/server-channels?guild=" +
+                        encodeURIComponent(
+                            guildId
+                        ),
+                        {
+                            method:
+                                "GET",
+
+                            headers: {
+                                "Authorization":
+                                    "Bearer " +
+                                    token
+                            }
+                        }
+                    );
+
+
+                const channelsData =
+                    await readJsonResponse(
+                        channelsResponse
+                    );
+
+
+                if (
+                    channelsResponse.status ===
+                    401
+                ) {
+
+                    clearSession();
+
+                    showError();
+
+                    return;
+
+                }
+
+
+                if (
+                    !channelsResponse.ok
+                ) {
+
+                    throw new Error(
+                        getApiErrorMessage(
+                            channelsResponse,
+                            channelsData,
+                            "No se pudieron obtener los canales del servidor."
+                        )
+                    );
+
+                }
+
 
                 const receivedChannels =
                     Array.isArray(
                         channelsData?.channels
                     )
                         ? channelsData.channels
+
                         : Array.isArray(
                             channelsData?.data?.channels
                         )
                             ? channelsData.data.channels
+
                             : Array.isArray(
                                 channelsData
                             )
                                 ? channelsData
+
                                 : [];
 
 
-                if (
-                    channelsResponse.ok
-                ) {
+                currentServerChannels =
+                    receivedChannels;
 
-                    currentServerChannels =
-                        receivedChannels;
 
-                } else {
-
-                    currentServerChannels =
-                        [];
-
-                }
-
+                // ==================================================
+                // PASO 3 — RENDERIZAR
+                // ==================================================
 
                 renderSettingsChannels(
                     currentServerChannels,
@@ -5244,7 +5431,9 @@
                     "settings-save-status success";
 
 
-            } catch (error) {
+            } catch (
+                error
+            ) {
 
                 console.error(
                     "Error cargando configuración:",
@@ -5278,6 +5467,14 @@
                 settingsEmpty.style.display =
                     "block";
 
+
+                settingsSaveStatus.textContent =
+                    "No se pudo cargar la configuración.";
+
+
+                settingsSaveStatus.className =
+                    "settings-save-status error";
+
             }
 
         }
@@ -5292,10 +5489,6 @@
             selectedChannelId
         ) {
 
-            /*
-             * Verificación extra para evitar
-             * errores si el elemento no existe.
-             */
             if (
                 !settingsLogsChannelSelect
             ) {
@@ -5317,7 +5510,9 @@
 
 
             if (
-                !Array.isArray(channels) ||
+                !Array.isArray(
+                    channels
+                ) ||
                 !channels.length
             ) {
 
@@ -5342,8 +5537,12 @@
                 .forEach(
                     channel => {
 
-                        if (!channel.id) {
+                        if (
+                            !channel.id
+                        ) {
+
                             return;
+
                         }
 
 
@@ -5359,14 +5558,12 @@
                             );
 
 
-                        const channelName =
-                            channel.name ||
-                            "Canal sin nombre";
-
-
                         option.textContent =
                             "# " +
-                            channelName;
+                            (
+                                channel.name ||
+                                "Canal sin nombre"
+                            );
 
 
                         settingsLogsChannelSelect.appendChild(
@@ -5385,12 +5582,18 @@
                     channels.some(
                         channel =>
                             channel &&
-                            String(channel.id) ===
-                            String(selectedChannelId)
+                            String(
+                                channel.id
+                            ) ===
+                            String(
+                                selectedChannelId
+                            )
                     );
 
 
-                if (exists) {
+                if (
+                    exists
+                ) {
 
                     settingsLogsChannelSelect.value =
                         String(
@@ -5472,7 +5675,7 @@
 
 
         // ==========================================
-        // ACTIVAR/DESACTIVAR CONTROLES
+        // ACTIVAR / DESACTIVAR LOGS
         // ==========================================
 
         function updateLogControlsState() {
@@ -5482,6 +5685,7 @@
 
 
             const controls = [
+
                 settingMessageDelete,
                 settingMessageEdit,
                 settingMemberAdd,
@@ -5490,6 +5694,7 @@
                 settingUnban,
                 settingNickname,
                 settingRole
+
             ];
 
 
@@ -5506,7 +5711,9 @@
                         );
 
 
-                    if (row) {
+                    if (
+                        row
+                    ) {
 
                         row.classList.toggle(
                             "disabled",
@@ -5529,7 +5736,9 @@
                 );
 
 
-            if (channelRow) {
+            if (
+                channelRow
+            ) {
 
                 channelRow.classList.toggle(
                     "disabled",
@@ -5573,6 +5782,7 @@
             settingUnban,
             settingNickname,
             settingRole
+
         ].forEach(
             element => {
 
@@ -5637,14 +5847,20 @@
                 const selectedServer =
                     discordServersCache.find(
                         server =>
-                            String(server.id) ===
-                            String(guildId)
+                            String(
+                                server.id
+                            ) ===
+                            String(
+                                guildId
+                            )
                     );
 
 
                 if (
                     !selectedServer ||
-                    !canManageServer(selectedServer)
+                    !canManageServer(
+                        selectedServer
+                    )
                 ) {
 
                     settingsSaveStatus.textContent =
@@ -5662,7 +5878,9 @@
 
                 if (
                     !installedBotServerIds.has(
-                        String(guildId)
+                        String(
+                            guildId
+                        )
                     )
                 ) {
 
@@ -5767,7 +5985,8 @@
                             API_URL +
                             "/discord/server-settings",
                             {
-                                method: "POST",
+                                method:
+                                    "POST",
 
                                 headers: {
 
@@ -5796,7 +6015,8 @@
 
 
                     if (
-                        response.status === 401
+                        response.status ===
+                        401
                     ) {
 
                         clearSession();
@@ -5813,9 +6033,11 @@
                     ) {
 
                         throw new Error(
-                            data?.error ||
-                            data?.message ||
-                            "No se pudo guardar la configuración."
+                            getApiErrorMessage(
+                                response,
+                                data,
+                                "No se pudo guardar la configuración."
+                            )
                         );
 
                     }
@@ -5839,7 +6061,9 @@
                         "settings-save-status success";
 
 
-                } catch (error) {
+                } catch (
+                    error
+                ) {
 
                     console.error(
                         "Error guardando configuración:",
@@ -5854,7 +6078,6 @@
 
                     settingsSaveStatus.className =
                         "settings-save-status error";
-
 
                 } finally {
 
@@ -5885,7 +6108,9 @@
                     );
 
 
-                if (settingsNav) {
+                if (
+                    settingsNav
+                ) {
 
                     settingsNav.click();
 
@@ -5932,23 +6157,30 @@
                     getToken();
 
 
-                if (token) {
+                if (
+                    token
+                ) {
 
                     try {
 
                         await fetch(
-                            API_URL + "/logout",
+                            API_URL +
+                            "/logout",
                             {
-                                method: "POST",
+                                method:
+                                    "POST",
 
                                 headers: {
                                     "Authorization":
-                                        "Bearer " + token
+                                        "Bearer " +
+                                        token
                                 }
                             }
                         );
 
-                    } catch (error) {
+                    } catch (
+                        error
+                    ) {
 
                         console.error(
                             "Error cerrando sesión:",
@@ -5971,7 +6203,7 @@
 
 
         // ==========================================
-        // DETECTAR REGRESO DESDE DISCORD
+        // REGRESO DISCORD
         // ==========================================
 
         function handleDiscordReturn() {
@@ -5983,11 +6215,14 @@
 
 
             const discord =
-                params.get("discord");
+                params.get(
+                    "discord"
+                );
 
 
             if (
-                discord === "connected"
+                discord ===
+                "connected"
             ) {
 
                 setDiscordConnected();
